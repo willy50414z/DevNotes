@@ -1,0 +1,29 @@
+一個符合規則的class
+	1.有一個無參constructor
+	2.封裝
+	3.可序列化
+
+在jsp中使用JavaBean
+	1. 建立一model定義傳輸資料，生成get/set方法
+	2. 引入model	
+		<jsp:useBean  id="model名"  scope="request" class="model路徑"/>
+	3. 設置值
+		<jsp:setProperty property="自己取名變數"  name="model名"  param="textbox欄位name屬性"/>
+	4. 取出
+		$(request. model名. 自己取名變數)
+
+		<%
+		request.getParameter("Visit2");
+		out.println("aa-"+Visit2.getCount());
+		%>
+
+scope屬性
+	page表示只能在當頁使用bean
+	session--特定使用者
+	Application--所有使用者
+Scope範例(訪問計數器)
+	<jsp:useBean id="Visit1" class="com.test.Visit" scope="application"/>
+	<jsp:useBean id="Visit2" class="com.test.Visit" scope="session"/>
+	<br/>你造訪了<jsp:getProperty property="count" name="Visit2"/>次
+	<br/>這個網頁被造訪了<jsp:getProperty property="count" name="Visit1"/>次
+

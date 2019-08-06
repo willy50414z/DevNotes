@@ -1,0 +1,12 @@
+//Java的final
+	Const int a;
+
+//型別差異
+	ushort(永遠為正的short，故其正範圍為short的2倍)
+	uint(永遠為正的int，故其正範圍為int的2倍)
+	ulong(永遠為正的long，故其正範圍為long的2倍)
+	//二維陣列宣告方式
+	String[,] a={{1,2,3},{4,5,6}}
+	
+//陣列排序
+	Arrary.sort(<Array>);	//直接在陣列中排，不需要另宣告變數接收

@@ -1,0 +1,8 @@
+> shapiro.test(brain$VIQ)
+
+	Shapiro-Wilk normality test
+
+data:  brain$VIQ
+W = 0.92868, p-value = 0.0204
+
+//p-value<0.05(alpha)-->拒絕Ho(服從常態分配)

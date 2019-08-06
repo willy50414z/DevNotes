@@ -1,0 +1,2 @@
+Rengine re=new Rengine(args, false, new TextConsole());
+re.eval("data(iris)",false);

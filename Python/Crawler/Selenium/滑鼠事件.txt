@@ -1,0 +1,6 @@
+element.click().perform()
+#•k¡‰
+element.context_click().perform()   
+element.double_click().perform()
+element.drag_and_drop().perform()
+element.move_to_element().perform()

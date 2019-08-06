@@ -1,0 +1,10 @@
+public class MainApp {
+	public static void main(String[] args) throws Exception {
+		System.out.println("1"+MainApp.class.getResource("").getPath());
+		System.out.println("2"+MainApp.class.getResource("/").getPath());
+		System.out.println("3"+Thread.currentThread().getContextClassLoader().getResource("").getPath());
+		System.out.println("4"+MainApp.class.getClassLoader().getResource("").getPath());
+		System.out.println("5"+ClassLoader.getSystemResource(""));
+		System.out.println("6"+new MainApp().getClass().getProtectionDomain().getCodeSource().getLocation().toString());
+	}
+}

@@ -1,0 +1,128 @@
+//JS
+<script>
+	function startUpload() {
+		$("#progress_bar").show();//顯示進度條
+		   setInterval("getUploadProcess()",1000);//1秒執行一次getUploadProcess()
+	}
+	//取得進度並設定進度條樣式
+	function getUploadProcess() {
+		$.post("servlet/getUploadPercent",function(data){ 
+ 	       var json = eval("("+data+")"); 
+ 	       jQuery("#progress").css("width",json.percentage/100*200+"px"); 
+ 	       jQuery("#msg").css("padding","1px").html(json.percentage+"%"); 
+ 	       $("#test").val($("#test").val()+"\r\n"+json.percentage+"%");
+ 	   });
+	}
+</script>
+
+//html
+<body>
+	<iframe name=upload_iframe width=0 height=0></iframe>
+	
+	<form id="UploadFileForm" action="UploadFile" method="post"
+		enctype="multipart/form-data" target="upload_iframe"
+		onsubmit="showProgress();">
+		<input type="file" name="file1" class="text"> <input type="submit"
+			value="上傳文件" class="button"  onclick="startUpload()">
+	</form>
+	
+	<br />
+	<div id="progress_bar"
+		style="width: 200px; height: 1px; display: none; border: 1px solid black;">
+		<div id="progress"
+			style="background-color: red; height: 1px; width: 0px;"></div>
+	</div>
+	<textarea id="test" text=""/>
+</body>
+
+//UploadFileAction.java
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		// 檢查form格式是否為multipart/form-data
+		if (ServletFileUpload.isMultipartContent(request)) {
+			DiskFileItemFactory dfif = new DiskFileItemFactory();
+			 dfif.setSizeThreshold(5 * 1024 * 1024); //使用內存超過5MB則暫存在站存目錄
+			dfif.setRepository(new File("D:\\")); // 設定暫存目錄(傳輸檔案過大時用)
+			//設置監聽器
+			ServletFileUpload fileupload = new ServletFileUpload(dfif);
+			fileupload.setProgressListener(new UploadProgressListener(request));
+			// --------------
+			List<FileItem> files = null;
+			//取得檔案
+			try {
+				files = fileupload.parseRequest(request);
+			} catch (FileUploadException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e);
+			}
+			//取得檔案詳細內容
+			for (FileItem f : files) {
+				File file1 = new File(new String(f.getName().getBytes(), "UTF-8"));
+				System.out.println(file1.length());
+				System.out.println(file1.getParent());
+				System.out.println(file1.isFile());
+				System.out.println(file1.getAbsolutePath());
+				System.out.println(file1.getName());
+				System.out.println(file1.getAbsoluteFile());
+				System.out.println(file1.getPath());
+				//若格式為檔案，輸出至D槽
+				if (f.isFormField()) { 
+					out.print(f.getFieldName());
+					out.print(f.getString("UTF-8")); 
+				} else {
+					String filename = f.getName();
+					filename = filename.substring(filename.lastIndexOf("."));
+					try {
+						f.write(new File("d:\\" + (int) (Math.random() * 10000000) + filename));
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		} else {
+			out.print("你所提交的表單有錯誤!");
+		}
+		
+	}
+
+	class UploadProgressListener implements ProgressListener {
+		private HttpServletRequest request;
+		private long megaBytes = -1;
+		private DecimalFormat df = new DecimalFormat("#00.0000");
+		UploadProgressListener(HttpServletRequest request) {
+			this.request = request;
+		}
+		//override update方法
+		@Override
+		public void update(long uploadedByte, long bytesTotal, int items) {
+			// 有進展才更新Session中的值
+			long mBytes = uploadedByte / 1000000;
+			if (megaBytes == mBytes) {
+				return;
+			}
+			megaBytes = mBytes;
+			double percent = (double) uploadedByte * 100 / (double) bytesTotal;
+			System.out.println(df.format(percent));
+			request.getSession().setAttribute("UPLOAD_PERCENTAGE", df.format(percent));
+		}
+	};
+}
+
+//getUploadPercent.java
+//自Session取得上傳進度並回傳
+public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		HttpSession session = request.getSession();
+		Object is_begin = session.getAttribute("UPLOAD_PERCENTAGE");
+		if (is_begin == null)
+			return;
+		if ("0".equals(is_begin.toString()))
+			return;
+		PrintWriter out = response.getWriter();
+		Object upload_percentage = session.getAttribute("UPLOAD_PERCENTAGE");
+		out.write("{percentage:'" + upload_percentage.toString()+"'}");
+		out.flush();
+	}

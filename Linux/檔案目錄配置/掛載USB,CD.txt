@@ -1,0 +1,11 @@
+#usb
+#1.祑盒(础USB穦铬祑盒嘿)
+	blkid
+#2.т程ê  # /dev/sdb1
+#3.盢赣usb本更$dir
+	mount UUID="$UUID" $dir
+
+
+
+#纐粄本更(秨诀本更)
+#琩瞷Τ本更

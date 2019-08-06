@@ -1,0 +1,8 @@
+boxplot(<vector,matrix,df,y~factor>,horizontal=TRUE/FALSE,names<vector>,col=<vector>,main="Title",add=TRUE/FALSE)
+
+
+> setwd("D:/R/®Ñ¤¤½d¨Ò/Data/txt")
+> cancers<-read.table("cancers.txt",header=TRUE)
+> x2=cancers$bronchus
+> x1=cancers$stomach
+> boxplot(x1,x2,horizonental="TRUE",names=c("Stomach","bronchus"))

@@ -1,0 +1,19 @@
+1.下載odbc driver
+
+2.cmd執行
+cd /d %python_Home%/Scripts
+pip install pyodbc  
+
+3.測試
+import pyodbc
+
+try:
+    server = '127.0.0.1,1803' 
+    database = 'GMS_P' 
+    username = 'GMS' 
+    password = 'GMS' 
+    cnxn = pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+    cursor = cnxn.cursor()
+    print("連線成功")
+except Exception as ex:
+    print(ex)

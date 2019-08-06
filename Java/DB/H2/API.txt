@@ -1,0 +1,5 @@
+// 刪除在D:/名為sample的FileDB,將信息不顯示在console
+	DeleteDbFiles.execute("D:/", "sample", true);
+
+//執行檔案中語法
+RunScript.execute(con, new FileReader("D:/script.sql"));

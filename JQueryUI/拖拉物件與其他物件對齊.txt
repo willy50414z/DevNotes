@@ -1,0 +1,40 @@
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <style>
+  	#containment-wrapper { width: 95%; height:100px; border:2px solid #ccc; padding: 10px; }
+  	.innerdiv {border:2px solid #ccc; }
+  	</style>
+-----------------------------------------------------------------------------
+$(function(){
+	$( "#draggable" ).draggable({ snap: true });
+    $( "#draggable2" ).draggable({ snap: "#snaptarget" });
+    $( "#draggable3" ).draggable({ snap: "#snaptarget", snapMode: "outer" });
+    $( "#draggable4" ).draggable({ grid: [ 20, 20 ] });
+    $( "#draggable5" ).draggable({ grid: [ 80, 80 ] });
+})
+--------------------------------------------------------------------------
+<div id="snaptarget" class="innerdiv" style="width: 90%; height:250px">
+  <p>I'm a snap target</p>
+</div>
+ 
+
+ 
+<div id="draggable" class="innerdiv" style="width: 150px; height:100px">
+  <p>(預設)自動調整與&lt;所有其他可拖移物件&gt;邊緣對齊</p>
+</div>
+ 
+<div id="draggable2" class="innerdiv" style="width: 150px; height:100px">
+  <p>自動調整與&lt;目標物件&gt;邊緣對齊</p>
+</div>
+ 
+<div id="draggable3" class="innerdiv" style="width: 150px; height:100px">
+  <p>自動調整與&lt;目標物件的外緣&gt;邊緣對齊</p>
+</div>
+ 
+<div id="draggable4" class="innerdiv" style="width: 150px; height:100px">
+  <p>自動調整與&lt;每次只能移動20*20的位置&gt;邊緣對齊</p>
+</div>
+ 
+<div id="draggable5" class="innerdiv" style="width: 150px; height:100px">
+  <p>自動調整與&lt;每次只能移動80*80的位置&gt;邊緣對齊</p>
+</div>

@@ -1,0 +1,5 @@
+$( "[name='shape']").on( "change", handleShape );
+
+function handleShape( e ) {
+      alert( $( e.target ).val() );
+    };

@@ -1,0 +1,5 @@
+for
+	for i in range(0,len(playlist_url)):
+foreach
+	failUrlList = []
+	for failUrl in failUrlList:

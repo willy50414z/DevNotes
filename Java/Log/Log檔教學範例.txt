@@ -1,0 +1,19 @@
+1.建立log4j.properties在/src下
+
+#Logger層級設定
+log4j.rootLogger=DEBUG, console, logfile
+#輸出到檔案(文件大小到達指定size的時候產生一個新的文件)
+log4j.appender.logfile=org.apache.log4j.RollingFileAppender
+#輸出格式(可以靈活地指定佈局模式)
+log4j.appender.logfile.layout=org.apache.log4j.PatternLayout
+#輸出內容設定
+log4j.appender.logfile.layout.ConversionPattern=%d{MM-dd HH:mm:ss} %-5p %l - %m%n
+#輸出位置及檔案設定
+log4j.appender.logfile.File=d:/log.txt
+log4j.appender.logfile.MaxFileSize=3MB
+log4j.appender.logfile.MaxBackupIndex=5
+log4j.appender.logfile.encoding=UTF-8
+
+2.建立main
+Logger logger = Logger.getLogger("WriteLog.class");//WriteLog為調用log的class
+logger.info("What a beautiful day!!");

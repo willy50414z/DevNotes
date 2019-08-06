@@ -1,0 +1,55 @@
+//setting ActionContex	
+	//1.取得Context物件
+	ActionContext ac = ActionContext.getContext();
+	//2.塞值
+	ac.put(key,value)
+	//3.取值
+	${key}
+
+
+
+//Struts2的foreach	
+	<s:iterator value="#物件.屬性" var="隨意變數">
+		
+
+//Struts2預設發生error時回傳input
+	可設定回傳input的action
+
+//Interceptor
+	//1.在struts中設定攔截器
+		<interceptors>
+			<interceptor name="helloInterceptor" class="com.inter.HelloInterceptor"></interceptor>
+		</interceptors>
+	//2.在Action中引入攔截器
+		<interceptor-ref name="defaultStack"></interceptor-ref>
+			<para name="**">***</para>    //設置interceptor初始參數,在class中宣告並產生setter即可使用
+		    //篩選攔截屬性--Interceptor類別需繼承MethodFilterInterceptor並給予setExcludeMethods(String excludeMethods)、include...方法而非
+			<para name="excludeMethods" >a1,a2,a3</para>    //設置interceptor的excludeMethods屬性,排除對該action中部份方法使用interceptor
+			<para name="includeMethods" >b1,b2,b3</para>    //設置interceptor的includeMethods屬性,選取對該action中部份方法使用interceptor
+		<interceptor-ref name="helloInterceptor"></interceptor-ref>
+	//3.也可以將特定攔截器們設成堆疊(群組)再一併引入
+		<interceptor-stack name="***">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="helloInterceptor"></interceptor-ref>
+		</interceptor-stack>
+	//4.Interceptor類別中需繼承AbstractInterceptor，並可以執行傳入類別ActionInvocation的invoke方法觸發action，並接收其回傳值
+		傳入值--ActionInvocation arg0
+		String resuletString = arg0.invoke();
+	//5.若要篩選使用Interceptor的action則需繼承MethodFilterInterceptor、宣告excludeMethods、includeMethods的set方法
+	//並在struts.xml中setting excludeMethods、includeMethods屬性
+		<interceptor-ref name="helloInterceptor">
+				<param name="excludeMethods">execute</param>
+			</interceptor-ref>
+
+//設置request、session
+		ActionContext actionContext = ActionContext.getContext();
+
+
+		Map sessionMap = actionContext.getSession();
+		sessionMap.put("name", ***);
+
+//單個button跳轉action
+	location.href="action名.action"
+
+
+

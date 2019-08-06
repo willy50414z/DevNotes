@@ -1,0 +1,14 @@
+//insert
+	con = DriverManager.getConnection(url);
+	ps=con.prepareStatement(sql);
+	ps.setInt(1, a.getId());//從1開始
+	ps.execute();
+
+//query
+	con = DriverManager.getConnection(url);
+	ps=con.prepareStatement(sql);
+	ps.setInt(1, a.getId());//從1開始
+	ps.executeQuery();
+
+
+

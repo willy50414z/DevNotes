@@ -1,0 +1,4 @@
+®æ¦¡
+	namespace/action.action
+ex
+	index/annotationAction.action

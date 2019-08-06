@@ -1,0 +1,12 @@
+> x=sample(1:100,20)
+> y=sample(1:100,20)
+> max0=max(x,y)
+> plot(x)
+> lines(1:20,y,lty=2,type="l",col=2)
+> legend(18,max0,legend=c("X","Y"),col=c(1,2),lty=c(1,2))
+	//x軸在18
+	//y軸在max0
+	//圖例的說明文字為X,Y
+	//以實線、虛線代表
+
+	

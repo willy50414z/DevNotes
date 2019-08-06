@@ -1,0 +1,29 @@
+一.JavaSE
+	1.把config放到整個專案下
+	2.
+		public String getConfig(String key){
+		Properties properties = new Properties();
+			try {
+				properties.load(new FileInputStream("config.properties"));
+			}catch(Exception e) {
+				log.error("---"+e.getMessage());
+			}
+		 return properties.getProperty(key);
+
+		}
+二.JavaEE
+	1.把config放到WEB-INF下
+	2.
+		Properties properties;
+		String url = this.getClass().getResource("").getPath(); 
+		String config="config";
+		public String get(String key) {
+				try {
+					properties.load(new FileInputStream(url.substring(0, url.indexOf("WEB-INF")) + "WEB-INF/"+config+".properties"));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					log.error("Config 取值Error -- "+e);
+				}
+		return properties.getProperty(key);
+	}

@@ -1,0 +1,43 @@
+//不知道他在幹嘛
+$.widget( "custom.catcomplete", $.ui.autocomplete, {
+      _create: function() {
+        this._super();
+        this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+      },
+      _renderMenu: function( ul, items ) {
+        var that = this,
+          currentCategory = "";
+        $.each( items, function( index, item ) {
+          var li;
+          if ( item.category != currentCategory ) {
+            ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+            currentCategory = item.category;
+          }
+          li = that._renderItemData( ul, item );
+          if ( item.category ) {
+            li.attr( "aria-label", item.category + " : " + item.label );
+          }
+        });
+      }
+    });
+//載入參考資料
+var data = [
+      { label: "anders", category: "" },
+      { label: "andreas", category: "" },
+      { label: "antal", category: "" },
+      { label: "annhhx10", category: "Products" },
+      { label: "annk K12", category: "Products" },
+      { label: "annttop C13", category: "Products" },
+      { label: "anders andersson", category: "People" },
+      { label: "andreas andersson", category: "People" },
+      { label: "andreas johnson", category: "People" }
+    ];
+//註冊事件
+    $( "#search" ).catcomplete({
+      delay: 0,
+      source: data
+    });
+----------------------------------------------------------
+<h3>自動提示欄位值(按分類)</h3>
+<label for="search">Search: </label>
+<input id="search">

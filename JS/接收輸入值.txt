@@ -1,0 +1,5 @@
+<script>
+//第一個參數顯示問題，第二個參數顯示在textbox中
+  var name=prompt("whats your name","");
+  alert(name);
+  </script>

@@ -1,0 +1,4 @@
+//事件
+function(被觸發物件)
+//each
+function(index<第幾個>)

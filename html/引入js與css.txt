@@ -1,0 +1,4 @@
+JS
+	<script src="<%=request.getContextPath() %>/js/DataTable.js"></script>
+CSS
+	<link href="<%=request.getContextPath() %>/CSS/Menu.css" rel="stylesheet" type="text/css"/>

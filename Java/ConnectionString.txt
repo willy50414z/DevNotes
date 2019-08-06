@@ -1,0 +1,6 @@
+//GMS
+	jdbc:sqlserver://127.0.0.1:1803;integratedSecurity=true;databaseName=GMS;
+//
+
+
+jdbc:sqlserver://127.0.0.1:1803;user=MyUserName;password=*****;

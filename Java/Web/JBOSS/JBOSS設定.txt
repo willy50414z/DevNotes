@@ -1,0 +1,40 @@
+//一.上傳sql Driver
+	1. 至 %JBOSS_HOME%\modules\system\layers\base\com 建立 \microsoft\sqljdbc\main 路徑
+	2. 拉入sqljdbc4.jar並新增記事本module.xml
+	3.配置記事本如下(可參考 %JBOSS_HOME%\modules\system\layers\base\com\h2database\h2\main\module.xml)
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<module xmlns="urn:jboss:module:1.5" name="com.microsoft.sqljdbc"><!--JAR路徑-->
+	    <resources>
+	        <resource-root path="sqljdbc4.jar"/><!--JAR檔名-->
+	    </resources>
+	    <dependencies>
+	        <module name="javax.api"/>
+	        <module name="javax.transaction.api"/>
+	        <module name="javax.servlet.api" optional="true"/>
+	    </dependencies>
+	</module>
+//二.新增連線字串
+	1. 打開 %JBOSS_HOME%\standalone\configuration\standalone.xml
+	2. 參照h2設定連線、driver(全部配置如下)
+	<datasources>
+                <datasource jndi-name="java:jboss/datasources/CTCB" pool-name="CTCB" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:sqlserver://172.24.17.52:1803;database=CSFDS_UAT</connection-url>
+                    <driver>sqljdbc4</driver>
+                    <security>
+                        <user-name>csfds_uat_usr</user-name>
+                        <password>csfds_uat_usr#1</password>
+                    </security>
+                </datasource>
+                <drivers>
+                    <driver name="sqljdbc4" module="com.microsoft.sqljdbc">
+                        <xa-datasource-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</xa-datasource-class>
+                    </driver>
+                </drivers>
+
+//三. 新增使用者資訊
+	 點擊 %JBOSS_HOME%\bin\add-user.bat>選a>後面除帳號密碼都是yes、空白
+
+//四.配置war檔
+	1.進入127.0.0.1:9990確認Configuration已配置好連線
+	2.至Deployment鋪上War檔

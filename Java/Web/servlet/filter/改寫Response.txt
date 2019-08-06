@@ -1,0 +1,36 @@
+//先製造一個假的Response
+
+
+	//繼承HttpServletResponseWrapper
+public class HttpCharacterResponseWrapper extends HttpServletResponseWrapper{
+
+	
+	//宣告一個字元陣列(不能用String，不知為啥)
+	private CharArrayWriter charArrayWriter=new CharArrayWriter();
+	public HttpCharacterResponseWrapper(HttpServletResponse response) {
+		super(response);
+		// TODO Auto-generated constructor stub
+	}
+	//讓servlet把值放入charArrayWriter變數
+	@Override
+	public PrintWriter getWriter() throws IOException {
+		// TODO Auto-generated method stub
+		return new PrintWriter(charArrayWriter);
+	}
+	//取得回傳HTML
+	public CharArrayWriter getCharArrayWriter() {
+		return charArrayWriter;
+	}
+}
+
+//在Servlet中替代原本的Response
+HttpCharacterResponseWrapper fakeRes=new HttpCharacterResponseWrapper((HttpServletResponse) response);
+...
+chain.doFilter(request, fakeRes);
+...
+String outPut=fakeRes.getCharArrayWriter().toString();
+		System.out.println("fakewriter OutPut -- "+outPut);//印出回傳的HTML
+		//寫出HTML
+		PrintWriter out=response.getWriter();
+		out.write(outPut);
+		out.flush();

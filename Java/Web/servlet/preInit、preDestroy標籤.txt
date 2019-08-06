@@ -1,0 +1,4 @@
+Servlet標籤
+@PostConstruct:servlet的constructor，載入servlet時跟init()方法一起載入，且只載一次
+@PreDestroy:再調用Destroy()方法後，servlet被destroy前被調用，
+若沒有以上標籤，可以在web.xml中的<webapp宣告中加上metadata-complete=’true’，節省編譯器去掃標籤的時間

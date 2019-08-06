@@ -1,0 +1,11 @@
+//取cookie
+var str=document.cookie;
+//str為key=value;key1=value1;key2=value2;的格式
+//用substring取出value後須解碼回傳
+	decodeURI(value)
+//設cookie
+	document.cookie="key = "+encodeURI(value);
+
+
+
+	

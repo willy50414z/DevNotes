@@ -1,0 +1,4 @@
+HttpServletResponse res = (HttpServletResponse) response;
+res.setDateHeader("Expires", -1);
+res.setHeader("Cache-Control", "no-cache");
+res.setHeader("Pragma", "no-cache");

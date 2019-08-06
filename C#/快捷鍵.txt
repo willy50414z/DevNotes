@@ -1,0 +1,9 @@
+//Get¡BSet
+	"prop" -- Tab -- Tab
+	"propfull" -- Tab -- Tab
+
+//constructor
+	ctor -- Tab
+
+//µù¸Ñ
+	Ctrl + K + C

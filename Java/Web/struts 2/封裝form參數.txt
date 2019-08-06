@@ -1,0 +1,3 @@
+//1.建立POJO Bean
+//2.在Action宣告並生成get/set
+//3.jsp中name改成[ (action宣告的變數).類別屬性 ]

@@ -1,0 +1,22 @@
+以下皆可設定於struts.xml
+<struts>
+	<contant name="struts.i18n.encoding" value="UTF-8"/>
+
+</struts>
+
+#struts2編碼
+struts.i18n.encoding
+#上傳檔案使用的框架(COS | PELL | jakarta[default])
+struts.multipart.parser
+#上傳檔案最大位元數
+struts.multipart.maxSize
+#顯示更人性化錯誤信息
+struts.devMode
+#是否每次請求皆重新載入properties檔
+struts.i18n.reload
+#是否每次請求皆重新載入struts.xml
+struts.configuration.xml.reload
+#Struts2產生URL是否包含請求參數(all | get | none)
+struts.url.includeParams
+#設定webservice是否可呼叫request.getParameterMap
+struts.dispatcher.parametersWorkaround

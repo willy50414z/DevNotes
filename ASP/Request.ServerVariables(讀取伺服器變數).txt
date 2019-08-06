@@ -1,0 +1,5 @@
+HTTP request 來源 IP: 		Request.ServerVariables("REMOTE_ADDR")
+HTTP request 伺服器 IP:		Request.ServerVariables("LOCAL_ADDR")
+HTTP request 代理伺服器（含網域名稱及軟體名稱）: Request.ServerVariables("HTTP_VIA")
+HTTP request 原始來源 IP: 	Request.ServerVariables("HTTP_X_FORWARDED_FOR")
+連結至目前網頁的前一個網頁：	Request.ServerVariables("HTTP_REFERER")

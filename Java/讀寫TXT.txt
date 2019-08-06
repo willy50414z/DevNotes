@@ -1,0 +1,53 @@
+public void readFile(String path){
+		String codeing = "UTF-8";
+			InputStreamReader isr=null;
+		try {
+			InputStream is = new FileInputStream(path);  
+	        
+			try {
+				isr = new InputStreamReader(is, codeing);
+			} catch (UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			BufferedReader br = new BufferedReader(isr);//bufferedReader
+            String strLine = null;
+            
+            try {
+            	while((strLine = br.readLine())!=null){//將CSV檔字串一列一列讀入並存起來直到沒有列為止
+            		
+            	}
+            } catch (IOException e) {
+            	}finally{ 
+				try{ 
+					br.close();
+					isr.close();
+						} catch(IOException e){} 
+					} 
+			
+		}catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+			}
+
+public void writeTXT(){
+	String codeing = "UTF-8";
+	BufferedWriter fw = null;
+		try {
+		File file = new File("D:\\XML\\"+fileName.substring(0, fileName.length()-4)+".xml");
+		fw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true),codeing)); // 指點編碼格式，以免讀取時中文字符異常
+		fw.append(encodeString);
+		fw.flush(); // 全部寫入緩存中的內容
+		} catch (Exception e) {
+		e.printStackTrace();
+		} finally {
+		try {
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		}
+
+}

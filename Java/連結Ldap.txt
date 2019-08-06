@@ -1,0 +1,15 @@
+LdapBasic l = new LdapBasic();
+
+Attributes attrs;
+try {
+l.bind("192.168.31.40, "389, "ou=CSEL,ou=APPs,o=CTCB", "CSEL0302"); 
+attrs = l.getUserProperty(testDept.getCn(), new String[] { "cn", "fullname","CTCBEMPLOYEELEVEL"
+}); 
+}
+finally {
+l.unbind();
+}
+TestDept testDept = new TestDept();
+testDept.setCn(attrs.getAttribute("cn").getAttrValues()[0]);
+testDept.setFullname(attrs.getAttribute("fullname").getAttrValues()[0]);
+testDept.setCtcbEmployeeLevel(attrs.getAttribute("CTCBEMPLOYEELEVEL").getAttrValues()[0]);

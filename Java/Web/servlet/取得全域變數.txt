@@ -1,0 +1,8 @@
+//web.xml
+<context-param>
+  	<param-name>ee</param-name>
+  	<param-value>ff</param-value>
+  </context-param>
+
+//JAVA
+System.out.println("ee -- "+this.getServletConfig().getServletContext().getInitParameter("ee"));

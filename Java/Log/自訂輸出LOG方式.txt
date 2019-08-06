@@ -1,0 +1,17 @@
+//1.繼承AppenderSkeleton
+//2.Override public void append(LoggingEvent event) 
+//3.自訂輸出方式
+	System.out.print("AA -- "+this.layout.format(event));
+
+
+
+
+//宣告變數並提供GET,SET方法可在properties中設定值
+//	log4j.appender.COUNTING.limit=10
+	int limit = 16;
+#指定自訂類別
+log4j.appender.COUNTING=com.willy.test.CountingConsoleAppender
+#設置參數
+log4j.appender.COUNTING.limit=10
+log4j.appender.COUNTING.layout=org.apache.log4j.PatternLayout
+log4j.appender.COUNTING.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%C]-[%p] %m%n

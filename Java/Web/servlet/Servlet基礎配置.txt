@@ -1,0 +1,17 @@
+<!--設定servlet Action名稱-->
+<servlet-mapping>
+  <servlet-name>test</servlet-name>
+  <url-pattern>/servletURL</url-pattern>
+</servlet-mapping>
+
+<!--設定servlet Action路徑-->
+<servlet>
+  <servlet-name>test</servlet-name>
+  <servlet-class>com.willy.test.TestServlet</servlet-class>
+</servlet>
+
+//annotation
+@WebServlet(urlPatterns = {"/servletURL"})
+
+<!--設定觸發的 Action (不需加\)-->
+<form action="servletURL"> </form>

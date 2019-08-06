@@ -1,0 +1,2 @@
+RequestDispatcher header =request.getRequestDispatcher("/WEBINF/view/common/header.jsp?title=DumpServlet");
+header.include(request, response);

@@ -1,0 +1,46 @@
+//第一個下拉		
+		<selectid="id"name="detail.id">
+		<option value="">請選擇您想查詢的科別名稱</option>
+		<c:forEachvar="o"items="${result.classnames}">
+		<optionvalue="${o.id}"${result.detail.id==o.id?'selected="true"':''}>${o.classname}</option>
+		</c:forEach>
+		</select>
+
+//第二個下拉，列出所有選項(隱藏)
+//以data-category儲存parameter
+		<selectid="idhidden" name="idhidden" hidden>
+		<!--optionvalue="">請選擇您想查詢的科別名稱</option>-->
+		<c:forEachvar="o"items="${result.classnames}">
+		<option data-category="${o.category}"value="${o.id}">${o.classname}</option>
+		</c:forEach>
+
+//第二個下拉(空欄位)
+		</select>
+		<selectid="id"name="detail.id">
+		<option value="">請選擇您想查詢的科別名稱</option>
+		</select>
+
+//JS
+//第一個下拉被觸發後
+		$("#dname").on('change', function() {
+		change=1;
+//先移除下拉2的所有option
+		$("#id option").remove();
+//取得第一個下拉所選的值
+		//var dname = $(this).children('option Selected').val();//是selected的值
+		//var dname = $(this).children($(this)).val();//是selected的值
+		var dname = $(this).val();
+		//var dname=$("#dname").val();
+//以forEach方始取得下拉2所有選項
+		$("#idhidden option").each(function(i,v){
+//取得選項內帶的參數
+			var idcategory=$(this).attr("data-category");
+//設定FK、PK對應條件
+			if(dname==idcategory){
+//掛載value為下拉2的value，text為下拉2的text
+				$('#id').append($("<option></option>").prop("value", $(this).val()).text($(this).text()));
+			}
+			});
+		
+	
+	});

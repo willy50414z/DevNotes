@@ -1,0 +1,3 @@
+StreamWriter sw = new StreamWriter(@"D:\secret_plan.txt");
+        sw.WriteLine("write something");            // 寫入文字
+        sw.Close();                     // 關閉串流

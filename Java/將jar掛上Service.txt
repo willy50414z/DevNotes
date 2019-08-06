@@ -1,0 +1,22 @@
+1. 下載WinSW.NET2 (或WinSW.NET4)
+2. 將WinSW.NET2.exe放在與執行檔同目錄
+3. 在同目錄加上WinSW.NET2.xml文件，內容如下
+	執行檔名稱 : ServiceController.jar
+	服務顯示名稱 : ServiceController
+	服務描述 : ServiceController Windows Service
+-----------------
+<?xml version="1.0" encoding="UTF-8"?> 
+<service> 
+<id>ServiceController</id> 
+<name>ServiceController</name>
+ <description>ServiceController Windows Service</description> 
+ <executable>java</executable> 
+ <arguments>-jar "ServiceController.jar"</arguments> 
+ <logmode>rotate</logmode> 
+</service>
+-----------------
+
+
+4. 指令如下
+	安裝 : WinSW.NET2.exe install
+	卸載 : WinSW.NET2.exe uninstall

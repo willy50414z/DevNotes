@@ -1,0 +1,13 @@
+Statement
+	stmt.addBatch(sql);
+	stmt.executeBatch();
+
+PreparedSataement
+	ps=con.preparedStatement("sql???");
+	for(int i=0;i<5;i++){
+	ps.set....
+	ps.set....
+	ps.set....
+	ps.addBatch();
+	}
+	ps.executeBatch();

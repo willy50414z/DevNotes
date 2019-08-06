@@ -1,0 +1,13 @@
+//取得指定資料夾內檔案名稱
+	DirectoryInfo folder = new DirectoryInfo(@"D:\");
+        foreach (var file in folder.GetFiles(/*可加regular expression篩選檔案*/))
+        {
+            Console.WriteLine(file.Name);
+        }
+
+//取得執行檔路徑內txt檔案名稱
+	DirectoryInfo folder = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+        foreach (var file in folder.GetFiles("*.txt"/*可加regular expression篩選檔案*/))
+        {
+            Console.WriteLine(Path.GetFullPath(file.Name));
+        }

@@ -1,0 +1,13 @@
+<!-- Tomcat開啟時自動實例化spring的bean物件 -->
+<!-- 自動初始化Spring物件 -->
+<context-param>
+<param-name>contextConfigLocation</param-name>
+<param-value>classpath:applicationContext.xml</param-value>
+</context-param>
+<!-- Spring實例化 -->
+<listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+
+<!-- 並在Action中以此調用 -->
+WebApplicationContext ctx=WebApplicationContextUtils.getWebApplicationContext(this.getServlet().getServletContext());

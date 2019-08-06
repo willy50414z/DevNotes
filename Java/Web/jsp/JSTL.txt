@@ -1,0 +1,74 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+©ñ¤Jjstl-1.2.jar¡Bstandard.jar
+
+<c:if test="${1>2}">
+<c:out default="¡K" value="¡K">„³<!--value=null®É¿é¥Xdefault-->
+</c:if>
+
+<c:if test="${param.action == 'add'}">
+<c:out default="¡K" value="¡K">„³<!--value=null®É¿é¥Xdefault-->
+</c:if>
+
+<c:choose>
+	<c:when test=${}>
+
+	<c:/when>
+	<c:when test=${}>
+
+	<c:/when>
+	<c:otherwise>
+
+	<c:/otherwise>
+</c:choose>
+
+
+<c:forEach begin="0" end="10" step="1" var="i">
+<c:out value="${i}"/>
+</c:forEach>
+
+<c:forEach items="list" var="o">
+<c:out value="${o}"/>
+</forEach>
+
+<c:forEach items="list" var="o">
+<c:out value="${o.key}"/>
+<c:out value="${o.value}"/>
+</forEach>
+
+<table border="1" cellpadding="0" cellspacing="0">
+<c:forEach begin="0" end="10" step="1" var="i" varStatus="varStatus" >
+<tr>
+<td><c:out value="varStatus.index ²Ä´X­Ó­È(0¶}©l)"/></td><td><c:out value="${varStatus.index }"/></td>
+<td><c:out value="varStatus.count ²Ä´X­Ó­È(1¶}©l)"/></td><td><c:out value="${varStatus.count }"/></td>
+<td><c:out value="varStatus.first ¬O§_¬°²Ä¤@­Ó­È"/></td><td><c:out value="${varStatus.first }"/></td>
+<td><c:out value="varStatus.last ¬O§_¬°³Ì«á¤@­Ó­È"/></td><td><c:out value="${varStatus.last }"/></td>
+<%-- <td><c:out value="varStatus.current ²{¦b³o­Óª«¥ó"/></td><td><c:out value="${varStatus.current.value }"/></td> --%>
+<td><c:out value="varStatus.begin ¦¹¼ÐÅÒªºbeginÄÝ©Ê"/></td><td><c:out value="${varStatus.begin }"/></td>
+<td><c:out value="varStatus.end ¦¹¼ÐÅÒªºendÄÝ©Ê"/></td><td><c:out value="${varStatus.end }"/></td>
+<td><c:out value="varStatus.step ¦¹¼ÐÅÒªºstepÄÝ©Ê"/></td><td><c:out value="${varStatus.step }"/></td>
+</tr>
+</c:forEach>
+</table>
+
+<table border="1" cellpadding="0" cellspacing="0">
+<c:forEach Item="${personList}" var="person" varStatus="varStatus" >
+<tr>
+<td><c:out value="varStatus.current ²{¦b³o­Óª«¥ó"/></td><td><c:out value="${varStatus.current.name }"/></td>
+</tr>
+</c:forEach>
+</table>
+
+<c:forTokens Item="¥H,¤À³Î¦r¦ê" var="item" >
+	<p>${item}</p>
+</c:forTokens>
+
+<!-- scope³]¬°
+		pageªí¥Ü¥u¯à¦b·í­¶¨Ï¥Îbean
+		session--¯S©w¨Ï¥ÎªÌ
+		Application--©Ò¦³¨Ï¥ÎªÌ
+ -->
+<c:set var="count" value="count+1" scope=""/>
+
+<c:remove var="count"/>  <!--²¾°£ÅÜ¼Æ-->
+
+<c:import url="" charEncoding="" var="¦³ªº¸ÜHtml¦s¤JÅÜ¼Æ¡A¨S¦³ªº¸Üª½±µoutputºô­¶">

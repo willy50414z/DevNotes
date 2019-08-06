@@ -1,0 +1,25 @@
+Declare @id as varchar(14)
+Declare @rel_id as varchar(14)
+Declare @rel_type as char(1)
+
+DECLARE contact_cursor CURSOR FOR  
+select C.ID,C.REL_ID,C.REL_TYPE
+from customer C,FOREIGN_BAD_DEBT_CUST FBDC
+where FBDC.ID=C.ID and FBDC.REL_ID=C.REL_ID and FBDC.REL_TYPE=C.REL_TYPE and C.GUR_DEU_DATE is null;  
+
+OPEN contact_cursor;  
+
+-- Perform the first fetch.  
+FETCH NEXT FROM contact_cursor
+INTO @id,@rel_id,@rel_type;
+-- Check @@FETCH_STATUS to see if there are any more rows to fetch.  
+WHILE @@FETCH_STATUS = 0  
+BEGIN  
+   print @id+' -- '+@rel_id+' -- '+@rel_type;
+   FETCH NEXT FROM contact_cursor
+   INTO @id,@rel_id,@rel_type;
+END  
+
+CLOSE contact_cursor;  
+DEALLOCATE contact_cursor;  
+GO  

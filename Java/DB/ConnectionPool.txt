@@ -1,0 +1,12 @@
+<!-- auth資源管理者 Container:由容器建立管理  Application:由WEB應用程式建立管理 
+    	 maxActive最大連線數
+    	 maxIdle閒置狀態保留連線數
+    	 maxWait連線處於空閒狀態最長時間，-1=無限
+    -->
+    <Resource name="jdbc/Stock_UAT"
+    		 type="javax.sql.DataSource"
+   		 auth="Container"
+     	 username="Stock_UAT"
+      	 password="Stock_UAT"
+     	 url="jdbc:sqlserver://127.0.0.1:1803;user=Stock_UAT;password=Stock_UAT;databaseName=Stock_UAT;"
+     	 driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>

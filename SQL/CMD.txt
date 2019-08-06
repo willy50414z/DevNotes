@@ -1,0 +1,1 @@
+sqlcmd -S W0211887\SQLEXPRESS -U admin -P admin -d master -i D:\CSFDS.sql -o D:\log.txt

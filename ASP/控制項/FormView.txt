@@ -1,0 +1,10 @@
+//屬性
+DataKeyNames : 指定Table的PK
+DataSourceID
+EnableViewState : 是否catch之前輸入過的資訊
+OnPreRender : 指定init()方法
+
+
+//標籤
+<ItemTemplate> : 顯示畫面設定
+	以<%# Eval("欄位名稱") %>的方式繫結欄位，取得欄位值

@@ -1,0 +1,35 @@
+Linux的運行級別：
+
+0：關機
+
+1：單用戶(可修改密碼，並不受default運行級別影響)
+
+2：多用戶狀態無網絡
+
+3：多用戶狀態有網絡
+
+4：系統未使用保留給用戶
+
+5：圖形介面
+
+6：系統重啟
+
+//修改
+ 
+	vi etc/inittab
+	//輸入模式
+	i 		
+	//修改ID，預設為1如下
+	id:1:initdefault
+	//
+	:wq
+
+//修改2
+	#顯示目前系統預設運作層級
+	systemctl get-default
+	
+	#切換運作層級至文字模式（runlevel 3）
+	systemctl isolate multi-user.target
+	
+	#切換運作層級至 GUI 模式（runlevel 5）
+	systemctl isolate graphical.target

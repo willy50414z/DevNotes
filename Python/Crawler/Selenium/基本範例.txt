@@ -1,0 +1,29 @@
+from selenium import webdriver 
+from selenium.common.exceptions import NoSuchElementException 
+from selenium.webdriver.common.keys import Keys 
+
+import time 
+import os 
+
+
+#開啟瀏覽器
+#browser = webdriver.Firefox() 
+#browser = webdriver.Ie('IEDriverServer.exe') 
+browser = webdriver.Chrome('chromedriver.exe') 
+
+#前往網址(GET)
+browser.get('http://www.google.com.tw/') 
+
+#取得ID為lst-ib的物件(搜尋欄位)
+elem = browser.find_element_by_xpath("//input[@id='lst-ib']") 
+
+#控制鍵盤--輸入艾小克>回車
+elem.send_keys('艾小克' + Keys.Enter) 
+
+time.sleep(1) 
+
+#links = browser.find_elements_by_xpath("//h3[@class='r']/a") 
+
+#assert links[0].text == u'瓶水相逢- 艾小克', 'not match' 
+
+browser.close()

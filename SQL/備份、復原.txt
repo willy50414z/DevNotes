@@ -1,0 +1,6 @@
+//備份
+ Backup Database GMS_P
+to Disk 'D:\GMS_P.bak'
+//還原
+  RESTORE DATABASE GMS_P  
+   FROM DISK = 'D:\MSSQL\Data\GMS_P.bak'

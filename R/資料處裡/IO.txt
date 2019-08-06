@@ -1,0 +1,22 @@
+//根目錄
+	getwd()		//取得根目錄
+	setwd()		//設定根目錄
+
+//import
+	scan()	//將讀進來的資料(DF)轉成向量或矩陣
+	read.csv()	//讀進以,分割的資料(.csv)
+	read.csv("Path",Header=TRUE)	//取得csv並以其第一列為colnames
+	read.table()	//讀進以[空格]區分的資料(.txt)
+	read.xls()	//載入excel格式檔
+
+//export
+	write()	//寫出向量或矩陣
+	write.csv()	//寫出csv檔
+		write.csv("Path",data)
+	write.table(data,Path,quote=false,rownames=false)	//寫出txt檔(變數名稱不加""//不顯示行數)
+
+
+
+//存取RData檔
+	save(data,"XX.RData");	//存進.RData檔
+	load("XX.RData")	//取出.RData檔

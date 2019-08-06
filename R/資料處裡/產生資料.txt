@@ -1,0 +1,69 @@
+//Vectors
+	v=c(1,5,4,7,8,9) || c('a','g','b','f') || c(c(1,2,3),c(4,5,6),c(7,8,9))
+	x<-c(first=5,second=50,third=7)		//替vector的值命名(以x["first"]取)
+//Matrix--每一欄型別相同，只能是單維
+	x<-matrix(data,ncol=a,nrow=b)	
+	x<-matrix(1:6,nrow=2,byrow=true)	//1~6組成兩列的矩陣，順序依列排序
+	dim(1:6)=c(2,3)
+
+//data.frame--每一欄型別可不同
+	read.zoo/read.csv...
+	x<-data.frame(id=c(1,2,3,4),
+		      name=c(a,b,c,d),
+		      gender=....)
+	data.frame(vector1,vector2,vector3)
+	
+//Array--可產生多維資料
+	dim(1:18)<-c(2,3,3)
+	arrary(c(1:6,10:15,100:105),dim=(2,3,3))
+
+//List--可由任何型別vector組成
+	L=list(v1,v2,v3)
+	以L$v1或L[[3]]取值
+
+//Factor--因子資料
+	x<-factor(male,female...)
+	gl(類別數,每類幾個值,labels=c(類別名稱),n=總共數量)
+	factor(c("M","F")[brain$Gender+1])	#將brain內gender屬性[0、1]轉為[M、F]
+	
+
+//Date()--取時間到秒
+	"Mon Jun 19 23:31:26 2017"
+
+//Sys.Date()--取時間到日
+	"2017-06-19"
+
+//weekdays/quarters/months/julian--取現在星期幾/季別/月份/自1970到現在天數
+	julian(as.Date("2015-01-01"))
+
+//計算兩日期相差天數
+	as.numeric(date()-date())
+
+//seq(from,to,by)
+	seq(0,10,1)	//從0到10每個數格1的vector
+	seq(as.POSIct("1994-06-28"),by="month",length=12)	//產生12個值，每個相差一個月
+	
+//rep(range,times)
+	rep(1:4,c(1,2,3,4))-->1,2,2,3,3,3,4,4,4,4
+
+//標準常態分配
+	rnorm(10)	//從標準常態分配中隨機抽出10個數
+	rnorm(100,mean=0,sd=0.5)	//自平均為0標準差為0.5的標準常態分配抽取100個值
+
+//平均分配
+	runif(10,4,7)	//從4~7中以平均分配抽出10個數
+
+//調用預設資料
+	data(資料名稱)	//載入(DF)
+
+//sample(隨便抽取資料)
+	sample(c('a','b','c'),size=20,replace=TRUE)	//從a,b,c中抽取20次，且取後可放回
+
+//迴歸曲線
+	lm(y~x)	//Y對X的迴歸曲線
+
+//ts(data,start{c(1994,6)},end,frequency{將一年分為幾部分--4:季--12:月})
+	
+
+
+	

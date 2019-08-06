@@ -1,0 +1,18 @@
+//Draggable
+$( "#draggable" ).draggable();
+//限制移動範圍
+	//1.只能上下||左右移動
+	$( "#draggable" ).draggable({ axis: "y" });
+	$( "#draggable" ).draggable({ axis: "x" });
+	//只能在被限制的範圍內拖移
+	$( "#draggable4" ).draggable({ containment: "#containment-wrapper", scroll: false });
+	<style>
+  	#containment-wrapper { width: 95%; height:100px; border:2px solid #ccc; padding: 10px; }
+  	.innerdiv {border:2px solid #ccc; }
+  	</style>
+	------------------------------------------------------------
+	<div id="containment-wrapper" style="height:800px">
+  	<div id="draggable4" class="innerdiv" style="width:200px;border-width:3px;border-style:dashed;border-color:#FFAC55;">
+   	<p>只能在被限制的範圍內拖移</p>
+  	</div>
+  	</div>

@@ -1,0 +1,8 @@
+Exception in thread "main" java.lang.NoClassDefFoundError: Could not initialize class org.springframework.beans.CachedIntrospectionResults
+	at org.springframework.context.support.AbstractApplicationContext.resetCommonCaches(AbstractApplicationContext.java:909)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:568)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at com.willy.strategy.Test.main(Test.java:18)
+-->
+­«½Æ«Å§iApplicationContext ac=new ClassPathXmlApplicationContext("com/willy/data/bean-config.xml");

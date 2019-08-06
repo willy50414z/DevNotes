@@ -1,0 +1,11 @@
+//<a>
+	<a href="www.google.com"> </a>
+
+//PostBackUrl(以"~/選取根目錄")
+	<asp:Button runat="server" Text="Button" PostBackUrl="~/Default4.aspx" />
+
+//Response.Redirect
+	Response.Redirect("~/Target.aspx");
+
+//Server.Transfer
+	Server.Transfer("~/Target.aspx");

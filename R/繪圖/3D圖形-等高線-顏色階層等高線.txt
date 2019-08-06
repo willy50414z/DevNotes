@@ -1,0 +1,13 @@
+> x<-seq(-3,3,0.1)
+> y=x
+> f=function(x,y){(1/(2*pi))*exp(-0.5*(x^2+y^2))}
+> z=outer(x,y,f)
+> par(mfrow=c(2,2))
+> persp(x,y,z)		#立體圖
+> persp(x,y,z,theta = 30,phi=30,box=F,main="theta=30,phi=30")	#立體圖(旋轉)
+> contour(x,y,z)	#等高線
+> image(x,y,z)		#以顏色階層繪製等高線
+
+	//theta : 控制圖形上下旋轉角度
+	//phi : 控制圖形左右旋轉角度
+	//box=F : 不畫出周圍的框線

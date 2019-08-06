@@ -1,0 +1,13 @@
+$(function(){
+	$("input").keypress(function(event){
+		//關閉事件處理1
+		event.preventDefault();
+		//關閉事件處理2
+		return false;
+	});
+	//關閉事件處理3
+	$(".test").off('click');
+	//開啟事件1
+	$(".test").off('click');
+})
+

@@ -1,0 +1,8 @@
+1.在config檔中設置錯誤處理參數(mode屬性可設為On,Off,RemoteOnly)
+    <customErrors defaultRedirect="/error.aspx" mode="On">
+    <error statusCode="403" redirect="~/403error.aspx" />
+    <error statusCode="404" redirect="~/404error.aspx" />
+    </customErrors>
+
+2.建立錯誤導向頁面
+    error.aspx、403error.aspx、404error.aspx....

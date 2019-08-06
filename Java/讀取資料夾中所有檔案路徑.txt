@@ -1,0 +1,14 @@
+public static void main(String[] args){
+		// TODO Auto-generated method stub
+		//取得根folder所有檔名<List>
+		File[] fileNameList;
+		//根目錄
+		String path="D:\\";
+		File f=new File(path);
+		//取得根目錄所有檔案路徑
+		fileNameList=f.listFiles();
+		//逐一比對是否加入List
+				for(File a:fileNameList){
+					System.out.println(a.toString());
+				}
+	}

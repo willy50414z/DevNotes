@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <script>
+  $( function() {
+    $( ".widget button" )
+//.widget button中第一個Button
+      .eq( 0 ).button()
+//.widget button中第二個Button(顯示icon不顯示Button文字
+      .end().eq( 1 ).button( {
+        icon: "ui-icon-gear",
+        showLabel: false
+      } )
+//.widget button中第三個Button(顯示icon<預設在左邊>
+      .end().eq( 2 ).button( {
+        icon: "ui-icon-gear"})
+//.widget button中第四個Button(顯示icon<設在右邊>
+	.end().eq( 3 ).button( {
+        icon: "ui-icon-gear",
+        iconPosition: "end"
+//.widget button中第五個Button(顯示icon<設在上面>
+      } ).end().eq( 4 ).button( {
+        icon: "ui-icon-gear",
+        iconPosition: "top"
+//.widget button中第六個Button(顯示icon<設在下面>
+      } ).end().eq( 5 ).button( {
+        icon: "ui-icon-gear",
+        iconPosition: "bottom"
+      } );
+  } );
+  </script>
+----------------------------------------------------------------
+<div class="widget">
+  <h1>Widget</h1>
+  <button>Button with only text</button>
+  <button>只有icon</button>
+  <button>icon在左邊</button>
+  <button>icon在右邊</button>
+  <button>icon在上面</button>
+  <button>icon在下面</button>
+</div>

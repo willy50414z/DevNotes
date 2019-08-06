@@ -1,0 +1,10 @@
+//建立陣列
+var array=["aa","bb"];
+//<put()>在陣列最後加上值
+array.put("cc");
+//<unshift()>在陣列最前面加上值
+array.unshift("cc");
+//<pop()>移除陣列最後一個值
+array.pop();
+//<shift()>移除陣列第一個值
+array.shift();

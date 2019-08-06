@@ -1,0 +1,5 @@
+//要先檢查Browser是否支援gzip
+String accept-encoding=request.getHeader("Accept-Encoding");
+accept-encoding.indexOf("gzip");
+
+//是

@@ -1,0 +1,3 @@
+qqnorm(<vector>)  畫出常態機率圖(越符合斜線越符合常態機率分配{可用qqline<vector>繪製斜線比較})
+qqplot(<vector>,<vector>)  畫出兩資料的常態機率圖
+	

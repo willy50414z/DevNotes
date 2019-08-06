@@ -1,0 +1,25 @@
+//多語系有兩種設定方式
+//1.<fmt:bundle><fmt:bundle/>	--	替標籤內的<fmt:message>標籤指定語系設定檔
+//2.<fmt:setBundle><fmt:setBundle/>	--	將語系設定檔指示成變數，調用<fmt:message>標籤時，可指定要讀取的設定檔
+	
+
+<fmt:setLocale value="en"/>  <!--直接指定顯示該頁套用的語系-->
+
+//1.Bundle
+<!-- Bundle 標籤範圍內的套用多語系設定 -->
+	<fmt:bundle basename="messages"> <!-- 套用檔名為message開頭的properties -->
+		<fmt:message key="prompt.hello">  <!-- 取出prompt.hello的值,並帶入參數[Helloween] -->
+			<fmt:param value="Helloween"></fmt:param>
+		</fmt:message> <br/>
+		<fmt:message key="prompt.greeting"></fmt:message><!-- 取出prompt.greeting的值 -->
+	</fmt:bundle>
+
+
+//2.setBundle
+<!-- 將message開頭的多語系properties檔設為變數resource供fmt:message標籤調用 -->
+	<fmt:setBundle basename="messages" var="resource" />
+	<fmt:setLocale value="zh_TW"/>
+	<fmt:message bundle="${ resource }" key="prompt.hello">
+		<fmt:param>Helloween</fmt:param>
+	</fmt:message> <br/>
+	<fmt:message bundle="${ resource }" key="prompt.greeting"></fmt:message>

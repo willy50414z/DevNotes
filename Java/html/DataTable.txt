@@ -1,0 +1,68 @@
+//DataTable
+//建立Datatable
+		var table = $("#table").DataTable();
+//destroy預先存在table的資料
+		table.destroy();
+//獲取傳遞資料
+		var aoData = {};
+		$.each($("#searchForm").serializeArray(), function(i, v) {
+			aoData[v.name] = v.value;
+				});
+設定table屬性		
+		table = $("#table").DataTable({
+			"serverSide" : false,
+			"ajax" : {	
+傳遞至namespace為Willy且action為query的action，並須接回一個list物件			  		
+				"url" : "<s:url action='query' namespace='/Willy'/>",
+				"data" : function(d) {
+				return $.extend(d,aoData);
+				}
+			},
+//設計欄位及欄位屬性
+
+			  "columns" : [
+//加上checkbox，並帶有該欄位的deptno屬性值，其name為ids
+				{"data" : "id","orderable" : false,"className" : "dt-center",
+			 	 "render" : function(data,type,row,meta) {
+				  return "<input type='checkbox' class='listCheckBox' name='ids' value='"+row.deptno+"'>";}},
+//設計欄位內容
+				   {"data": "deptno","orderable": false,"className":"dt-center"},	
+				   {"data" : "name","className" : "dt-center","orderable" : false},
+				   {"data" : "englishname","className" : "dt-center","orderable" : false},
+				   {"data" : "dname","className" : "dt-center","orderable" : false},
+				   {"data" : "id","className" : "dt-center","orderable" : false},
+				   {"data" : "loc","className" : "dt-center","orderable" : false},
+				   {"data" : "email","className" : "dt-center","orderable" : false},
+//加其他buttons
+				{"targets": -1,"data": null,
+				   "defaultContent": "<button><i class='icon-edit'>編輯</i></button>"}]
+			});
+
+//Action設置
+		HttpServletRequest request = ServletActionContext.getRequest();
+		DataTablePaging paging = new DataTablePaging("testDept", request);
+		paging.addOrder("deptno", true, true);
+//獲取list物件
+		List<TestDept> testList = testService.queryTest(testDept);
+//回傳一list
+		result = paging.toView(testList).toMap();
+
+//其他工具
+//Data Table內checkbox
+	//檢測有無勾選
+		if ($("#table").find("input[name=ids]:checkbox:checked").length == 0) {
+  		   alert("<s:text name='請至少勾選一個項目'/>");
+  		   return false;
+  		   }
+	//取得被勾選列資料
+		var postData = [];
+ 	        $("#table").find("input[name=ids]:checkbox:checked").each(function(i,val){
+ 	            postData.push({"name":"ids","value":$(val).val()});
+        	 });
+//Data Table內Button
+	//觸發Button物件
+		$("button:has(i.icon-search)").click()
+	//設定Button物件
+		$("button:has(i.icon-search)").click(function() {})
+	//取得該列資料物件(以data.屬性名稱取用)
+		var data = table.row( $(this).parents('tr') ).data();

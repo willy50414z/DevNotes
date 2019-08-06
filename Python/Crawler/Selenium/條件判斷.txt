@@ -1,0 +1,29 @@
+#該頁面<title></title>是否是Google，不是則報錯
+assert "Google" in browser.title
+
+#等待特定物件出現後才繼續，否則關閉瀏覽器
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+ 
+browser = webdriver.Chrome()
+browser.get("http://somedomain/url_that_delays_loading")
+
+#等10秒每0.5秒重新驗證一次直到ID="TESTid"出現
+try:
+    element = WebDriverWait(browser, 10,0.5).until(EC.presence_of_element_located((By.ID, "TESTid"))
+    )
+finally:
+    driver.quit()
+
+#EC其他方法
+EC.title_is("")
+EC.title_contains("")
+EC.presence_of_element_located(BY.,"")#有符合篩選條件element
+EC.visibility_of_element_located(BY.,"")#出現符合篩選條件element
+EC.visible_of(element)#出現element
+EC.alert_is_present("")#出現alert
+EC.staleness_of("")#等某dom被移除
+EC.element_to_be_selected("")#元素被選取(checkbox)
+EC.element_to_be_clickable("")

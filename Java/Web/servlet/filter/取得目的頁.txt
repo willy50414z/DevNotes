@@ -1,0 +1,6 @@
+HttpServletRequest req = (HttpServletRequest) request;
+
+//¥Øªº­¶
+req.getRequestURL();
+//¨Ó·½­¶
+	req.getHeader("Referer");

@@ -1,0 +1,22 @@
+Collections => Collection是所有List跟Set的始祖，List必須以特定次序來持有物件，Set無法擁有重複元素
+========================
+ArrayList => 排序 重複 增刪快 查詢慢 
+LinkedList => 排序 重複 增刪慢 查詢快
+========================
+HashSet => 不排序 不重複
+
+TreeSet => 排序 不重複 效能較差
+
+LinkedHashSet =>  排序 不重複 查詢效能較好
+
+BitSet => 能夠高效率的儲存大量 [ 1 / 0 ] (開/關) 資料
+========================
+HashMap => 儲存 (key/value) pairs，以HashCode查詢-效能高
+
+LinkedHashMap => 效能跟HashMap差不多，以Iterator取出會按key順序取出
+
+TreeMap => 儲存 (key/value) pairs，會自動根據Key值排序
+
+
+
+

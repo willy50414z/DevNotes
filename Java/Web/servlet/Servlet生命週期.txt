@@ -1,0 +1,5 @@
+啟動servlet
+	呼叫該action時觸發contructor>init
+	(首頁直接觸發Action)
+關閉Servlet
+	伺服器關閉時

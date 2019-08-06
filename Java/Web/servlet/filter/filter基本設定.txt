@@ -1,0 +1,25 @@
+web.xml設定filter
+	<filter>
+	    <filter-name>EncodingFilter</filter-name>
+	    <filter-class>com.ctbc.web.EncodingFilter</filter-class>
+	    <init-param>
+	      <param-name>encoding</param-name>
+	      <param-value>utf-8</param-value>
+	    </init-param>
+	  </filter>
+	//設置攔截項目
+	  <filter-mapping>
+	    <filter-name>EncodingFilter</filter-name>
+	//攔截全部
+	    <url-pattern>/*</url-pattern>
+	//攔截有關request的傳輸
+	    <dispatcher>REQUEST</dispatcher>
+	//攔截servlet透過Forward轉向命令
+	    <dispatcher>FORWARD</dispatcher>
+	//攔截<jsp:include/>方法
+	    <dispatcher>INCLUDE</dispatcher>
+	//攔截所有error
+	    <dispatcher>ERROR</dispatcher>
+	  </filter-mapping>
+
+

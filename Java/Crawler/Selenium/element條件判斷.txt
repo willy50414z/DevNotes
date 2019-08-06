@@ -1,0 +1,1 @@
+new WebDriverWait(this.browser, 30).until(ExpectedConditions.presenceOfElementLocated(By.id("dialog")));

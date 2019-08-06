@@ -1,0 +1,17 @@
+//dialog--建立一個dialog，藉由action導頁將jsp嵌入dialog內
+//設定dialog參數
+	<div id="dialog" style="display: none;height:600px; width: 1000px; top: 150px"></div>
+//建立傳遞參數物件
+	var deptno = {};
+//action導向
+	var url = "<s:url action='dialogtransport' namespace='/Willy'/>"; 
+	     $("#dialog").load(url,deptno,function(){
+	     $.modal.resize();
+	     });
+	     $("#dialog").modal({
+	closeOnEscape : false,
+	escapeClose : false,
+	clickClose : false,
+	showClose : false,
+	draggable: false
+	});

@@ -1,0 +1,19 @@
+1.取得java安裝檔
+	使用wget抓取JDK.tar.gz至/opt/
+	因下載時需同意oracle條款，故須設定參數，按下列方式下載
+	cd /opt
+	wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" ${JDK URL}
+2. 解壓JDK壓縮檔
+	ls
+	tar xzf ${JDK壓縮檔名}
+
+3.設定環境參數
+	vi ~/.bash_profile   #編輯環境參數文件
+	JAVA_HOME=/opt/jdk1.7.0_79
+  	JRE_HOME=/opt/jdk1.7.0_79/jre
+  	PATH=$PATH:$HOME/bin:$JAVA_HOME/bin:$JRE_HOME/bin
+
+4.重新載入環境設定
+	source ~/.bash_profile
+5.檢驗JDK是否安裝成功
+	java -version

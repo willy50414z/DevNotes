@@ -1,0 +1,2 @@
+var.test(樣本1<V>,樣本2<V>,alternative = "two.sided")
+	var.test(x1,x2,alternative = "two.sided")

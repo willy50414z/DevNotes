@@ -1,0 +1,6 @@
+> x<-runif(20,0,1)
+> y<-runif(20,0,1)
+> plot(x,y)
+> identify(x,y,label=x)
+	//點擊圖點回傳該點在兩向量中的index
+	//label : 回傳該圖點在向量中的值

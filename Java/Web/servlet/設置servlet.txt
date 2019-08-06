@@ -1,0 +1,43 @@
+  <servlet>
+<	!--   servlet名稱--供呼叫時分辨使用 -->
+  	<servlet-name>FirstServlet</servlet-name>
+	<!-- 指定servlet的實體位置 -->
+  	<servlet-class>com.helloweenvsfei.servlet.FirstServlet</servlet-class>
+
+<!--   	其他設定 -->
+	<!-- 	初始化區域參數 -->--存取方法參閱<filter、servlet基本觀念>
+	<init-param>
+		<param-name>message</param-name>
+		<param-value>abc</param-value>
+	</init-param>
+	<init-param>
+		<param-name>encoding</param-name>
+		<param-value>utf-8</param-value>
+	</init-param>
+
+<!-- 	是否預先載入servlet 
+		0==Tomcat在第一次req呼叫時才載入servlet
+		1==啟動Tomcat時即呼叫該Servlet             -->
+	<load-on-startup>1</load-on-startup>
+  </servlet>
+
+
+<	!--   servlet名稱--供呼叫時分辨使用 -->
+  <servlet-mapping>
+	<	!--   servlet名稱--供呼叫時連結實體servlet使用 -->
+    	<servlet-name>CreateCustomerController</servlet-name>
+<	!--   servlet url--供jsp呼叫使用 -->
+    <url-pattern>/customer/ccController</url-pattern>
+  </servlet-mapping>
+
+<!-- 	初始化全域參數 -->
+	<context-param>
+  		<param-name>AAA</param-name>
+ 	 	<param-value>BBB</param-value>
+	</context-param>
+
+<!-- 	初始化資源注入參數 -->
+	<env-entry>
+  		<param-name>AAA</param-name>
+ 	 	<param-value>BBB</param-value>
+	</context-param>

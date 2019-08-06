@@ -1,0 +1,9 @@
+同時上線人數
+功能時效
+HTTPS
+服務時間
+備份
+還原
+名詞對照表
+可標示編號做引用(NFR1 - Web Security
+		 NFR2 - XXXX)

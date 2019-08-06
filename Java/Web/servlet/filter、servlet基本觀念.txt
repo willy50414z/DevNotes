@@ -1,0 +1,15 @@
+filter、servlet接包含init()、service()、destroy()三個過程
+
+1.
+init()、destroy()接只會發生一次
+
+在init()中可取得servlet的預設參數，Init()方法要自己加
+	public void init(ServletConfig config) {
+			System.out.println("init---"+config.getInitParameter("aaa"));
+		}
+2.
+filter直到
+chain.doFilter(request, response);
+才會進入servlet 	
+因此可以try{chain.doFilter(request, response);}catch{}控制所有Exception
+並可以instanceof比對Exception進行處裡

@@ -1,0 +1,8 @@
+Workbook workbook = Workbook.getWorkbook(new File("D:\\法金\\PLMS\\Document\\Z-Maintain\\PLMS_日常作業_checklist.xls"));
+        Sheet sheet = workbook.getSheet(0); //--取得指定試算表
+        int rows = sheet.getRows(); //---取得資料筆數
+        for(int i=0;i<sheet.getColumns();i++){
+        	for(int j=0;j<rows;j++){
+        		System.out.print(sheet.getCell(i, j).getContents().trim());
+        	}System.out.println("");
+        }

@@ -1,0 +1,5 @@
+#查看欄位結構
+	desc ${tableName}
+
+#insert
+	insert into ${tableName} (${columnName}) values()

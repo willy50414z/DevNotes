@@ -1,0 +1,21 @@
+$().show();	==	document.getElementById().style.Display="block?"
+$().hide();	==	document.getElementById().style.Display="none"
+$().toggle();//(原本狀態=顯示)?隱藏:顯示
+//隱藏或顯示但位置保留<不能用JQuery>
+document.getElementById().style.visibility  = "hidden";
+document.getElementById().style.visibility  = "visible";
+//淡出
+$("#test").fadeOut();
+//淡入
+$("#test").fadeIn();
+//(原本狀態=顯示)?淡出:淡入
+$().fadeToggle();
+//fade到指定的程度(50%)
+$(".ii").fadeTo('normal',.5);
+$(".ii").fadeTo(500,.5);
+//滑入
+$(".ii").slideDown();
+//滑出
+$(".ii").slideUp();
+//(原本狀態=顯示)?滑出:滑入
+$().slideToggle();

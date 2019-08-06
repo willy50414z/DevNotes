@@ -1,0 +1,128 @@
+//若瀏覽器支援則使用GzipResponse類別
+	String acceptEncoding = ((HttpServletRequest) request).getHeader("Accept-Encoding");
+	System.out.println("Accept-Encoding: " + acceptEncoding);
+	if (acceptEncoding != null && acceptEncoding.toLowerCase().indexOf("gzip") != -1) {
+		GZipResponseWrapper gzipResponse = new GZipResponseWrapper((HttpServletResponse) response);
+		chain.doFilter(request, gzipResponse);
+		gzipResponse.finishResponse();
+	}
+
+//新增附屬類別GZipResponseWrapper 
+
+package com.willy.model;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
+
+public class GZipResponseWrapper extends HttpServletResponseWrapper {
+
+	private HttpServletResponse response;
+
+	private GZipOutputStream gzipOutputStream;
+
+	private PrintWriter writer;
+
+	public GZipResponseWrapper(HttpServletResponse response) throws IOException {
+		super(response);
+		this.response = response;
+	}
+	//取得壓縮後資料
+	public ServletOutputStream getOutputStream() throws IOException {
+		if (gzipOutputStream == null)
+			gzipOutputStream = new GZipOutputStream(response);
+		return gzipOutputStream;
+	}
+
+	public PrintWriter getWriter() throws IOException {
+		if (writer == null)
+			writer = new PrintWriter(new OutputStreamWriter(
+					new GZipOutputStream(response), "UTF-8"));
+		return writer;
+	}
+
+	public void setContentLength(int contentLength) {
+	}
+
+	public void flushBuffer() throws IOException {
+		gzipOutputStream.flush();
+	}
+
+	public void finishResponse() throws IOException {
+		if (gzipOutputStream != null)
+			gzipOutputStream.close();//清暫存並輸出
+		if (writer != null)
+			writer.close();
+	}
+}
+//新增附屬類別GZipResponseWrapper 
+package com.willy.model;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.zip.GZIPOutputStream;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.WriteListener;
+import javax.servlet.http.HttpServletResponse;
+
+public class GZipOutputStream extends ServletOutputStream {
+	//原response
+	private HttpServletResponse response;
+	//GZIP類別
+	private GZIPOutputStream gzipOutputStream;
+	//壓縮後資料
+	private ByteArrayOutputStream byteArrayOutputStream;
+	//constructor 設置基本參數、將壓縮後資料放入byteArrayOutputStream
+	public GZipOutputStream(HttpServletResponse response) throws IOException {
+		this.response = response;
+		byteArrayOutputStream = new ByteArrayOutputStream();
+		gzipOutputStream = new GZIPOutputStream(byteArrayOutputStream);
+	}
+
+	public void write(int b) throws IOException {
+		gzipOutputStream.write(b);
+	}
+	//清除類別資料並輸出
+	public void close() throws IOException {
+
+		gzipOutputStream.finish();
+
+		byte[] content = byteArrayOutputStream.toByteArray();
+
+		response.addHeader("Content-Encoding", "gzip");
+		response.addHeader("Content-Length", Integer.toString(content.length));
+
+		ServletOutputStream out = response.getOutputStream();
+		out.write(content);
+		out.close();
+	}
+
+	public void flush() throws IOException {
+		gzipOutputStream.flush();
+	}
+
+	public void write(byte[] b, int off, int len) throws IOException {
+		gzipOutputStream.write(b, off, len);
+	}
+
+	public void write(byte[] b) throws IOException {
+		gzipOutputStream.write(b);
+	}
+
+	@Override
+	public boolean isReady() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setWriteListener(WriteListener arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+}

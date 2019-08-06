@@ -1,0 +1,3 @@
+
+	HttpServletResponse res = (HttpServletResponse) response;
+	res.sendRedirect("Logout.jsp");

@@ -1,0 +1,30 @@
+Workbook wb;
+            Worksheet ws;
+            Range aRange;
+            string pathFile = @"D:\Downloads\1.1-1.8.xls";
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            excelApp.DisplayAlerts = false;
+            if (excelApp == null)
+            {
+                Console.WriteLine("EXCEL could not be started. Check that your office installation and project references are correct.");
+                return;
+            }
+            excelApp.Visible = false;
+            wb = excelApp.Workbooks.Open(pathFile);
+            ws = wb.Worksheets[1];
+	    //dotNet3.5 ¼gªk
+	    ws = (Worksheet)wb.Worksheets[1];
+
+            Microsoft.Office.Interop.Excel.Range last = ws.Cells.SpecialCells(Microsoft.Office.Interop.Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
+            Microsoft.Office.Interop.Excel.Range range = ws.get_Range("A1", last);
+            Console.WriteLine(ws.Cells[5,1].value);
+	    //dotNet3.5 ¼gªk
+	    Console.WriteLine((string)(ws.Cells[5,1] as Range).Value);
+            
+	    Console.WriteLine(last.Row);
+            Console.WriteLine(last.Column);
+
+            Console.ReadKey();
+
+            wb.Close();
+            excelApp.Quit();

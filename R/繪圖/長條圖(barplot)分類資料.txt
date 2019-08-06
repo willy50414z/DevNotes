@@ -1,0 +1,6 @@
+barplot(data<List,matrix,vector>,horiz=FALSE,names.arg=<vector>,col=<vector>,density<numeric,vector>)
+	//data
+	//horiz : 直向或橫向
+	//names.arg : 每一直方圖下的註記文字
+	//col : 每一長條的顏色
+	//density : 長條的填滿斜線密度

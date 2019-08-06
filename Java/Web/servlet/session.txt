@@ -1,0 +1,7 @@
+//maxAge
+	request.getSession().setMaxInactiveInterval(sec);
+//session仍須依靠cookie做判斷，若不想依靠cookie
+	response.encodeURL(url)
+	response.encodeRedirectURL(url)
+	<a href=<%= response.encodeURL("url")%>
+	response.sendRedirect(response.encodeURL("url"));

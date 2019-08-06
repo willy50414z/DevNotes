@@ -1,0 +1,16 @@
+//apply(data,col/row,FUN)---計算每一行or列的值
+
+	apply(A[,1],1,mean)		//計算列平均
+	apply(A[,1],2,mean)		//計算欄平均
+	apply(A[,1],1,function(x){mean(x)/sd(x)})	//計算當列mean/sd
+
+
+//tapply(data,label<factor,vector>,FUN)---依factor分類
+	> area=c("N","C","C","N","C","N","C","N","S")
+	> income=rnorm(length(area))*10000
+	> tapply(income,area,mean)
+ 	        C          N          S 
+	-11382.823   3665.453   9922.437 
+
+lapply(Data<List,vector,df>,FUN)	//回傳List
+sapply(Data<List,vector,df>,FUN)	//盡量回傳vector或matrix		

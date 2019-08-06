@@ -1,0 +1,16 @@
+> x=c(49,50,51,52)
+> y=c(49,52,50,49)
+> plot(rnorm(50,50),rnorm(50,50))
+> points(x,y,col=1,pch="#")	#點
+> lines(x,y,col=3)	#線
+> text(x,y+0.5,labels=c("point 1","point 2","point 3","point 4"),col=4)	#字
+> arrows(x[1],y[1],x[3],y[3],lty=3:5)	#箭頭
+> segments(x[1],y[1],x[4],y[4],lty=2)	#虛線
+> abline(v=50)				#垂直線
+> abline(h=49.2)			#水平線
+>abline(a,b)				#斜線(y=ax+b)
+>abline(58.833,-0.1667,col=2)	==	abline(lm(x~y),col=2)	#繪製無異直線
+>polygon(x,y,density=5,angle=90,col=2)	#繪製多邊形
+					//density : 每 1 inch繪製幾條陰影
+					//angel : 陰影直線的角度
+					

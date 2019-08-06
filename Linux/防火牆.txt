@@ -1,0 +1,4 @@
+#開通防火牆
+firewall-cmd --permanent --add-port=25/tcp
+#重開防火牆
+firewall-cmd --reload

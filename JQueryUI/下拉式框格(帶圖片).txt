@@ -1,0 +1,23 @@
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+<script>
+  $( function() {
+    var icons = {
+//從JQuery 圖庫抓資料
+      header: "ui-icon-circle-arrow-e",
+      activeHeader: "ui-icon-circle-arrow-s"
+    };
+    $( "#accordion1" ).accordion({
+      icons: icons
+    });
+    $( "#toggle" ).button().on( "click", function() {
+      if ( $( "#accordion1" ).accordion( "option", "icons" ) ) {
+        $( "#accordion1" ).accordion( "option", "icons", null );
+      } else {
+        $( "#accordion1" ).accordion( "option", "icons", icons );
+      }
+    });
+  } );
+  </script>

@@ -1,0 +1,34 @@
+1. 下載SonarQube Scanner,SonarQube Runner
+2. Jenkins安裝SonarQube Scanner插件
+3. Jenkins>[系統設定]>[SonarQube servers]>[Environment variables]打勾
+4. Jenkins>[系統設定]>[SonarQube servers]>設置SonarQube URL(Default : http://127.0.0.1:9000)
+5. Jenkins>[全局配置]>[SonarQube Scanner]>設置SonarQube Runner路徑
+6. [專案]>[組態]>[構建環境]>[Prepare SonarQube Scanner environment]打勾
+7. [專案]>[組態]>[建置]>[Execute SonarQube Scanner]>[Analysis properties]設置參數範例如下
+
+# 項目key
+sonar.projectKey=com.willy:WToolBox
+# 項目名稱
+sonar.projectName=WToolBox
+# 項目版本，可以寫死，也可以引用變量
+sonar.projectVersion=${VER}
+# 源文件編碼
+sonar.sourceEncoding=UTF-8
+# 源文件語言
+sonar.language=java
+# path to source directories (required)
+# 源代碼目錄，如果多個使用","分割 例如：mode1/src/main,mode2/src/main
+sonar.sources=src/main
+# 單元測試目錄，如果多個使用","分割 例如：mode1/src/test,mode2/src/test
+sonar.tests=src/test
+# Exclude the test source
+# 忽略的目錄
+#sonar.exclusions=*/src/test/**/*
+# 單元測試報告目錄
+sonar.junit.reportsPath=target/surefire-reports
+# 代碼覆蓋率插件
+sonar.java.coveragePlugin=jacoco
+# jacoco.exec文件路徑
+sonar.jacoco.reportPath=target/coverage-reports/jacoco.exec
+# 這個沒搞懂，官方示例是配置成jacoco.exec文件路徑
+sonar.jacoco.itReportPath=target/coverage-reports/jacoco.exec

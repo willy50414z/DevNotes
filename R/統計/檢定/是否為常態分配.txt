@@ -1,0 +1,34 @@
+#檢測iris的length是否符合常態分配
+ data(iris)	#import data	
+ SepL<-iris$Sepal.Length		#取出長度資料
+ normal<-rnorm(150,mean(SepL),sd(SepL))  		#製造在相同平均、標準差的常態分配
+ normal.h<-hist(normal,breaks = 10,plot=F)	#將常態分配區分為10等分，且不繪圖
+ SepL.h<-hist(SepL,breaks = normal.h$breaks,plot=F)	#將常態分配區分為10等分，且不繪圖
+ SepL.count=SepL.h$counts		#取出個等分內的次數
+ normal.prop<-normal.h$count/length(SepL)		#計算成比率
+ chisq.test(SepL.count,p = normal.prop)		#檢測各類長度是否符合常態分配的比例
+
+
+	Chi-squared test for given probabilities
+
+data:  SepL.count
+X-squared = 31.978, df = 8, p-value = 9.4e-05
+
+==>P-value遠小於alpha(0.05)-->拒絕Ho(iris.length符合常態分配)
+
+
+///公式
+norm.test<-function(data,alpha){
+  normal<-rnorm(length(data),mean(data),sd(data))  		#製造在相同平均、標準差的常態分配
+  normal.h<-hist(normal,breaks = 10,plot=F)	#將常態分配區分為10等分，且不繪圖
+  data.h<-hist(data,breaks = normal.h$breaks,plot=F)	#將常態分配區分為10等分，且不繪圖
+  data.count=data.h$counts		#取出個等分內的次數
+  normal.prop<-normal.h$count/length(data)		#計算成比率
+  test<-chisq.test(data.count,p = normal.prop)
+  cat("P-value為 : ",test$p.value,"\n")
+  if(test$p.value>alpha){
+    cat("此資料符合常態分配")
+  }else{
+    cat("此資料不符合常態分配")
+  }
+}

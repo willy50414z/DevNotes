@@ -1,0 +1,3 @@
+this.Response.ExpiresAbsolute = DateTime.Now;
+this.Response.Expires = 0;
+this.Response.CacheControl = "no-cache";

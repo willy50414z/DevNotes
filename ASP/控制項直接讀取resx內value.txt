@@ -1,0 +1,8 @@
+ //1.建立resx檔
+	加入>加入新項目>資源檔
+ //2.在aspx中讀取
+
+ <asp:Label ID="Label1" runat="server" Text="<%$ Resources:[.resx檔名稱], [KEY] %>"></asp:Label>
+	
+    ex.
+	<asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, resx %>"></asp:Label>

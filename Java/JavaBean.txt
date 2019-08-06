@@ -1,0 +1,8 @@
+一個符合規則的class
+	1.有一個無參constructor
+	2.封裝
+	3.可序列化
+再jsp中取用JavaBean
+	<jsp:useBean id="emp" class="com.huanlin.EmployeeBean" scope="request"/>
+	<jsp:setProperty name="emp" property="age" value="25" />
+	員工的年齡是: <jsp:getProperty name="emp" property="age" />

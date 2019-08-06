@@ -1,0 +1,26 @@
+FileReader fr;
+		try {
+			fr = new FileReader("");
+			BufferedReader brdFile = new BufferedReader(fr);//bufferedReader
+            String strLine = null;
+            try {
+            	while((strLine = brdFile.readLine())!=null){//將CSV檔字串一列一列讀入並存起來直到沒有列為止
+            	}
+            
+            } catch (IOException e) {
+			// TODO Auto-generated catch block
+            	System.out.println(e.getMessage());
+            }finally{ 
+            
+				try{ 
+					fr.close();//關閉串流 
+						} catch(IOException e){} 
+					} 
+            
+		}
+		 catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		}

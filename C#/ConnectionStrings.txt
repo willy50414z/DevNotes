@@ -1,0 +1,6 @@
+¥»¾÷
+	@"data source=W0211887\SQLEXPRESS;initial catalog=TestDB;Integrated Security=true;"
+SBRS_UAT
+	"data source=172.24.11.244,1803;initial catalog=SBRS;user id=sbrs_usr;password=@sbrs_usr1"
+SBRS_Prod
+	"data source=10.24.76.43,1803;initial catalog=SBRS;Integrated Security=true;"

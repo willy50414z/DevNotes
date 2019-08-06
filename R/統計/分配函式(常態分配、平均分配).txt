@@ -1,0 +1,16 @@
+//rnorm(數量n,平均a,標準差s)	#產生n個常態分配平均為a標準差為s
+//dnorm(x,0,1)			#x在平均為0標準差為1的機率密度函數值
+//pnorm(x,0,1)			#x在平均為0標準差為1的累積機率值
+//qnorm(p,0,1)			#平均為0標準差為1且累積機率值為p時的x值
+
+
+
+	norm	常態分配
+	unif	平均分配
+
+sample(data,size=a,replace=FALSE,prod=NULL)	#隨機抽樣(自data中/抽出a個值/不放回/每個值被抽中的機率相等)
+
+
+	
+
+

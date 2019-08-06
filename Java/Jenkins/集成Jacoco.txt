@@ -1,0 +1,14 @@
+1. 安裝Jacoco plugin
+2. [專案]>[組態]>[建置]>[執行windows批次指令]修改指令為
+	mvn org.jacoco:jacoco-maven-plugin:prepare-agent  clean  package  -Dautoconfig.skip=true   -Dmaven.test.skip=false  -Dmaven.test.failure.ignore=true
+	
+	#mvn org.jacoco:jacoco-maven-plugin:prepare-agent  :  由jacoco plugin進行編譯，減少依賴
+	#-Dmaven.test.skip=false  :  允許測試
+	#-Dmaven.test.failure.ignore=true  :  忽略編譯錯誤
+
+3.[建置後動作]>[Reccord Jacoco coverage report]
+	配置Jacoco文件位置、覆蓋率標準...
+	 #Path to exec files ：代碼覆蓋率統計結果文件位置(target中)
+	 #Path to class directorie：classes文件位置
+	 #Path to source directories：程式碼文件位置
+

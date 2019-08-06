@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+	<Properties>
+		<Property name="logDir" value="D:/wwwroot/Log/SIT" />
+		<Property name="debugLogFileName" value="Debug.log" />
+		<Property name="infoLogFileName" value="Info.log" />
+		<Property name="errorLogFileName" value="Error.log" />
+		<Property name="exportPattern"
+			value="%d{YYYY-MM-dd HH:mm:ss} %-5p - %m%n" />
+		<Property name="maxSingleFileSize" value="3MB" />
+	</Properties>
+	<appenders>
+
+		<!-- Console輸出 -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<!--只接受程序中INFO级别的日志进行处理 -->
+			<ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="${exportPattern}" />
+		</Console>
+
+		<!-- RollingFile 輸出 -->
+		<RollingFile name="RollingFileDebug"
+			fileName="${logDir}/${date:yyyyMMdd}/${debugLogFileName}"
+			filePattern="${logDir}/${date:yyyyMMdd}/${debugLogFileName}-%d{HH:mm:ss}.gz">
+			<!-- 過濾方式有ThresholdFilter,RegexFilter,TimeFilter 範例如最下面 -->
+			<Filters>
+				<!-- Level : {ACCEPT, DENY, NEUTRAL} -->
+				<!-- NEUTRAL 表示中立 -> 該級別不做判斷，直接進到下一Filter -->
+				<ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+				<ThresholdFilter level="INFO" onMatch="DENY" onMismatch="NEUTRAL"/>
+			</Filters>
+			<PatternLayout pattern="${exportPattern}" />
+			<!-- 觸發條件時進行Strategy -->
+			<Policies>
+				<!-- 以檔案大小作為篩選條件 -->
+				<SizeBasedTriggeringPolicy size="${maxSingleFileSize}" />
+				<!-- 以LOG時間做為篩選條件 -->
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="RollingFileInfo"
+			fileName="${logDir}/${date:yyyyMMdd}/${infoLogFileName}"
+			filePattern="${logDir}/${date:yyyyMMdd}/${infoLogFileName}-%d{HH:mm:ss}.gz">
+			<Filters>
+				<ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+				<ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+			</Filters>
+			<PatternLayout pattern="${exportPattern}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy
+					size="${maxSingleFileSize}" />
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="RollingFileError"
+			fileName="${logDir}/${date:yyyyMMdd}/${errorLogFileName}"
+			filePattern="${logDir}/${date:yyyyMMdd}/${errorLogFileName}-%d{HH:mm:ss}.gz">
+			<ThresholdFilter level="ERROR"/>
+			<Policies>
+				<SizeBasedTriggeringPolicy
+					size="${maxSingleFileSize}" />
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+
+	</appenders>
+
+	<loggers>
+		<root level="INFO">
+			<appender-ref ref="Console" />
+			<appender-ref ref="RollingFileInfo" />
+			<appender-ref ref="RollingFileError" />
+			<appender-ref ref="RollingFileDebug" />
+		</root>
+
+		<!--log4j2 自带过滤日志 -->
+		<Logger name="org.apache.catalina.startup.DigesterFactory"
+			level="error" />
+		<Logger name="org.apache.catalina.util.LifecycleBase"
+			level="error" />
+		<Logger name="org.apache.coyote.http11.Http11NioProtocol"
+			level="warn" />
+		<logger name="org.apache.sshd.common.util.SecurityUtils"
+			level="warn" />
+		<Logger name="org.apache.tomcat.util.net.NioSelectorPool"
+			level="warn" />
+		<Logger name="org.crsh.plugin" level="warn" />
+		<logger name="org.crsh.ssh" level="warn" />
+		<Logger
+			name="org.eclipse.jetty.util.component.AbstractLifeCycle"
+			level="error" />
+		<Logger name="org.hibernate.validator.internal.util.Version"
+			level="warn" />
+		<logger
+			name="org.springframework.boot.actuate.autoconfigure.CrshAutoConfiguration"
+			level="warn" />
+		<logger name="org.springframework.boot.actuate.endpoint.jmx"
+			level="warn" />
+		<logger name="org.thymeleaf" level="warn" />
+	</loggers>
+</configuration>
+
+<!-- 各種Filter範例 -->
+<!-- <Filters> -->
+<!-- <ThresholdFilter level="TRACE" onMatch="NEUTRAL" -->
+<!-- onMismatch="DENY" /> -->
+<!-- <RegexFilter regex=".* test .*" onMatch="NEUTRAL" -->
+<!-- onMismatch="DENY" /> -->
+<!-- <TimeFilter start="05:00:00" end="05:30:00" -->
+<!-- onMatch=" NEUTRAL " onMismatch="DENY" /> -->
+<!-- </Filters> -->

@@ -1,0 +1,14 @@
+//新增繪圖視窗
+	windows("path")
+//匯出圖檔
+	pdf("path",height=,width=);
+	jpeg("path");
+	bmp("path");
+	tiff("path");
+	//最後須加  device.off()
+
+//範例
+setwd("");
+png("test.png", width = 1024, height = 768)
+plot(c(1,2,3,5,2,3,1))
+dev.off()

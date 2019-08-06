@@ -1,0 +1,7 @@
+//¨ú±o¨Ó·½­¶
+	request.getHeader("Referer");
+//¨ú±o«e©¹­¶­±
+	request.getServletPath();
+//¨ú±oQueryString„³ª½±µ¨ú±o¤@¾ã¦ê¡A¤£¨Ì&¤À¬qªº
+	request.getQueryString();
+

@@ -1,0 +1,21 @@
+//字串長度
+.length
+
+//大小寫
+.toUpperCase()
+.toLowerCase()
+
+//字串位置(從0起算)
+string.indexOf("被搜尋字串")
+
+//判斷與轉換型別
+isNaN(var) //判斷是否為數字(是:false/不是:true)
+var a=parseInt(b);轉換int
+var a=parseFloat(b);轉換int
+
+//四捨五入
+Math.round(a)
+
+//陣列值之間插入值
+var array={"1","2","3"}
+var str=array.join("'"); //"1'2'3"

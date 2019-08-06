@@ -1,0 +1,2 @@
+//1.繼承DefaultTypeConverter類別
+//2.Override convertValue方法

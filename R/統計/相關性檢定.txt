@@ -1,0 +1,47 @@
+//Pearson相關係數
+	約=1	完全相關 (Perfect correlated)
+	0.7~0.99	高度相關 (Highly correlated)
+	0.4~0.69	中度相關 (Moderately correlated)
+	0.1~0.39	低度相關 (Modestly correlated)
+	0.01~0.09	接近無相關 (Weakly correlated)
+	約=0	無相關
+
+//判斷相關係數結果是否顯著(t檢定)
+	1.建立假設:Ho、H1(D:\tools\Statics\假設檢定.txt)
+	2.計算統計量
+	3.判斷假設
+
+EX.股價開盤與最高價的相關性檢定
+  假設兩者擁有正相關
+    Ho:ρ>0
+    H1:ρ<=0----左尾
+------------------------------------------------------------------
+	> read.csv("D:\\R\\Stock Data\\1101.csv",header = TRUE)->sp1101
+	> aaa<-correlationTest(sp1101[,2],sp1101[,3],method=c("pearson"),title=NULL)
+	>aaa
+	Title:
+	 Pearson's Correlation Test
+	
+	Test Results:
+	  PARAMETER:
+	    Degrees of Freedom: 7056
+	  SAMPLE ESTIMATES:
+	    Correlation: 0.9997		//相關係數
+	  STATISTIC:
+	    t: 3412.4953		//t統計量
+	  P VALUE:
+	    Alternative Two-Sided: < 2.2e-16 	
+	    Alternative      Less: 1 
+	    Alternative   Greater: < 2.2e-16 
+	  CONFIDENCE INTERVAL:		//信賴區間(拒絕域)
+	    Two-Sided: 0.9997, 0.9997	//雙尾(|t|>0.9997)
+	         Less: -1, 0.9997	//左尾(-1<=t<=0.9997)
+	      Greater: 0.9997, 1	//右尾(0.9997<=t<=1)
+	
+	Description:
+	 Tue Aug 22 22:26:42 2017
+-------------------------------------------------------------------
+此P Value趨近於0，固為顯著正相關
+
+可以str(aaa)查看屬性，並以aaa@test$p.value[1]取出P Value
+	

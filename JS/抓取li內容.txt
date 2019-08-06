@@ -1,0 +1,8 @@
+	$("#catchlistvalue").click(function(){
+//ul©Îolªºid
+		var ul = document.getElementById('draggedin');
+		var lis = ul.getElementsByTagName('li');
+		for(var i=0;i<lis.length;i++){
+		    alert(lis[i].innerHTML);
+		}
+	})

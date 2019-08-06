@@ -1,0 +1,5 @@
+1. 安裝Python
+2. 安裝包版程式
+	pip install pyinstaller
+3. 包版
+	pyinstaller -F helloworld.py

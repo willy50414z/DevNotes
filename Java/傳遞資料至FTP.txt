@@ -1,0 +1,17 @@
+//讀進jar檔  import org.apache.commons.net.ftp.FTPClient;
+
+ //讀進檔案	
+	FileInputStream fis = null; 
+	File srcFile = new File("D:/wwwroot/data/DFAB34.TXT"); 
+        fis = new FileInputStream(srcFile); 
+	FTPClient ftpClient = new FTPClient(); 
+	ftpClient.connect("192.168.31.215"); 
+	ftpClient.login("crdm_01", "eg8a6eat"); 
+ //設置上傳目錄 
+	ftpClient.changeWorkingDirectory("//DATA/crdm01/PLMS/DataPatchOneTime/"); 
+	ftpClient.setBufferSize(1024); 
+	ftpClient.setControlEncoding("GBK"); 
+ //設置檔案類型（二進位） 
+	ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE); 
+	ftpClient.storeFile("DFAB34.TXT", fis); 
+	ftpClient.disconnect();

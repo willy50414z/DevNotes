@@ -1,0 +1,4 @@
+DateTime.Now.ToString("D")---2017年8月23日
+DateTime.Now.ToString("d")---2017/8/23
+DateTime.Now.ToString("T")---下午 04:55:02
+DateTime.Now.ToString("t")---下午 04:55

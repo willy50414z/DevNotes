@@ -1,0 +1,21 @@
+從DB撈出資料的回傳
+
+//取得資料
+	List<TestDept> personList=DAO.getList();
+	request.setAttribute("personlist",personList);
+//展現資料
+
+	--List
+
+//id=類名 name=Attribute的Key
+	<logic:iterate id="people" name="personlist">
+		<tr>
+//name=類名  property=屬性名
+			<td><bean:write name="people" property="name"/></td>
+			<td><bean:write name="people" property="weight"/></td>
+			<td><bean:write name="people" property="height"/></td>
+		</tr>
+	</logic:iterate>
+	
+	--Value
+	<bean:write name="key"/>

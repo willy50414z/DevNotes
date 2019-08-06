@@ -1,0 +1,56 @@
+//設定屬性
+$("aa").width(20).height(50);.text("bb")
+
+//取值、改值
+	//取該物件的html代碼
+	$("aa").html();
+	//取該物件內的值
+	$("aa").text();
+	//取textbox物件的內部值
+	$("aa").val();
+
+//掛載值在下面
+$("#test").append("<p>abc</p>");
+$("#test").after("<p>abc</p>");
+
+//掛載值在前面
+$("#test").prepend("<p>abc</p>");
+$("#test").before("<p>abc</p>");
+
+//掛載在其前後
+$("#test").wrap("含頭尾的tag");
+
+//掛載在其內部標籤前後
+$("#test").wrapInner("含頭尾的tag");
+
+//掛載在其前後標籤
+$("#test").unwrap();
+
+//移除物件
+$("#test").remove();
+
+//移除物件內部內容
+$("#test").empty();
+
+//替換物件
+$("被替換物件").replaceWith(替換物件);
+
+//指定class
+$("#test").addClass("className");
+
+//移除class
+$("#test").removeClass("className");
+
+//有就remove，沒有就add
+$("#test").toggleClass("");
+
+//取得屬性值
+$("#test").attr("屬性名稱");
+
+//設定屬性值
+$("#test").attr("屬性名稱","設定值");
+
+//刪除屬性值
+$("#test").removeAttr("屬性名稱");
+
+

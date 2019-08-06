@@ -1,0 +1,53 @@
+1.引入JAR檔
+	commons-logging.jar
+	spring-core-4.3.9.RELEASE.jar
+	spring-context-4.3.9.RELEASE.jar
+	spring-context-support-4.3.9.RELEASE.jar
+	spring-expression-4.3.9.RELEASE.jar
+	spring-beans-4.3.9.RELEASE.jar
+	spring-aop-4.3.9.RELEASE.jar
+
+2.配置Interface
+3.配置AOP執行類別
+	implements MethodBeforeAdvice
+4.配置bean-config.xml
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd" >
+<beans>
+	<!-- ==============================AOP================================ -->
+<!-- 	建立一個實體Bean(實際上會使用AOP的Class) -->
+	<bean id="test" class="com.willy.data.DB"></bean>
+
+<!-- 	建立通知Bean(實作AOP的類別) -->
+	<bean id="MyMethodBeforeAdvice" class="com.willy.data.AOP"></bean>
+
+	<!-- 	建立只攔截特定方法的Bean，一種AOP一個 -->
+<bean id="myMethodBeforeAdviceFilter" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+	<property name="advice" ref="MyMethodBeforeAdvice(實作AOP的類別)"></property>
+	<property name="mappedNames">
+		<list>
+			<value>sayHello(觸發AOP的method)</value>
+		</list>
+	</property>
+</bean>
+
+<!-- 	建立代理Bean(連結Interface) -->
+	<bean id="proxyFactoryBean1" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>com.willy.data.DBInter(Interface)</value>
+			</list>
+		</property>
+<!-- 	配置要啟用的AOP -->
+		<property name="interceptorNames">
+			<list>
+				<value>myMethodBeforeAdviceFilter(methodFilter)</value>
+			</list>
+		</property>
+
+<!-- 		放入使用AOP的Bean -->
+		<property name="target" ref="test"></property>
+	</bean>
+
+
+
+</beans>

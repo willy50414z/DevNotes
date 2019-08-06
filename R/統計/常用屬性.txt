@@ -1,0 +1,5 @@
+//na.action	#處裡遺漏值的方法
+	na.action=na.omit/na.exclude/na.fail/NULL
+//subset	#擷取樣本
+	subset=1:90
+//

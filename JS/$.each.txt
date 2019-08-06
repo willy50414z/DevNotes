@@ -1,0 +1,13 @@
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script>
+  $(function(){
+//只有在catch class、tag才能有forEach的效果，catch id只會catch到第一個
+//$.each第一個參數是index，第二個參數是被選取物件，但不能以.val()取值，建議用$(this)
+$( ".ii" ).each(function( index ) {
+  alert( index + ": " + $( this ).val() );
+	});
+})
+</script>
+-----------------------------------------------------------------
+<input class="ii" id="iinput" type="text" value="ee">
+<input class="ii" id="iinput" type="text" value="ff">

@@ -1,0 +1,56 @@
+#顯示當前userName
+	show user
+#改用其他帳號登入
+	conn ${username}/${pwd} [as sysdba/sysoper]
+#登出
+	disc[onnect]
+#跳出sqlplus
+	exit
+#修改密碼
+	passw ${username};
+	alter user ${userName}  identified by ${pwd};
+#創建用戶
+	create user c##${username} identified by ${pwd};
+#創建用戶(詳細)
+	create user ${username} identified by ${pwd}
+	default tablespace users
+	tempory yablespace temp
+	quota 3m on users;
+	#quota -- 該user建立最大object為3m
+	#沒有限制空間  --  grant resource to ${username}
+	#給予授權 -- grant ${sysRight} to  ${username}
+	#回收授權 -- revoke ${sysRight} to  ${username}
+	#授予dba權限 -- grant dba to ${userName}
+
+#刪除用戶[同時刪除他所創建的table]
+	drop user [cascade];
+
+#權限${sysRight}
+	connect
+	create table
+	create view
+	create index
+	create sequence
+	create trigger
+	resource
+#賦予tablespace權限
+	GRANT UNLIMITED TABLESPACE TO ${username}
+	ALTER USER ${username} QUOTA 100M ON ${tablespace name}
+
+#賦予其他用戶自己table權限[得到權限的用戶擁有分派角色/系統權限的權力]
+	grant(revoke) select(update | delete | insert | all) on emp to ${userName} [with grant/admin option]
+	#其他用戶即可以下列方式造訪
+	select * from ${原user}.${table}
+	
+
+#用profile建立用戶限制tamplate
+	#建立一限制tamplate(登入錯3次鎖2天)
+	create profile lock_account limit failed_login_attempts 3 password_lock_time 2;
+	#建立一限制tamplate(10天要換一次密碼，寬限期為2天)
+	create profile lock_account1 limit password_life_time 10 password_grace_time 2;
+	#指定user
+	alter user ${username} profile lock_account
+	#解鎖
+	alter user ${username} account unlock;
+#刪除profile
+	drop profile ${profileName}

@@ -1,0 +1,23 @@
+﻿from pytube import YouTube
+from pytube import Playlist
+
+videoURL = input('請輸入影片網址：')# https://www.youtube.com/watch?v=JfmDplHpsMc&list=PLSg6_lakxpXH4fAcV1i6j35_JZRuQ1Fwm&index=22
+videoDic = input('請輸入影片下載路徑：') #D:/Users/Video/錢線百分百/
+pl = Playlist(videoURL)
+playlist_url = pl.parse_links() # 获取 playlist 中的视频网址
+failUrlList = []  # 记录下载失败的视频
+
+
+for i in range(0,len(playlist_url)):
+
+    URL = "https://www.youtube.com"+playlist_url[i]
+    print("準備從" + URL + "下載第"+str(i)+"個影片")
+    try: # 即使某个视频下载失败，还可以继续运行
+        YouTube(URL).streams.first().download(videoDic)
+        print("已下載"+str(i)+"個影片")
+    except:
+        failUrlList.append(i)
+
+
+for failUrl in failUrlList:
+    print(failUrl)

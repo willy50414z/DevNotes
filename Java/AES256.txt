@@ -1,0 +1,92 @@
+更新java JCE
+local_policy.jar與US_export_policy.jar
+更新位置為JAVA_HOME下jre/lib/security
+
+public class AESUtils {
+	private static final Logger logger = Logger.getLogger(AESUtils.class);
+
+	/** cipher */
+	private static Cipher cipher = null;
+
+	private static SecretKeySpec skeySpec;
+
+	/**
+	 * 初始化SecretKey,key 要補滿16位元
+	 * 
+	 * @return
+	 */
+	public static void init(String phoneKey) throws Exception {
+		try {
+			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");// "算法/模式/補碼方式"
+			skeySpec = new SecretKeySpec(phoneKey.getBytes("UTF8"), "AES");
+		} catch (Exception e) {
+			logger.error("encrypt failed", e);
+			throw e;
+		}
+	}
+
+	/**
+	 * 加密
+	 * 
+	 * @param p
+	 * @return
+	 */
+	public static synchronized String encrypt(String p, String phoneKey) throws Exception {
+		init(phoneKey);
+		String encrypted = "";
+		try {
+			cipher.init(Cipher.ENCRYPT_MODE, skeySpec, new IvParameterSpec(new byte[16]));
+			byte[] encrypt = cipher.doFinal(p.getBytes("UTF8"));
+			encrypted = new BASE64Encoder().encodeBuffer(encrypt).trim();
+		} catch (Exception e) {
+			logger.error("encrypt failed", e);
+			throw e;
+		}
+		return encrypted;
+	}
+
+	/**
+	 * 解密
+	 * 
+	 * @param base64
+	 * @param phoneKey
+	 * @return
+	 */
+	public static synchronized String decrypt(String base64, String phoneKey) throws Exception {
+		init(phoneKey);
+		String decrypted = "";
+		try {
+			byte[] b = new BASE64Decoder().decodeBuffer(base64);
+			cipher.init(Cipher.DECRYPT_MODE, skeySpec, new IvParameterSpec(new byte[16]));
+			byte[] decrypt = cipher.doFinal(b);
+			decrypted = new String(decrypt);
+		} catch (Exception e) {
+			logger.error("decrypt failed", e);
+			throw e;
+		}
+		return decrypted;
+	}
+
+	public static void main(String[] args) {
+		try {
+			//			System.out.println(new BASE64Encoder().encode(IOUtils.toByteArray(new FileInputStream("/Users/Shunsing/Desktop/GtAPP_push 20170527憑證.p12"))));
+//			System.out.println(new BASE64Encoder().encode(IOUtils.toByteArray(new FileInputStream("/Users/Shunsing/Desktop/PushServer_Production憑證_2017.p12"))));
+			//			System.out.println(AESUtils.encrypt("R221051942", PropertiesUtil.getProperty("aes256.key")));
+
+			//			System.out.println(AESUtils.encrypt("F124405272", PropertiesUtil.getProperty("aes256.key")));
+			//			System.out.println(AESUtils.encrypt("zv6CfZz8I3ataYAzJ635sA==", PropertiesUtil.getProperty("aes256.key")));
+
+			//			System.out.println(AESUtils.decrypt("PeKAGMjwQeSQVMTs1JUwqw==", PropertiesUtil.getProperty("aes256.key")));
+
+			//			File file = new File("/Users/Shunsing/Desktop/wiki.cer");
+			//			System.out.println(file.getAbsolutePath());
+//			System.out.println(AESUtils.encrypt(String.valueOf(new Date().getTime()), "mitake@@86136982mitake@@86136982"));
+			System.out.println(AESUtils.decrypt("9rFxk1Z2tf1YREuI4Nn/zh+fO5wKNCd4CnqlYhWaS5A=", "9XDJs2GBtDgH18CivZI0JdqIsovRFHDA"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

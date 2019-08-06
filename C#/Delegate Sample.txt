@@ -1,0 +1,25 @@
+﻿class Program
+    {
+        static void Main(string[] args)
+        {
+            MyDelegate md = new MyDelegate(Program.FUN1);
+            // 步骤3，调用delegate 
+            md("sam1111"); 
+        }
+
+
+        //宣告委派方法(具有相同參數與回傳型別的方法全部交由委派類別使用)
+        public delegate void MyDelegate(string name);
+
+        // 这是我们欲传递的方法，它与MyDelegate具有相同的参数和返回值类型 
+        public static void FUN(string name)
+        {
+            Console.WriteLine("Hello, {0}", name);
+            Console.ReadLine();
+        }
+        public static void FUN1(string name)
+        {
+            Console.WriteLine("Hello---, {0}", name);
+            Console.ReadLine();
+        }
+    }

@@ -1,0 +1,2 @@
+<compilation debug="true" targetFramework="4.5.2" defaultLanguage="c#">
+</compilation>

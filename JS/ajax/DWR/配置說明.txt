@@ -1,0 +1,38 @@
+//1.在web.xml設定dwr攔截器(將JS參考到dwr.xml)
+<servlet>
+		<servlet-name>dwr-invoker</servlet-name>
+
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dwr-invoker</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+
+//2.設置dwr.xml(設定JS使用物件與其對應class)
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN" "http://directwebremoting.org/dwr/dwr30.dtd">
+<dwr>
+	<allow>
+		<create creator="new" javascript="KeyWrod"><!-- creator 新的實體  變數名稱為KeyWrod -->
+			<param name="class" value="com.learnWeb.struts2.DwrAjax" /><!-- mapping類別 -->
+			<include method="getName"/><!-- 只提供該類別特定method供使用 -->
+		</create>
+	</allow>
+</dwr>  
+
+//在JS中使用
+$("#serch").keyup(function() {
+	var key = $("#serch").val();
+	KeyWrod.getName(key,"aaa", function(data) {//直接用變數呼叫方法並傳入兩個參數，最後設定回傳後方法
+		var key = "";
+		for (i = 0; i < data.length; i++) {
+			key += data[i] + "<br>";
+		}
+		$("#result").html("<b>" + key + "</b>");
+	});

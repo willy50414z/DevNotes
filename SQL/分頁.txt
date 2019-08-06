@@ -1,0 +1,2 @@
+//利用多產生一欄"RowNumber"並用where做篩選
+	select * from (select ROW_NUMBER() over (order by logid) as 'rowNum',* from gms_UsageLog) test where rowNum>10 and rowNum<21

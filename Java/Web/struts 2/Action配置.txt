@@ -1,0 +1,5 @@
+//Action可選擇是否繼承ActionSupport類別
+	Struts2會自動執行struts.xml映射到的class的execute()
+	或可直接在struts.xml中設定映射到的method，直接呼叫該方法
+
+	

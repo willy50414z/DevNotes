@@ -1,0 +1,109 @@
+//與單一物件類別一樣，只是用List作為交換媒介
+
+
+// JAVA與XML之間的轉換(需用一個BEAN當作物件轉換媒介)
+public static void main(String[] args) throws Exception {
+	// 建立xml文件對象，其儲存在E碟的根目錄下的article.xml檔案
+	File xmlFile = new File("D:\\article.xml");
+	// 宣告JAXBContext上下文對像
+	JAXBContext context;
+	try {
+		// 透過指定映射的類建立上下文
+		context = JAXBContext.newInstance(ArticleData.class);	
+//		 將 JAVA 轉換為
+		 Marshaller m = context.createMarshaller();
+		 //建立xml中的資料1
+		 Article article = new Article();
+		 article.setAuthor("Janet");
+		 article.setDate("20080801");
+		 article.setEmail("janetvsfei@yahoo.com.cn");
+		 article.setTitle("XML");
+		 //建立xml中的資料2
+		 Article article1 = new Article();
+		 article1.setAuthor("Janet3");
+		 article1.setDate("200808013");
+		 article1.setEmail("janetvsfei@yahoo.com.cn3");
+		 article1.setTitle("XML3");
+		 //組成List
+		 List<Article> list=new ArrayList<Article>();
+		 list.add(article1);
+		 list.add(article);
+		 //放入List的Bean
+		 ArticleData data = new ArticleData();
+		 data.setArticle(list);
+		
+		 //將java對像轉化到xml
+		  m.marshal(data, xmlFile);
+		
+		
+//		// 透過上下文建立xml轉化java的對象Unmarshaller
+//		Unmarshaller u = context.createUnmarshaller();
+//		// 將xml資料轉換成java對像
+//		ArticleData data = (ArticleData) u.unmarshal(xmlFile);
+//		// 獲得所有的article資料
+//		List<Article> articles = data.getArticle();
+//		for (Article a : articles) {
+//			System.out.println("-------------------------");
+//			System.out.println(a.getAuthor());
+//			System.out.println(a.getDate());
+//			System.out.println(a.getEmail());
+//			System.out.println(a.getTitle());
+//		}
+	} catch (JAXBException e) {
+	e.printStackTrace();
+	}
+  }
+	
+}
+
+//多個物件的根目錄
+
+//宣告根目錄名稱
+@XmlRootElement(name = "articles")
+class ArticleData {
+//內部皆以ArrayList作為轉換媒介
+	List<Article> article = new ArrayList<Article>();
+
+	public List<Article> getArticle() {
+		return article;
+	}
+
+	public void setArticle(List<Article> article) {
+		this.article = article;
+	}
+}
+
+//POJO Bean
+
+//以此標示表示此類明為一根標記
+@XmlRootElement
+class Article{
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	private String title;
+	private String author;
+	private String email;
+	private String date;
+}

@@ -1,0 +1,4 @@
+SimpleDateFormat formatter_1 = new SimpleDateFormat("yyyymmddhhmmss");
+	    Date currentTime_1 = new Date();
+	    String dateString_1 = formatter_1.format(currentTime_1);
+	    System.out.println(dateString_1);

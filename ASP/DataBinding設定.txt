@@ -1,0 +1,9 @@
+//北兜皌竚硈挡ID琩高﹃(ConnectionString籔configいname么挡)
+	<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ITOA_MAINConnection %>" 
+					SelectCommand="SELECT [FULLNAME], [CTCB_EMPLOYEE_LEVEL] FROM [Employee_Z00040874]"></asp:SqlDataSource>
+
+//configい皌竚硈挡IDConnection皌竚把计
+	<connectionStrings>
+        <add name="ITOA_MAINConnection" connectionString="Data Source=172.24.17.52,1803;Initial Catalog=ITOA_MAIN;
+		User ID=ITOA_MAIN_mod;Password=f3ru9cj4"  providerName="System.Data.SqlClient" />
+    </connectionStrings>

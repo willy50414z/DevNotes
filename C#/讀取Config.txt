@@ -1,0 +1,6 @@
+<appSettings>
+    <add key="DB" value="SQL2012"/>
+  </appSettings>
+
+
+Console.WriteLine(ConfigurationManager.AppSettings["DB"]);

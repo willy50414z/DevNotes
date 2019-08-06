@@ -1,0 +1,27 @@
+//jsp也可以跟在servlet一樣在xml中設定mapping，只要把<servlet-class>改成<jsp-file>
+
+//session存佸時間設定
+<session-config>
+	<session-timeout>10</session-timeout>
+</session-config>
+
+//jsp全域設定
+
+<jsp-config>     
+  <taglib>     
+    <taglib-uri>Taglib</taglib-uri>     
+    <taglib-location>/WEB-INF/tlds/MyTaglib.tld</taglib-location>     
+  </taglib>     
+  <jsp-property-group>     
+    <description>description</description>     
+    <display-name>JSPConfiguration</display-name>     
+    <url-pattern>/jsp/* </url-pattern><!-- 使用範圍 -->  
+    <el-ignored>true</el-ignored><!-- 忽視EL express -->
+    <page-encoding>GB2312</page-encoding><!-- 設定頁面編碼 -->
+    <scripting-invalid>true</scripting-invalid><!-- 忽視scriptlet -->
+    <include-prelude>/include/prelude.jspf</include-prelude><!-- 執行JSP前執行該檔案 -->
+    <include-coda>/include/coda.jspf</include-coda><!-- 執行JSP後執行該檔案 -->
+  </jsp-property-group>     
+</jsp-config>  
+
+//

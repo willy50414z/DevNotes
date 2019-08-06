@@ -1,0 +1,2 @@
+//預設觸發hello的Action
+<default-action-ref name="hello"></default-action-ref>

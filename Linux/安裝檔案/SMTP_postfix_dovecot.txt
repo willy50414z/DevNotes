@@ -1,0 +1,67 @@
+#安裝軟體
+	yum -y install postfix dovecot
+#修改postfix設定檔
+	vi /etc/postfix/main.cf
+	myhostname = mail.example.com
+	mydomain = example.com
+	myorigin = $mydomain
+	mynetworks_style = class
+	mynetworks = 127.0.0.0/8, 192.168.100.0/24
+
+	inet_interfaces = all
+	mydestination = $mydomain, $myhostname, localhost.$mydomain, localhost
+	mail_spool_directory = /var/mail
+	relay_domains = $mydestination
+	home_mailbox = Maildir/
+	mailbox_size_limit = 0  #原設定參數沒有
+	message_size_limit = 0  #請自己加上即可
+
+#修改dovecot設定檔
+	vi /etc/dovecot/dovecot.conf
+	protocols = imap pop3
+
+	vi /etc/dovecot/conf.d/10-mail.conf
+	mail_location = mbox:~/mail:INBOX=/var/mail/%u
+
+#開通防火牆
+	firewall-cmd --permanent --add-service=smtp
+	firewall-cmd --permanent --add-port=110/tcp
+	firewall-cmd --permanent --add-port=143/tcp
+	firewall-cmd --permanent --add-port=25/tcp
+	firewall-cmd --reload
+
+#設定 SELinux
+	setsebool -P postfix_local_write_mail_spool on
+
+#啟動 smtp 與 imap 的服務
+	systemctl enable postfix
+	systemctl enable dovecot
+	systemctl start postfix
+	systemctl start dovecot
+#安裝mailx
+	yum install mailx
+#發送 mail ，檢測服務是否運作正常(gmail會被擋)
+	mail XXX@yahoo.com.tw
+
+#為讓外部可以連線
+#安裝 Cyrus SASL 套件
+	yum -y install cyrus-sasl-*
+#啟動SASL服務
+	systemctl enable saslauthd.service
+	systemctl start saslauthd.service
+#修改SASL設定檔 
+	vi /etc/postfix/main.cf
+	#追加下列設定：
+	smtpd_sasl_auth_enable = yes
+	smtpd_sasl_security_options = noanonymous
+	broken_sasl_auth_clients = yes
+	smtpd_recipient_restrictions =
+     		permit_mynetworks,
+     		permit_sasl_authenticated
+#重新啟動 postfix 服務
+	systemctl restart postfix
+#測試 postfix 服務
+	ehlo  localhost
+	#應該要出現下列兩行的資訊：
+	#250-AUTH LOGIN PLAIN
+	#250-AUTH=LOGIN PLAIN

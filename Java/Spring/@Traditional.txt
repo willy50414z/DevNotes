@@ -1,0 +1,12 @@
+1.SpringConfig註冊transactionalManager
+    @Bean
+    public DataSourceTransactionManager transactionManager() {
+        DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
+        transactionManager.setDataSource(ds);
+        return transactionManager;
+    }
+2.SpringConfig加上
+	@EnableTransactionManagement(proxyTargetClass=true)
+3.需Transaction類別或方法上加上@Transactional
+
+4.執行時只能使用spring提供的template執行語法

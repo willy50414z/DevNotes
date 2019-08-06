@@ -1,0 +1,21 @@
+//取cookie
+Cookie[] cookies=request.getCookies();
+	for(Cookie a:cookies){
+	new Print().print(a.getName());
+	new Print().print(a.getValue());
+	}
+	new Print().print(cookies[0].getName());
+//設cookie
+	response.addCookie(new Cookie(key,value));.
+//儲存中文須轉為Unicode
+	//設定
+		Cookie cookie=new Cookie(URLEncoder.encode("key","utf-8"),URLEncoder.encode("value","utf-8"));
+	//取
+		String cookie=URLDecoder.decode(cookies[0].getname,"utf-8")
+
+
+session
+	<session-config>
+		<session-timeout>min</session-timeout>
+	</session-config>
+	

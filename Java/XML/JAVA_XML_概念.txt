@@ -1,0 +1,6 @@
+一.分類
+	1.JAXP:負責解析XML，可以解析至標籤註釋、屬性(ex.table的border)，擁有兩種解析方式
+		DOM:將XML劃分成樹狀結構，由根節點開始往下慢慢解析，速度較慢，且須撰寫大量程式碼
+		SAX:解析快速，但需透過繼承DefaultHandler複寫監聽方法來抓取XML資訊
+	2.JAXB:負責JAVA　Object與XML之間的轉換，但只能定義KeyValue物件，無法定義至屬性
+

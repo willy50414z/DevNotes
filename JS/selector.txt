@@ -1,0 +1,45 @@
+//選取標籤
+document.getElementByTagName(tag);
+
+//選取class
+document.getElementByClassName(class);
+
+//選取class中的tag
+document.querySelectAll('class.tag');
+
+//選取id內的其他標籤
+$("#id tag")
+=== $("#id").find(".class").find("tag")-->效能較高
+
+//選取父標籤
+$().parent()
+
+//選取姊妹標籤
+$().siblings()-->全部
+$().next()-->下一個
+$().pre()-->前一個
+
+//選取子標籤(孫標籤不算
+$("body >p")
+$().children()
+
+//選取旁邊的標籤(按tab會到的)
+$("h2+div")
+
+//選取特定屬性的標籤
+$("img[alt]")--帶有alt屬性的img標籤
+$("input[type='text']")--type為text的標籤
+$("img[alt^='...']")--img的alt屬性以...開頭的標籤
+$("a[href$='.pdf']")--a的href屬性以.pdf結尾的標籤
+
+//選取標籤中的標籤
+$("tr:even")--雙數行
+$(".table tr:even")--.table中的雙數行
+:first
+:last
+$("a:not(.class)")--不是某class的a標籤
+$("li:has(a)")--有a的li
+$("a:contains('...')")--顯示文字含...的a標籤
+:display
+:hidden
+:none

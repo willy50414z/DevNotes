@@ -1,0 +1,30 @@
+#新增使用者
+	useradd ${username}
+
+#設密碼[username,不設為設定當下用戶密碼]
+	passwd [$username] ${passwd}
+
+#刪除使用者
+	userdel ${username}
+#刪除使用者-連其目錄
+	userdel -r ${用戶名}
+
+#新增用戶組
+	groupadd ${groupName}
+
+#查看現有用戶組
+	vi /etc/group	--讀寫
+	cat /etc/group  --唯讀
+	${組名:X:ID}
+
+#新增用戶並分組
+	useradd -g ${groupname} ${username}
+
+#編輯用戶組
+	usermod -g ${groupname} ${username}
+#編輯初始目錄
+	usermod -d ${dirname} ${username}
+#查看所有用戶信息
+	vi /etc/passwd
+	cat /etc/passwd
+	${username:X:userid:groupid:使用主目錄:使用shell目錄}

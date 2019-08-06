@@ -1,0 +1,36 @@
+¨ú±oªíÀY¦WºÙ
+Enumeration<String> headerNames = request.getHeaderNames();
+while (headerNames.hasMoreElements()) {
+                String headerName = headerNames.nextElement();
+                String headerValue = request.getHeader(headerName);
+            }
+¨ú±oÄæ¦ì°Ñ¼Æ
+Enumeration<String> pNames = request.getParameterNames();
+while (pNames.hasMoreElements()) {
+                String pName = pNames.nextElement();
+                String pValue=request.getParameter(pName);;
+}
+¨ú±o°Ï°ìor¥þ°ì¹w³]°Ñ¼Æ
+	Enumeration<String> ipNames = getInitParameterNames();
+while (ipNames.hasMoreElements()) {
+                String ipName = ipNames.nextElement();
+                String ipValue = getInitParameter(ipName);
+}
+¨ú±o¥»¾÷ip
+	req.getLocalAddr();
+¨ú±o¥»¾÷¦WºÙ
+	req.getLocalName();
+¨ú±o¥»¾÷port
+	req.getLocalPort();
+¨ú±o¥»¾÷¨Ï¥ÎÀô¹Ò-- zh_TW„³¥xÆW
+	req.getLocale();
+¨ú±o³sµ²¤è¦¡doGet//doPost
+request.getMethod();
+¨ú±o¨Ó·½ºô§}(±q­þ­Óºô¯¸³s¶i¨Ó
+	request.getHeader("referer");
+³sµ²servlet¸ô®|
+request.getServletPath();
+¨ú±o§@·~¨t²Î¡BÂsÄý¾¹ªºÃþ«¬©Mª©¥»¡B
+	request.getHeader("user-agent");
+//³]©w½s½X¤è¦¡
+request.setCharacterEncoding("utf-8");

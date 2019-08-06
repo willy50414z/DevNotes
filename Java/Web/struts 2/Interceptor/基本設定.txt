@@ -1,0 +1,39 @@
+//1.extends AbstractInterceptor
+//2.@Override
+	public String intercept(ActionInvocation arg0) throws Exception {
+		System.out.println("intercept start....");
+		String resultString=arg0.invoke();//肚倒糷interceptor
+		System.out.println("intercept end....");
+		return resultString;
+	}
+
+//3.砞竚Struts.xml
+<interceptors>
+	<interceptor name="interceptor1" class="com.willy.interceptor.Testinterceptor"></interceptor>
+</interceptors>
+
+//4.まAction
+<action>
+<interceptor-ref name="interceptor1"></interceptor-ref>
+<interceptor-ref name="defaultStack"/><!--ゲノ-->
+<result name="success">/HelloWorld.jsp</result>
+</action>
+
+
+//5.眔箇砞把计
+	//5-1砞竚把计
+<interceptors>
+	<interceptor name="interceptor1" class="com.willy.interceptor.Testinterceptor">
+	<param name="interceptorkey">abc</param>
+	</interceptor>
+</interceptors>
+	//5-2Interceptor矗ㄑget/set钡ノ
+
+//6.砞竚Inceptor帮舼(Ωま计Inceptor)
+</interceptors>
+	<interceptor-stack name="test">
+		<interceptor-ref name=""></interceptor-ref>
+	</interceptor-stack>
+</interceptors>
+
+	

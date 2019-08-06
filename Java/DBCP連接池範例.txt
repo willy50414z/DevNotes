@@ -1,0 +1,10 @@
+<Resource name="jdbc/Stock_UAT"
+    	type="javax.sql.DataSource"
+   	auth="Container"
+     	username="Stock_UAT"
+      	password="Stock_UAT"
+	maxActive="100"<!--最多同時連線數-->
+	maxIdle="30"<!--閒置時間保留連線數-->
+	maxWait="1000"<!--DB逾時時間-->
+     	url="jdbc:sqlserver://127.0.0.1:1803;user=Stock_UAT;password=Stock_UAT;databaseName=Stock_UAT;"
+     	driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>

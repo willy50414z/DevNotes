@@ -1,0 +1,20 @@
+//JS
+ $.post("action",function(data){ 
+    	       var json = eval("("+data+")"); 
+    	       $("#test").val($("#test").val()+"\r\n"+json.msg+" -- "+json.msg1);
+    	   }); 
+
+//Html
+<body>
+    <input type="button" value="«ö¶s1"  onclick="getUploadMeter();">
+    <textarea id="test"/>
+</body>
+
+//Java
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out=response.getWriter();
+		out.write("{msg:'testMsg' , msg1 : 'testMsg1'}");
+		out.flush();
+	}

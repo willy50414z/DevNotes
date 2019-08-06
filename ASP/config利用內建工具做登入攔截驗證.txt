@@ -1,0 +1,82 @@
+1.設定config檔攔截使用需求
+  <system.web>
+  <authentication mode="Forms">
+    <forms name="test" loginUrl="login.aspx{登入頁面}" protection="All" path="/" timeout="30" />
+    </authentication>
+    <authorization>
+      <deny users ="?" />	<!--可以登入的群組(Administrators,Users)-->
+      <allow users = "*" />
+    </authorization>
+  </system.web>
+
+PS.
+ Mode有  "None","Windows","Forms","Passport"四種
+	None : 不驗證
+	Windows : windows驗證
+	Forms : 表單驗證
+	Passport : 驗證失敗時導向頁面
+
+---------------------------------------
+2.建立登入頁面		
+	 <form id="form1" runat="server">
+	  <div>
+	       <h3>Logon Page</h3>
+	<table>
+	<tr>
+	<td>Email:</td>
+	<td><input id="txtUserName" type="text" runat="server"/></td>
+	<td><%--<ASP:RequiredFieldValidator ControlToValidate="txtUserName"
+	Display="Static" ErrorMessage="*" runat="server" 
+	ID="vUserName" />--%></td>
+	</tr>
+	<tr>
+	<td>password:</td>
+	<td><input id="txtUserPass" type="password" runat="server"/></td>
+	<td><%--<asp:RequiredFieldValidator ControlToValidate="txtuserpass"
+	Display="static" ErrorMessage="*" runat="server" 
+	ID="vuserpass" />--%>
+	</td>
+	</tr>
+	<tr>
+	<td>persistent cookie:</td>
+	<td><asp:checkbox id="chkPersistCookie" runat="server" autopostback="false" /></td>
+	<td></td>
+	</tr>
+	</table>
+	      <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+	<p></p>
+	<asp:label id="lblmsg" forecolor="red" font-name="verdana" font-size="10" runat="server" />
+    </div>
+    </form>
+
+----------------------------------------------------
+3.建立cs
+  public void Button1_Click(object sender, System.EventArgs e)
+    {
+        if (ValidateUser(txtUserName.Value, txtUserPass.Value))
+        {
+            FormsAuthenticationTicket tkt;
+            string cookiestr;
+            HttpCookie ck;
+  //組織該使用者登入票證
+            tkt = new FormsAuthenticationTicket(1{票證版本名稱}, txtUserName.Value{票證所有人}, DateTime.Now{session存取期間[起]}, DateTime.Now.AddMinutes(30){session存取期間[迄]}, chkPersistCookie.Checked{是否永久儲存cookie}, "放置任何你想儲存的資料");
+  //cookie加密
+	    cookiestr = FormsAuthentication.Encrypt(tkt);
+  //建立cookie
+            ck = new HttpCookie(FormsAuthentication.FormsCookieName{[Key]}, cookiestr{[Value]});
+            if (chkPersistCookie.Checked)
+                ck.Expires = tkt.Expiration;
+  //cookie儲存路徑
+            ck.Path = FormsAuthentication.FormsCookiePath;
+            Response.Cookies.Add(ck);
+            string strRedirect;
+            strRedirect = Request["ReturnUrl"];
+            if (strRedirect == null)
+                strRedirect = "Default1.aspx";
+            Response.Redirect(strRedirect, true);
+        }
+        else
+            Response.Redirect("login.aspx", true);
+    }
+-------------------------------------
+4.建立系統頁面(Default.aspx)

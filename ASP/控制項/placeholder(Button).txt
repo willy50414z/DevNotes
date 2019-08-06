@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <script runat="server">
+
+      void Page_Load(Object sender, EventArgs e)
+      {
+         HtmlButton myButton = new HtmlButton();
+
+         myButton.InnerText = "Button 1";
+         PlaceHolder1.Controls.Add(myButton);
+
+         myButton = new HtmlButton();
+         myButton.InnerText = "Button 2";
+         PlaceHolder1.Controls.Add(myButton);
+
+         myButton = new HtmlButton();
+         myButton.InnerText = "Button 3";
+         PlaceHolder1.Controls.Add(myButton);
+
+         myButton = new HtmlButton();
+         myButton.InnerText = "Button 4";
+         PlaceHolder1.Controls.Add(myButton);
+      }
+
+   </script>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:PlaceHolder id="PlaceHolder1" 
+           runat="server"/>
+    </div>
+    </form>
+</body>
+</html>

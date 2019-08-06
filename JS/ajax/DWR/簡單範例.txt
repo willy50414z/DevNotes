@@ -1,0 +1,84 @@
+//JSP
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=BIG5">
+<title>Struts2 Ajax Google</title>
+<script type='text/javascript' src='<%=request.getContextPath(); %>/dwr/engine.js'></script>
+<script type='text/javascript' src='<%=request.getContextPath(); %>/dwr/interface/KeyWrod.js'></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$("#serch").keyup(function() {
+			var key = $("#serch").val();
+			KeyWrod.getName(key, function(data) {
+				var key = "";
+				for (i = 0; i < data.length; i++) {
+					key += data[i] + "<br>";
+				}
+				$("#result").html("<b>" + key + "</b>");
+			});
+
+		});
+
+	});
+</script>
+</head>
+<body>
+	<center>
+		<input type="text" id="serch"
+			style="width: 600px; height: 38px; font-size: 20px; font-weight: bold;" />
+		<input type="button" id="sub" value="Google 搜尋" style="height: 40px" /><br />
+		<div id="result"></div>
+	</center>
+</body>
+
+
+//web.xml
+<servlet>
+		<servlet-name>dwr-invoker</servlet-name>
+
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dwr-invoker</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+
+
+
+//dwr.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN" "http://directwebremoting.org/dwr/dwr30.dtd">
+<dwr>
+	<allow>
+		<create creator="new" javascript="KeyWrod">
+			<param name="class" value="com.learnWeb.struts2.DwrAjax" />
+			<include method="getName"/>
+		</create>
+	</allow>
+</dwr>  
+
+//java
+package com.willy.control;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class DWRAjax {
+
+	public List getName(String key) throws SQLException {
+		List list = new ArrayList();
+		list.add("aaa");
+		list.add("bbb");
+		list.add("ccc");
+		return list;
+	}
+}

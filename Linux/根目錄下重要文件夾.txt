@@ -1,0 +1,9 @@
+root - root用戶信息
+home - 一般文件
+bin - 常用指令
+sbin - 一定權限才能使用的指令
+mnt - 掛光碟用的
+boot - 存放引導相關文件
+etc - 設定檔文件(tomcat,sql...)
+var - 經常變化的文件(.temp,程式關閉隨之消失)
+usr - 安裝程式默認路徑

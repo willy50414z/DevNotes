@@ -1,0 +1,7 @@
+public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input = new Scanner(System.in);
+		System.out.println("Please type some words:");
+		String str = input.next();
+		System.out.println("The words you have typed is:"+str);
+	}

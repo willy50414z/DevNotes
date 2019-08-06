@@ -1,0 +1,1 @@
+Exec sp_rename '舊Table名.就欄位名' , '新欄位名'

@@ -1,0 +1,33 @@
+//annotation
+@WebServlet(urlPatterns = {"/login"},
+			initParams =
+			{
+					@WebInitParam(name = "aa", value = "bb"),
+					@WebInitParam(name = "cc", value = "dd")
+			},
+			loadOnStartup = 0
+		)
+//web.xml
+ <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>com.willy.controller.LoginAction</servlet-class>
+    <init-param>
+  	<param-name>aa</param-name>
+  	<param-value>bb</param-value>
+  	</init-param>
+  	<init-param>
+  	<param-name>cc</param-name>
+  	<param-value>dd</param-value>
+  </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+
+//JAVA
+System.out.println("aa -- "+this.getInitParameter("aa"));
+System.out.println("cc -- "+this.getInitParameter("cc"));
+
+//JSP
+<form action="login" method="post">

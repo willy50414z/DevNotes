@@ -1,0 +1,21 @@
+1.引入其他Spring設定檔
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+	<beans>
+		<import resource="classpath:com/willy/spring/applicationContext-beans.xml" />
+	</beans>
+
+
+2.註冊Bean
+	<!--註冊Car,Computer的Bean-->
+	<!--將兩個Bean注入Swither class中的car,computer變數-->
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+	<beans>
+		<bean id="Car" class="com.willy.bean.Car"></bean>
+		<bean id="Computer" class="com.willy.bean.Computer"></bean>
+		<bean name="Switcher" class="com.willy.model.Switcher">
+			<property name="car" ref="Car" />
+			<property name="computer" ref="Computer" />
+		</bean>
+	</beans>

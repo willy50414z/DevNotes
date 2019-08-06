@@ -1,0 +1,2 @@
+String ss=ClassLoader.getSystemResource("").toString()
+System.out.println(ss.replace("file:/", ""));

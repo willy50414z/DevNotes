@@ -1,0 +1,19 @@
+--FUNCTION
+create function calSeason (@FRDate nchar(6),@calSeasonCount float)
+returns nchar(6)
+as
+begin
+Declare @FRSeason as float
+Declare @NewFRDate as nchar(6)
+Declare @NewFRYear as float
+Declare @NewFRSeason as float
+Declare @TempSeason as float
+Declare @FRYear as float
+set @FRYear=cast(substring(@FRDate,0,5) as float)
+set @FRSeason=cast(substring(@FRDate,5,7) as float)
+set @NewFRYear=@FRYear+ceiling((@FRSeason+@calSeasonCount)/4-1)
+set @TempSeason=cast((@FRSeason+@calSeasonCount) as int) % 4
+set @NewFRSeason=case when @TempSeason<=0 then @TempSeason+4 else @TempSeason end
+set @NewFRDate =cast(@NewFRYear as nchar(4))+case when Len(@NewFRSeason)=1 then '0' end + cast(@NewFRSeason as nchar(2))
+return @NewFRDate
+end

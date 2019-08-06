@@ -1,0 +1,3 @@
+install.packages("package name")	//¤U¸ü
+library("package name")	//¸ü¤J
+detach("package:package name")	//§R°£

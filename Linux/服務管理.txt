@@ -1,0 +1,4 @@
+#列出所有服務
+	systemctl -l --type service --all
+#服務狀態
+	systemctl [status | start | stop | restart] ${serviceName}

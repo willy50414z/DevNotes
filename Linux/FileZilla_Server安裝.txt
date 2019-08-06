@@ -1,0 +1,25 @@
+USE [System]
+1. 下載filezilla
+	yum install vsftpd ftp -y
+
+2.修改設定
+	vi /etc/vsftpd/vsftpd.conf
+#將原設定改成如下狀況
+	anonymous_enable=NO
+	ascii_upload_enable=YES
+	ascii_download_enable=YES
+	ftpd_banner=Welcome to UNIXMEN FTP service.
+#在最後新增
+	use_localtime=YES
+3. 開啟FTP設定
+	systemctl enable vsftpd
+	systemctl start vsftpd
+4.重啟防火牆
+	firewall-cmd --reload
+
+USE [normalUser]
+5. 取得IP
+	ip -4 addr
+	#ensXX下inet後的
+6. 連結、登入
+	ftp ${IP}

@@ -1,0 +1,4 @@
+RVector v = x.asVector();
+	for (Enumeration e = v.getNames().elements() ; e.hasMoreElements() ;) {
+		System.out.println(e.nextElement());
+	}

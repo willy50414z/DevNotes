@@ -1,0 +1,7 @@
+Create View AllEmp5 (a,b,c,d) --abcd為被建立View的column name
+AS
+select * from Employee_Z00040874
+union
+select * from Employee_Z00040875
+
+[with check option]	--建立PK

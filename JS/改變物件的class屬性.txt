@@ -1,0 +1,5 @@
+$( ".shape" )
+//移除這四個屬性
+        .removeClass( "circle pill square rectangle")
+//增加這個屬性
+        .addClass( "circle" );

@@ -1,0 +1,20 @@
+File pdfFile = new File("D:\\Downloads\\¥x¿n¹q2016Q1°]³ø.pdf");
+        PDDocument document = null;
+        try
+        {
+
+            document=PDDocument.load(pdfFile);
+
+            int pages = document.getNumberOfPages();
+
+            PDFTextStripper stripper=new PDFTextStripper();
+            stripper.setSortByPosition(true);
+            stripper.setStartPage(3);
+            stripper.setEndPage(20);
+            String content = stripper.getText(document);
+            System.out.println(content);     
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }

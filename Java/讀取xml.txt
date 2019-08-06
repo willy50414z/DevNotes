@@ -1,0 +1,37 @@
+//Java
+	public static void main(String[] args){
+		// TODO Auto-generated method stub
+		try{
+		File f = new File("D:\\aa1.xml"); 
+		SAXReader reader = new SAXReader(); 
+		//若有中文字需儲存為utf8
+		Document doc = reader.read(f); 
+		Element root = doc.getRootElement(); 
+		//取得最外圍標籤的值
+		System.out.println(root.getPath());
+		Element foo; 
+		Iterator i = root.elementIterator("VALUE");
+		while(i.hasNext()){
+			foo = (Element) i.next(); 
+			//取得個標籤的值
+			System.out.print("NO標籤值:" + foo.elementText("NO")); 
+			System.out.println("ADDR標籤值:" + foo.elementText("ADDR"));
+		}
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	}
+
+//xml(要存為UTF8)
+<?xml version="1.0" encoding="utf-8"?>
+<RESULT>
+	<AS>ABC</AS><AS>CDF</AS>
+	<VALUE>
+		<NO>A1234</NO>
+		<ADDR>台灣帝國</ADDR>
+	</VALUE>
+	<VALUE>
+		<NO>A4567</NO>
+		<ADDR>台北帝國</ADDR>
+	</VALUE>
+</RESULT>

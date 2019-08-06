@@ -1,0 +1,9 @@
+因為JSP也是一種Servlet，因此也有init、destroy方法
+
+public void _jspInit(){
+
+}
+
+public void _jspDestroy(){
+
+}

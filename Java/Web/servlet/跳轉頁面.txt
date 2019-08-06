@@ -1,0 +1,6 @@
+//Servlet
+	RequestDispatcher req=request.getRequestDispatcher("success.jsp");
+	req.forward(request,response);
+
+//filter
+	response.sendRedirect("");

@@ -1,0 +1,43 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page isELIgnored="true|false"%>
+<%@ include file="head.jsp" %>
+//取得根路徑
+<%=request.getContextPath()%>
+
+使用usebean
+
+<!-- 宣告POJOBean -->
+<!-- scope設為
+		page表示只能在當頁使用bean
+		session--特定使用者
+		Application--所有使用者
+ -->
+<jsp:useBean id="POJOBean" class="com.test.POJOBean" scope="page"/>
+<!-- 接收所有form中傳遞到POJOBean的value -->
+<jsp:setProperty property="*" name="POJOBean"/>
+<!-- 設置bean中的值 -->
+<jsp:setProperty property="name" name="POJOBean" value="changed"/>
+<!-- 取bean中的值 -->
+<jsp:getProperty property="name" name="POJOBean"/>
+<jsp:getProperty property="gender" name="POJOBean"/>
+<!-- 計數器 -->
+<jsp:useBean id="Visit1" class="com.test.Visit" scope="application"/>
+<jsp:useBean id="Visit2" class="com.test.Visit" scope="session"/>
+<br/>你造訪了<jsp:getProperty property="count" name="Visit2"/>次
+<br/>這個網頁被造訪了<jsp:getProperty property="count" name="Visit1"/>次
+
+也可以java方式取出
+<%
+request.getParameter("Visit2");
+out.println("aa-"+Visit2.getCount());
+%>
+
+
+jsp也可以跟在servlet一樣在xml中設定mapping，只要把<servlet-class>改成<jsp-file>
+
+EL 
+	${empty class.attribute}--判斷是否為空或是0
+
+
+

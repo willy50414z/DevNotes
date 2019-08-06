@@ -1,0 +1,1 @@
+isNaN(var) //判斷是否為數字(是:false/不是:true)

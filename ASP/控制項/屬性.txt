@@ -1,0 +1,2 @@
+EnableViewState  要不要暫存在catch裡面
+OnPreRender  初始化動作

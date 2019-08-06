@@ -1,0 +1,5 @@
+filter直到
+chain.doFilter(request, response);
+才會進入servlet 	
+因此可以try{chain.doFilter(request, response);}catch{}控制所有Exception
+並可以instanceof比對Exception進行處裡

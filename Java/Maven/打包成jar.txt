@@ -1,0 +1,21 @@
+1. 在pom.xml加入plugin
+
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<version>2.5.5</version>
+			<configuration>
+				<archive>
+					<manifest>
+						<mainClass>入口類</mainClass>
+					</manifest>
+				</archive>
+				<descriptorRefs>
+					<descriptorRef>jar-with-dependencies</descriptorRef>
+				</descriptorRefs>
+			</configuration>
+		</plugin>
+
+2. 打包
+	cd /d ${pom}所在路徑
+	mvn package assembly:single

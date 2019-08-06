@@ -1,0 +1,7 @@
+alter table ${tablename} 
+	#·s¼WÄæ¦ì
+	[ADD | Modify] (${columnName} ${dataType})
+	Drop column ${columnName}
+
+
+rename ${oldTableName} to ${newTableName}

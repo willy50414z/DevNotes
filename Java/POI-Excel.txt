@@ -1,0 +1,32 @@
+commons-collections4-4.1.jar
+poi-3.17.jar
+poi-ooxml-3.17.jar
+poi-ooxml-schemas-3.17.jar
+xmlbeans-2.6.0.jar
+
+XSSFWorkbook wb = new XSSFWorkbook();
+		XSSFSheet sheet1 = wb.createSheet("Sheet_1");
+		XSSFSheet sheet2 = wb.createSheet("Sheet_2");
+		for (int i = 0; i < 5; i = i + 2) {
+			XSSFRow row1 = sheet1.createRow(i);
+			XSSFRow row2 = sheet2.createRow(i);
+			for (int j = 0; j < 3; j++) {
+				row1.createCell(j).setCellValue(j + "new");
+				row2.createCell(j).setCellValue(j + "This is a string");
+			}
+		}
+		FileOutputStream fileOut = new FileOutputStream("D:\\workbooks3.xlsx");
+		wb.write(fileOut);
+		fileOut.close();
+
+FileInputStream is=new FileInputStream("D:/workbooks3.xlsx");
+		XSSFWorkbook workbook = new XSSFWorkbook(is);
+		XSSFSheet sheet = workbook.getSheetAt(0);
+		XSSFRow row;
+		/* 第一列為title 所以i從1開始略過0 */
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+			row=sheet.getRow(i);
+			for(int j=0;j<row.getLastCellNum();j++) {
+				System.out.print(row.getCell(j)+"\t");
+			}System.out.println();
+		}

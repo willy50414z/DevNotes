@@ -1,0 +1,3 @@
+$("div").load("網址");
+//可載入部分物件
+$("div").load("www.google.com #id");

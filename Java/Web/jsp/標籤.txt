@@ -1,0 +1,20 @@
+¤G.	JSP
+	1.¤Þ¤JJS¡BCSS
+		<script src="<%=request.getContextPath() %>/js/DataTable.js"></script>
+		<link href="<%=request.getContextPath() %>/CSS/Menu.css" rel="stylesheet" type="text/css"/>
+	
+	2.¤­¤j¼ÐÅÒ
+		<% %>µ{¦¡¤ù¬q(¥i©ñ¤Jjava»yªk¡A©Î¥Hout.print(html);¿é¥Xhtml
+		<%-- --%>µù¸Ñ
+		<%@  %>«ü¥O
+		<%!  %>«Å§i
+		<%= %>ªí¹F¦¡(¤£¥[;)
+
+	3.JSP«ü¥O
+		errorPage„³³]©w¦b¿ù»~³B²z­¶­±¦ì§}¡A¸Ó­¶­±¥²¶·³]isErrorPage=¡¨true¡¨
+		isErrorPage„³³]¬°Error Page
+		pageEncoding„³«ü©wºô­¶½s½X¤è¦¡
+		isELIgnore„³¸T¤îEL»yªk??
+		<%@Include file=¡¨Hello.jsp¡¨%>„³¸ü¤Jmaster¥i¥HQuery Stringªþ±a¦r¦ê
+		<%@ taglib prefix=¡¨c¡¨ uri=¡¨ http://java.sun.com/jsp/jstl/core¡¨ %>„³³]©w¦Û­q¼ÐÅÒ(¥Hc tag¬°¨Ò)
+		<%@ errorPage="/Other/ErrorPage.jsp" %>

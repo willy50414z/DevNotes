@@ -1,0 +1,7 @@
+<script>
+	function jsAction(){
+		var form=document.forms[4];
+		form.action="hello";
+		form.submit();
+	}
+</script>

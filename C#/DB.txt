@@ -1,0 +1,85 @@
+class DB
+    {
+        //Suppose your ServerName is "aa",DatabaseName is "bb",UserName is "cc", Password is "dd"
+             private string connectionString ="Data Source=172.24.17.52,1803;Initial Catalog=ITOA_MAIN;User Id=ITOA_MAIN_mod;Password=f3ru9cj4;";
+
+             public void query()             
+             {
+               SqlConnection con = new SqlConnection(connectionString);
+¡@¡@¡@         SqlCommand cmd = new SqlCommand();
+               cmd.CommandType = System.Data.CommandType.Text;
+               cmd.Connection = con;
+               cmd.CommandText = "select * from Employee_Z00040874";
+¡@¡@¡@         con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+               while (reader.Read())
+¡@¡@¡@         {
+                Console.WriteLine("CN = " + reader[0] + " , FULLNAME = " + reader[1]);
+                  Console.WriteLine("---");
+¡@¡@          ¡@}
+               reader.Close();
+               cmd.Dispose();
+¡@¡@¡@         con.Close();
+ 
+        }
+             public void insert(String cmdText)
+             {
+                 SqlConnection con = new SqlConnection(connectionString);
+                 SqlCommand cmd = new SqlCommand();
+                 cmd.CommandType = System.Data.CommandType.Text;
+                 cmd.Connection = con;
+                 cmd.CommandText = cmdText;
+                 con.Open();
+                 int rows=cmd.ExecuteNonQuery();
+                 Console.WriteLine("Total affect " + rows + " rows");
+                 cmd.Dispose();
+                 con.Close();
+
+             }
+
+             public void queryByAdapter(String cmdText)
+             {
+                 String sql = "select * from Employee_Z00040874";
+                 SqlConnection con = new SqlConnection(connectionString);
+                 SqlCommand cmd = new SqlCommand(sql, con);
+                 SqlDataAdapter da = new SqlDataAdapter(cmd);
+                 con.Open();
+                 DataSet ds = new DataSet();
+                 da.Fill(ds);
+                 Print p = new Print();
+                 Console.WriteLine(ds.Tables[0].Rows.Count);
+                 con.Close();
+                 da.Dispose();
+                 Console.ReadLine();
+             }
+
+             public void transaction(String cmdText)
+             {
+                 SqlConnection con = new SqlConnection(connectionString);
+                 con.Open();
+                 new SqlCommand("BEGIN TRANSACTION", con).ExecuteNonQuery();
+                 Console.WriteLine("BEGIN TRANSACTION");
+                 SqlCommand cmd = new SqlCommand();
+                 try
+                 {
+                     cmd.CommandType = System.Data.CommandType.Text;
+                     cmd.Connection = con;
+                     cmd.CommandText = cmdText;
+                     
+                     int rows = cmd.ExecuteNonQuery();
+                     new SqlCommand("COMMIT TRANSACTION", con).ExecuteNonQuery();
+                     Console.WriteLine("COMMIT TRANSACTION");
+                 }
+                 catch(Exception e)
+                 {
+                     new SqlCommand("ROLLBACK TRANSACTION", con).ExecuteNonQuery();
+                     Console.WriteLine("ROLLBACK TRANSACTION  --  "+e);
+                 }
+                 finally { 
+                 cmd.Dispose();
+                 con.Close();
+                 con.Dispose();
+                 }
+             }
+    }
+}

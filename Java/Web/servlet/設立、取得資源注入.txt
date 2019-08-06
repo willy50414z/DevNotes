@@ -1,0 +1,13 @@
+眔戈方猔(Resource眔把计
+	@Resource(name=〃.〃)
+	String message;
+----------------------------------------------------------
+	Private @Resource(name=〃.〃) String message;
+
+
+砞ミ戈方猔
+	<env-entry>
+ 	 	<env-entry-name>AAA</env-entry-name>
+ 	 	<env-entry-type>java.lang.String</env-entry-type>
+ 	 	<env-entry-value>BBB</env-entry-value>
+ 	</env-entry>

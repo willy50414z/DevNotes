@@ -1,0 +1,6 @@
+ContentType="text/plain"  回傳型別為字串
+           ="text/html"  回傳型別為HTML
+           ="image/png"  回傳圖片
+           ="application/Javascript"  回傳JS
+
+user-agent  使用的服務器版本

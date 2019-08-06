@@ -1,0 +1,83 @@
+//1.src下設hibernate設定檔hibernate.cfg.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+	<property name="show_sql">true</property><!-- print出SQL -->
+	<property name="connection.url">jdbc:sqlserver://127.0.0.1:1803;databaseName=TestDB;</property>
+	<property name="connection.username">GMS</property>
+	<property name="connection.password">GMS</property>
+	<property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+	<property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+	<mapping resource="com/hibtest1/entity/Users.hbm.xml" />
+	<mapping resource="com/hibtest1/entity/Publisher.hbm.xml" />
+</session-factory>
+</hibernate-configuration>
+
+//2.設POJO Bean  com.hibtest1.entity.Users
+public class Users implements Serializable {
+	private Integer id;         //編號
+	private String loginName;   //使用者名稱
+	private String loginPwd;    //密碼
+	//預設建構方法
+	public Users() {		
+	}
+	//屬性id的get方法
+	public Integer getId() {    
+		return id;
+	}
+	//屬性id的set方法
+	public void setId(Integer id) {   
+		this.id = id;
+	}
+	//屬性loginName的get方法
+	public String getLoginName() {    
+		return loginName;
+	}
+	//屬性loginName的set方法
+	public void setLoginName(String loginName) {   
+		this.loginName = loginName;
+	}
+	//屬性loginPwd的get方法
+	public String getLoginPwd() {
+		return loginPwd;
+	}
+	//屬性loginPwd的set方法
+	public void setLoginPwd(String loginPwd) {
+		this.loginPwd = loginPwd;
+	}
+
+}
+
+//3.POJO Bean config  com.hibtest1.entity.Users.hbm.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.hibtest1.entity.Users" table="users" >     
+     <id name="id" column="Id">
+         <generator class="native"></generator>
+     </id>
+     <property name="loginName" column="LoginName" />
+     <property name="loginPwd" column ="LoginPwd"/>
+ </class>
+</hibernate-mapping>
+
+//Main方法
+//1.起始化,讀取組態檔hibernate.cfg.xml
+		Configuration config=new Configuration().configure();
+		//2.讀取並解析映射檔案(Users.hbm.xml)，建立sessionFactory
+		SessionFactory sessionFactory=config.buildSessionFactory();
+		//3.開啟session
+		Session session=sessionFactory.openSession();
+		//4.載入資料,PK值為2
+		Users users=(Users)session.get(Users.class, 2);
+		//在主控台輸出使用者名稱和密碼
+		if(users==null) {
+			System.out.println("沒有資料");
+		}else{
+			System.out.println(users.getLoginName()+" "+users.getLoginPwd());
+		}

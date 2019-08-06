@@ -1,0 +1,58 @@
+//動態設定
+可用System.setProperty("LogPath", "D:\\");  設定環境變數
+再用log4j.appender.f.File=${LogPath}/log.txt動態取得設置路徑
+
+
+//Console
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.console.Target=System.out
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=%d{MM-dd HH:mm:ss} %-5p %l - %m%n
+log4j.appender.console.Threshold=DEBUG
+log4j.appender.console.ImmediateFlush=true
+log4j.appender.console.Encoding=UTF-8
+
+
+//File
+log4j.logger.f=info
+#按日期滾動
+log4j.appender.f=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.f.layout=org.apache.log4j.PatternLayout
+log4j.appender.f.layout.ConversionPattern=%d{MM-dd HH:mm:ss} %-5p %l - %m%n
+
+#依日期捲動(捲動格式)
+log4j.appender.f.datePattern=.yyyy-MM-dd
+log4j.appender.f.Threshold = INFO 
+#追加檔案內容
+log4j.appender.f.append=true
+log4j.appender.logfile.encoding=UTF-8
+#依檔案大小捲動
+log4j.appender.file.MaxFileSize=5MB
+#最多滾出10個檔案
+log4j.appender.file.MaxBackupIndex=10
+log4j.appender.f.File=d:/wwwroot/info/log.txt
+
+
+//DB
+log4j.appender.DATABASE=org.apache.log4j.jdbc.JDBCAppender
+log4j.appender.DATABASE.Threshold=ERROR
+log4j.appender.DATABASE.URL=jdbc:mysql://localhost:3306/log4j
+log4j.appender.DATABASE.driver=com.mysql.jdbc.Driver
+log4j.appender.DATABASE.user=root
+log4j.appender.DATABASE.password=admin
+log4j.appender.DATABASE.sql=INSERT INTO tb_log (date, priority, message, classname ) VALUES ('%d', '%p', '%m', '%c')
+log4j.appender.DATABASE.layout=org.apache.log4j.PatternLayout
+log4j.appender.DATABASE.layout.ConversionPattern=%m
+
+#MAIL 
+log4j.appender.MAIL=org.apache.log4j.net.SMTPAppender 
+log4j.appender.MAIL.Threshold=DEBUG
+log4j.appender.MAIL.BufferSize=512
+log4j.appender.MAIL.SMTPHost=smtp.163.com
+log4j.appender.MAIL.Subject=Log4J Error Message 
+log4j.appender.MAIL.SMTPUsername=e_inn
+log4j.appender.MAIL.SMTPPassword=your password
+log4j.appender.MAIL.From=e_inn@163.com 
+log4j.appender.MAIL.To=e_inn@163.com 
+log4j.appender.MAIL.layout=org.apache.log4j.PatternLayout 
+log4j.appender.MAIL.layout.ConversionPattern=[ErrorMessage] %d - %c -%-4r [%t] %-5p %c %x - %m%n 

@@ -1,0 +1,21 @@
+	//add=TRUE
+	//axes=FALSE 	#不要坐標軸
+	//log="x"/"y"/"xy"	#x,y,xy座標取log值
+	//type="p"/"l"/"b"/"o" 	#畫 點/線/點和線/空心點
+		"S"/"s"/"h"/"n"	#階梯狀，每一點為梯(頂/底)/垂直線/只畫座標軸不畫點
+	//xlab,ylab
+	//xlim=<vector>,ylim=<vector>
+	//xaxt="n",yxaxt="n"	#不要畫出坐標軸格線
+	//main="",sub=""	#主標題、次標題
+	//lty			#線的長相(實線、虛線、點點線)
+
+	//axis(side=1,tick=TRUE,at=c(18))	#標示出座標值
+						#side=1,2,3,4(下左上右)
+						#trick=TRUE/FALSE 是否畫出格線
+						#at=<vector>	特別標示出某數值的位置
+	//pch	#圖點符號
+	//main=expression(plain(alpha))	#繪出特殊符號
+
+
+
+

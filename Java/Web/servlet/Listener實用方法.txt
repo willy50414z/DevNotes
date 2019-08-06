@@ -1,0 +1,9 @@
+Interface
+	ServletContextListener
+	HttpSessionListener
+	ServletRequestListener
+可監聽session、request、context的init、destroy
+	HttpSessionAttributeListener
+	ServletContextAttributeListener
+	ServletRequestAttributeListener
+可監聽session、request、context的add,remove,replace

@@ -1,0 +1,1 @@
+videoDic = input('請輸入影片下載路徑：')

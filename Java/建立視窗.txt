@@ -1,0 +1,9 @@
+//建立一個組織視窗內的class--MyFrame，繼承JFrame
+class MyFrame extends JFrame implements ActionListener{
+
+//在main方法設定JFrame中設定視窗屬性
+	MyFrame frame = new MyFrame();
+	frame.setDefaultCloseOperation(3);
+	frame.setSize(300, 150);
+	frame.setBackground(Color.red);
+	frame.setVisible(true);

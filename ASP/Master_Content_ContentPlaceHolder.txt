@@ -1,0 +1,60 @@
+Page
+	//1.註記連結的master檔
+		<%@ Page MasterPageFile="~/MasterPage.Master" %>
+	
+	//2.<asp:Content>不能被任何標籤包含在裡面，因此需移除除<%@ Page %>以外所有標籤
+
+	//3.註記將內容放在master的哪一ContentPlaceHolder
+		<asp:Content ContentPlaceHolderID="cp1" runat="server">
+		<h5>我是內容1</h5>
+		</asp:Content>
+Master
+	//1.建立ContentPlaceHolder區隔主內容放置區塊後在周圍增加master內容
+
+
+範例--Page
+
+	<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" MasterPageFile="~/MasterPage.master" %>
+
+	<asp:Content ContentPlaceHolderID="cp1" runat="server">
+	
+	    <h5>我是內容1</h5>
+	</asp:Content>
+	
+	<asp:Content ContentPlaceHolderID="cp2" runat="server">
+	 <h5>我是內容2</h5>
+	
+	</asp:Content>
+
+範例--Master
+
+	<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+	<!DOCTYPE html>
+	
+	<html xmlns="http://www.w3.org/1999/xhtml">
+	<head runat="server">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	    <title>doodle Sys</title>
+	    <asp:ContentPlaceHolder id="head" runat="server">
+	    </asp:ContentPlaceHolder>
+	</head>
+	<body>
+	
+	    <form id="form1" runat="server">
+	    <div>
+	        <h1 style="color:red">Header</h1>
+	        <asp:ContentPlaceHolder id="cp1" runat="server">
+	        
+	        </asp:ContentPlaceHolder>
+	        <h1 style="color:red">middle</h1>
+	        <asp:ContentPlaceHolder id="cp2" runat="server">
+        
+	        </asp:ContentPlaceHolder>
+	        <h1 style="color:red">footer</h1>
+	        
+	    </div>
+	    </form>
+	</body>
+	</html>
+	

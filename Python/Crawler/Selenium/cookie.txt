@@ -1,0 +1,9 @@
+#add
+driver.get("http://www.example.com")
+
+cookie = {．name・ : ．foo・, ．value・ : ．bar・}
+browser.add_cookie(cookie)
+#get
+browser.get_cookies("")
+
+delete_all_cookies();

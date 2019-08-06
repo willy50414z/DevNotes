@@ -1,0 +1,13 @@
+1.獲取UserToken(確認上傳Jenkins帳號) (userToken)
+  首頁>People>上傳用的帳號>Configure>API Token>增加一個新Token
+  
+2.設置專案Token (jobTOKEN)
+  %專案%>Configure>Build Triggers>勾選Trigger builds remotely>設置該專案Token
+	
+
+SET userName="willy"
+SET userToken="1187f8f6072e383fb3013357d8f1b1fba1"
+SET jenkinsURL="localhost:8080"
+SET jobNAME="SIAS_SIT"
+SET jobTOKEN="U0lBU19TSVQ="
+curl  http://%userName%:%userToken%@%jenkinsURL%/job/%jobNAME%/build?token=%jobTOKEN%

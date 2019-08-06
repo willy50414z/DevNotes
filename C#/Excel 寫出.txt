@@ -1,0 +1,59 @@
+ //需參考Microsoft.Office.Interop.Excel;
+        static void Main(string[] args)
+        {
+            Workbook wb;
+            Worksheet ws;
+            Range aRange;
+            string pathFile = @"D:\test";
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            excelApp.DisplayAlerts = false;
+            if (excelApp == null)
+            {
+                Console.WriteLine("EXCEL could not be started. Check that your office installation and project references are correct.");
+                return;
+            }
+            excelApp.Visible = true;
+            wb = excelApp.Workbooks.Add(Type.Missing);
+            //選sheet
+            ws = (Worksheet)wb.Worksheets[1];
+            //選欄位
+            aRange = ws.get_Range("C1");
+            //著色(需加入參考using System.Drawing;)
+            aRange.Font.Color = ColorTranslator.ToOle(Color.White);
+            aRange.Interior.Color = ColorTranslator.ToOle(Color.DimGray);
+            //設函式
+            excelApp.Cells[5, 2].Formula = string.Format("=SUM(B{0}:B{1})", 2, 4);
+            // 填值
+            ws.Cells[5, "C"] = "A";
+            aRange.Value = 8;
+            //自動調整欄寬
+            ws.Columns[2].AutoFit();
+
+
+            try
+            {
+                //另存活頁簿
+                wb.SaveAs(pathFile, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                Console.WriteLine("儲存文件於 " + Environment.NewLine + pathFile);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("儲存檔案出錯，檔案可能正在使用" + Environment.NewLine + ex.Message);
+            }
+
+            //關閉活頁簿
+            wb.Close(false, Type.Missing, Type.Missing);
+
+            //關閉Excel
+            excelApp.Quit();
+
+            //釋放Excel資源
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+            wb = null;
+            ws = null;
+            aRange = null;
+            excelApp = null;
+            GC.Collect();
+
+            Console.Read();
+        }

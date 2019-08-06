@@ -1,0 +1,63 @@
+1.新增環境變數
+	R_HOME： C:\Program Files\R\R-3.2.2
+	RJAVA_HOME：C:\Program Files\R\R-3.2.2\library\rJava
+	PATH：%R_HOME%\bin;%R_HOME%\bin\x64;%RJAVA_HOME%\jri\x64;
+2.在R中輸入
+ > install.packages("rJava")
+ > library(rJava)
+ >#測試
+ > .jinit()  
+ > s <- .jnew("java/lang/String", "Hello World!")  
+ > s  
+
+3. 引入jar包
+	<!-- REngin -->
+	<dependency>
+		<groupId>org.rosuda.REngine</groupId>
+		<artifactId>REngine</artifactId>
+		<version>2.1.0</version>
+	</dependency>
+
+	<dependency>
+		<groupId>com.github.lucarosellini.rJava</groupId>
+		<artifactId>JRIEngine</artifactId>
+		<version>0.9-7</version>
+	</dependency>
+
+4.將R加入Java的VM目錄 (可略過)
+ 右鍵-->Run-->Run Configurations/Arguments/VM Arguments 中輸入
+	-Djava.library.path="D:\R\R-3.4.1\library\rJava\jri\x64"
+
+5.在java中測試1
+ public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		 // 宣告一個Rengine
+        Rengine re=new Rengine (new String [] {"--vanilla"}, false, null);
+        if (!re.waitForR())
+        {
+            System.out.println ("Cannot load R");
+            return;
+        }
+       
+        // 計算3*5並印出結果
+        System.out.println (re.eval ("x<-3*5").asDouble ());
+       
+        // 結束
+        re.end();
+	}
+----------------------------------15------------------------------
+
+
+6. 在java中測試2
+	Rengine re = new Rengine(args, false, null);
+	re.eval("setwd('D:/')");
+	re.eval("library(\"quantmod\")");
+	re.eval("price<-matrix(c(1990-01-04,248.0,251.0,240.0,251.0,10602,1990-01-05,252.0,265.0,247.0,258.0,15818,1990-01-06,250.0,257.0,248.0,254.0,8292,1990-01-08,255.0,260.0,250.0,252.0,10745,1990-01-09,247.0,258.0,245.0,247.0,12838,1990-01-10,248.0,255.0,244.0,252.0,10849,1990-01-11,254.0,264.0,254.0,262.0,13076,1990-01-12,278.0,280.0,270.0,280.0,14861,1990-01-13,285.0,285.0,272.0,272.0,10337,1990-01-15,272.0,290.0,271.0,286.0,11611,1990-01-16,286.0,291.0,280.0,283.0,11065,1990-01-17,283.0,286.0,277.0,278.0,8541,1990-01-18,279.0,285.0,279.0,283.0,8175,1990-01-19,286.0,297.0,286.0,290.0,11090,1990-01-22,293.0,306.0,292.0,300.0,10968,1990-01-23,300.0,302.0,290.0,291.0,10744,1990-01-31,294.0,298.0,290.0,290.0,6335,1990-02-01,292.0,302.0,290.0,293.0,7219,1990-02-02,296.0,298.0,291.0,295.0,5970,1990-02-03,297.0,297.0,282.0,284.0,5194),20,6,byrow = TRUE)");
+	re.eval("date<-price[,1]");
+	re.eval("as.Date(date)->date");
+	re.eval("sp<-xts(price[,2:ncol(price)], order.by=date)");
+	re.eval("colnames(sp)<-c(\"Open\",\"High\",\"Low\",\"Close\",\"Vol\")");
+	re.eval("png(\"test.png\", width = 1024, height = 768)");
+	re.eval("chartSeries(sp,theme=chartTheme(\"black\"))");
+	re.eval("dev.off()");
+	re.end();

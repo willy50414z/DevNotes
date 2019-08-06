@@ -1,0 +1,18 @@
+//1.引入JAR
+	spring-web-4.3.9.RELEASE.jar
+	spring-struts-3.2.18.RELEASE
+
+
+//2.設定web.xml
+<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value><!-- 自行設定檔名，根目錄為src -->
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
+//3.在Action中調用
+	WebApplicationContext ctx=WebApplicationContextUtils.getWebApplicationContext(this.getServlet().getServletContext());
+	UsersInter ui=(UsersInter) ctx.getBean("usersImp");

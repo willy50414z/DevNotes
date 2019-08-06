@@ -1,0 +1,8 @@
+//­×
+alter table table_name alter column col_name nvarchar(10)
+//·s
+alter table Employee_z00040874 add  doodle nvarchar(10)
+
+//§R
+alter table Employee_z00040874 drop column doodle
+

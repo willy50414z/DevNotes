@@ -1,0 +1,58 @@
+//鍵盤事件
+	keypress
+	keydown
+	keyup
+//滑鼠事件
+	mousedown
+	mouseup
+	click
+	dbclick(雙擊<會順帶引發click事件>)
+	mouseover(mouse移動到target上時)
+	mouseout(滑鼠離開target時)
+	mousehover(結合mouseover、mouseout)
+	mousemove
+	
+//視窗事件
+	resize(視窗變更大小)
+	scroll(移動卷軸)
+	load(網頁仔入完成後)
+	unload(在跳離網頁或關閉browser時)
+
+//調用
+	$(".test").click(function(){
+	}) 
+//調用mousehover
+1.
+	<script> 
+	  $(function(){
+	  $("p").hover(function(){
+			$(".ii").show();
+		},function(){
+			$(".ii").hide();
+		});
+	})
+	</script>
+2.
+	<script>
+	$(function(){
+		$().hover(func1,func2);
+		func1 function(){};
+		func2 function(){}; 
+	})
+	</script>
+//Event的屬性
+$(function(){
+	$("input").keypress(function(event){
+		alert("瀏覽器X軸像素="+event.pageX+"\n瀏覽器Y軸像素="+event.pageY+"\n螢幕X軸像素="+event.screenX+"\n螢幕Y軸像素="+event.screenY+"\n是否按著shift="+event.shiftKey+"\n按下哪個鍵="+event.which+"\n被點擊的元素="+event.target);
+	});
+})
+//以.on來呼叫Event
+$(function(){
+	var param={
+		key1 : 'value1',
+		key2 : 'value2' 
+		}
+		$("p").on("click",param,function(event){		
+		alert(event.data.key1);
+	})
+})

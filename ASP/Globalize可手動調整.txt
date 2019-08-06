@@ -1,0 +1,40 @@
+//1.取消網頁自動偵測語言
+<%@ Page Culture="auto"  UICulture="auto"%>
+
+//2.建立語言選擇(下拉式?)
+<asp:DropDownList ID="ddlLanguage" runat="server" OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" AutoPostBack="True">
+	<asp:ListItem Text="English" Value="en-US"/>
+	<asp:ListItem Text="中文" Value="zh-TW"/>
+</asp:DropDownList>
+
+//3.建立被國際化物件
+<asp:Label ID="Label1" runat="server" Text="Label" meta:resourcekey="Label"></asp:Label>
+
+//4.產生resx資源檔(只能在設計模式才能使用)
+	/工具/產生本機資源
+
+//5.設定本機資源(Default.aspx.resx)
+	英文(使用頁面.resx)
+		Label.Text = value
+	中文(使用頁面.zh-TW.resx)
+		Label.Text = value
+
+//設定cs檔
+	1.下拉式選單顯示當前語言
+	protected void Page_Load(object sender, EventArgs e)
+	    {
+	        if (!Page.IsPostBack)
+	        {
+	            ddlLanguage.SelectedValue = Thread.CurrentThread.CurrentCulture.Name;
+	        }
+	    }
+	2.選取後變換頁面
+	Thread.CurrentThread.CurrentCulture = new CultureInfo(ddlLanguage.SelectedValue);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(ddlLanguage.SelectedValue);
+
+        Server.Transfer(Request.Path);
+	
+
+
+
+

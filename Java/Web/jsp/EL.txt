@@ -1,0 +1,16 @@
+//判斷是否為空或是0
+	${empty class.attribute}
+//取值
+	${}:直接取出session的值或jsp:Bean中物件(${id.param})
+	${param.key} = ${param["key"]}=request.getParameter(key);
+	${initParam.key} = ${initParam["key"]}=request.getInitParameter(key);
+	${header.host} = ${header["key"]}=request.getHeader(key);
+//運算式
+	${1+2}  =3
+	${5%2}  =1
+	${1==2?3:4}   =4
+	${a > | < | == | && | or b} T/F
+	${not (1==2)}  =T
+
+
+	

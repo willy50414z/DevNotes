@@ -1,0 +1,9 @@
+df [-akmhHTi]
+
+-a ：列出所有的檔案系統，包括系統特有的 /proc 等檔案系統；
+-k ：以 KBytes 的容量顯示各檔案系統；
+-m ：以 MBytes 的容量顯示各檔案系統；
+-h ：以人們較易閱讀的 GBytes, MBytes, KBytes 等格式自行顯示；(建議使用)
+-H ：以 M=1000K 取代 M=1024K 的進位元方式；
+-T ：顯示檔案系統類型, 連同該 partition 的 filesystem 名稱 (例如 ext3) 也列出；
+-i ：不用硬碟容量，而以 inode 的數量來顯示

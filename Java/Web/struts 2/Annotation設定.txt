@@ -1,0 +1,17 @@
+//引入JAR
+	asm-5.2.jar
+	struts2-convention-plugin-2.5.14.1.jar
+
+//import
+	import org.apache.struts2.convention.annotation.Action;
+	import org.apache.struts2.convention.annotation.ParentPackage;
+	import org.apache.struts2.convention.annotation.Result;
+
+//設定類別映射
+@Namespace("/index")
+@ParentPackage(value="struts-default")
+
+//設定method映射
+	@Action(value="annotationAction", results= {
+				@Result(name="success", type="dispatcher", location="/HelloWorld.jsp")
+		})

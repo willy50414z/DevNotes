@@ -1,0 +1,17 @@
+//Listener類別
+	1.監聽物件建立與刪除 (HttpSession/ServletContext/ServletRequest)Listener
+		HttpSessionListener : 建立與刪除Session時
+		ServletContextListener : 啟動、關閉Server時
+		ServletRequestListener : 每次發出、回傳請求時
+
+	2.監聽物件屬性變化 (HttpSession/ServletContext/ServletRequest)AttributeListener
+		執行 xxxadded()、xxxReplaced()、xxxRemoved()
+
+	3.監聽Session內物件 HttpSessionBinding、HttpSessionActivationListener(不須再web.xml中註冊)
+		Server關閉與開啟時Session會鈍化與被重新載入時
+
+
+<listener>
+    <description>ServletContextListener</description>
+    <listener-class>com.ctbc.web.OpenCloseListener</listener-class>
+ </listener>

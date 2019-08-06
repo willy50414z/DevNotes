@@ -1,0 +1,24 @@
+//一開始就加載圖片，加速變換圖片
+var imgs=["pic/logo.png","pic/廣告1.png"];
+for(var i = 0;i<imgs.length;i++){
+	new Image().src=imgs[i];
+}
+var imgIndex=0;
+-----------------------------------------------------------
+$(function(){
+		  $("p").click(function(){
+		  	var img=imgs[imgIndex];
+			img.src="pic/logo.png";
+			$(".aa").attr({
+				src : img.src,
+				width : img.width,
+				height : img.height,		
+				alt : 'logo'
+				});
+			if(imgIndex==0){
+			  imgIndex++;}
+			else{
+			  imgIndex--;
+			}
+		});	
+	})

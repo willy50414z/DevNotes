@@ -1,0 +1,33 @@
+//asp:Literal
+	直接把HTML塞進asp:Literal裡，可以直接顯示效果
+	ex
+		Literal1.text="<p>abc</p>"
+
+//asp:placeholder
+	可在cs以C#動態塞入控制項
+
+
+
+//Label
+	ID,Text,ToolTip(滑鼠放在Label上的提示字)
+
+//TextBox
+	ID,TextMode(單行、多行、密碼),AutoPostBack,Row,Column,MaxLength,ReadOnly
+
+//Button
+	ID,Text,UseSubmitBehavior(type是否為submit),PostBackUrl(帶表格中的值轉頁),OnClientClick(執行javaScript不直接執行CS)
+
+//LinkedButton(長得像超連結但可以向button一樣設定CS)、HyperLink
+	Text,NavigateUrl,ImageUrl,Target
+
+//DropDownList(下拉式選單)
+	AutoPostBack(點擊選項時觸發SelectIndexExchange事件)
+
+	<asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True">
+            <asp:ListItem Selected="True" Value="0">請選擇單位</asp:ListItem>
+            <asp:ListItem Value="1">資訊營運</asp:ListItem>
+            <asp:ListItem Value="2">法金</asp:ListItem>
+        </asp:DropDownList>
+
+
+	

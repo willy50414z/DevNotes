@@ -1,0 +1,8 @@
+//取得con之後
+//設定執行後不立即傳送(還有其他指令要執行)
+con.setAutoCommit(false);
+//執行完後判斷
+	//交易成功
+	con.commit();
+	//交易失敗
+	con.rollback();

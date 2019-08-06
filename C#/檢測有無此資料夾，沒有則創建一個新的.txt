@@ -1,0 +1,5 @@
+string sLogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log");
+if (!Directory.Exists(sLogPath))
+            {
+                Directory.CreateDirectory(sLogPath);
+            }

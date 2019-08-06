@@ -1,0 +1,69 @@
+//JAVA
+public class TestClass {
+	 public static void main(String args[]) {
+		 System.out.println(MyProperty.getGlobalProperty("test1"));
+		 System.out.println(MyProperty.getGlobalFormatProperty("test2", "param1","param2"));
+	    }
+	}
+
+
+
+class MyProperty implements Serializable {
+	private static final long serialVersionUID = -7261709301497908677L;
+
+	private static Properties prop = new Properties();
+
+	static {
+		InputStream is = null;
+		try {
+			prop = new Properties();
+			is = new MyProperty().getClass().getClassLoader().getResourceAsStream("environment.properties");
+			prop.load(is);
+		} catch (IOException e) {
+			System.err.println("PropertiesUtil 讀取環境變數檔 (environment.properties) 發生錯誤，錯誤訊息:" + e.getMessage());
+		} finally {
+			if (is != null) {
+				try {
+					is.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+	}
+
+	private MyProperty() {
+	}
+
+	/********************************************************************************
+	 * 回傳 Properties 型態的環境變數物件。
+	 * 
+	 * @return 回傳 Properties 型態的環境變數物件。
+	 ********************************************************************************/
+	public static Properties loadProperties() {
+		return prop;
+	}
+
+	/********************************************************************************
+	 * 回傳 sKey 值所指定的環境變數內容。
+	 * 
+	 * @param sKey 欲取回的環境變數鍵值。
+	 * @return 回傳 sKey 值所指定的環境變數內容。
+	 ********************************************************************************/
+	public static String getProperty(String sKey) {
+		return prop.getProperty(prop.getProperty("environment.mode") + "." + sKey);
+	}
+
+	public static String getGlobalProperty(String sKey) {
+		return prop.getProperty(sKey);
+	}
+
+	public static String getGlobalFormatProperty(String sKey, Object... objects) {
+		return MessageFormat.format((String) prop.get(sKey), objects);
+	}
+}
+
+
+//src下建立environment.properties
+test1=aa
+test2={0},{1}

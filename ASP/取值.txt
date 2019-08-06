@@ -1,0 +1,5 @@
+//取出Form之中的值
+	Request.Form["ID"]
+
+//存取當頁值
+	ViewState["key"]=value

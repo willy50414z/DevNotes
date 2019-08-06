@@ -1,0 +1,24 @@
+Log三大元件
+
+1.Logger - 輸出什麼樣等級的LOG，(FATAL > ERROR > WARN > INFO > DEBUG)，當設定為INFO時，他不會輸出DEBUG等級的LOG
+2.Appender - 將LOG輸出到哪裡(Console)
+	org.apache.log4j.ConsoleAppender（控制台=System.out.println）
+	org.apache.log4j.FileAppender（文件）
+	org.apache.log4j.DailyRollingFileAppender（每天產生一個日誌文件）
+	org.apache.log4j.RollingFileAppender（文件大小到達指定size的時候產生一個新的文件）
+	org.apache.log4j.WriterAppender（將日誌訊息以輸出流格式發送到任意指定的地方)
+3.Layout - 決定 log message 的格式
+	org.apache.log4j.HTMLLayout（以HTML表格形式佈局）
+	org.apache.log4j.PatternLayout（可以靈活地指定佈局模式）
+	org.apache.log4j.SimpleLayout（包含日誌訊息的級別和訊息字符串）
+	org.apache.log4j.TTCCLayout（包含日誌產生的時間、執行緒、類別等等訊息）
+--layout.ConversionPattern - LOG輸出內容設定
+	%c 輸出日誌訊息所屬的類別的全名
+	%d 輸出日誌時間點的日期或時間，指定格式的方式：%d{yyy-MM-dd HH:mm:ss }。
+	%l 輸出日誌事件的發生位置，即輸出日誌訊息的語句處於它所在的類別的第幾行。
+	%m 輸出代碼中指定的訊息，如log(message)中的message。
+	%n 輸出一個\n。
+	%p 輸出優先階層，即DEBUG，INFO，WARN，ERROR，FATAL。如果是調用debug()輸出的，則為DEBUG，依此類推。-5p 代表將此字串填滿至 5 個字元,以空白補不足處。
+	%r 輸出自應用啟動到輸出該日誌訊息所耗費的毫秒數。
+	%t 輸出產生該日誌事件的線程名。
+	%f 輸出日誌訊息所屬的類別的類別名。

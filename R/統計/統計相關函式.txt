@@ -1,0 +1,37 @@
+//基本統計值
+	summary(a)
+	abs(x)	//絕對值
+	sqrt(x)  //開根號
+	round(x)  //4捨5入
+	round(x,n)  //4捨5入到第n位
+	ceiling	  //無條件進位
+	floor(x)  //無條件捨去
+	trunc(x)	//回傳整數部分
+	signif(x,n)	//回傳k位數
+	max(a)
+	min(a)
+	range(a)
+	prod(a)		//全部相乘
+	sum(a)
+	cumsum(a)	//累加後顯示
+	cummax(a)	//顯示到當筆資料為止最大的數
+	cummin(a)	//顯示到當筆資料為止最小的數
+	pmax(x,y...)	//回傳每一個向量的每一個元素的最大值{每個向量第1個元素的max,每個向量第2個元素的max,每個向量第3個元素的max,每個向量第4個元素的max,....}
+	pmin(x,y...)
+	sort(a,descreasing=TRUE/FALSE)
+	rev(a)		//反轉排序
+	unique(a)	//刪除重複值
+	duplicated(a)	//檢測該值是否重複(回傳boolean)
+	diff(a)		//差分--a[1:n]-a[0:n-1]
+	diff(a,lag=2)	//差兩期的差分
+	sd(x)		//標準差
+	var(x),cov(x)	//樣本變異數
+	var(x,y),cov(x,y)	//樣本共變異數
+	cor(x<df>)	//相關係數矩陣	
+	cor(x,y)<vector>	//相關係數
+	log(x,k)	//以k為基底的log
+	choose(n,k)	//C n取K
+	factorial(x)	//x!
+	
+
+	

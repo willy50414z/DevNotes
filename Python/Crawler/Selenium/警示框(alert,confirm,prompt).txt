@@ -1,0 +1,4 @@
+browser.switch_to_alert().accept()
+browser.switch_to_alert().dismiss()
+browser.switch_to_alert().sendKey()
+browser.switch_to_alert().text()

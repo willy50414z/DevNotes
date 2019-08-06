@@ -1,0 +1,33 @@
+1.將欄位值設為   <%# this.方法名() %>
+2.在觸發時機呼叫page.DataBind();
+
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <script language="C#" runat="server">
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Page.DataBind();
+        }
+        protected String getText()
+        {
+            return "abc";
+        }
+    </script>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:TextBox ID="TextBox1" runat="server" Text="<%#this.getText() %>"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" Text="refresh" OnClick="Button1_Click" />
+    </div>
+    </form>
+</body>
+</html>

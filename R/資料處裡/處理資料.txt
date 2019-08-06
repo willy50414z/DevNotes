@@ -1,0 +1,109 @@
+//強制轉型
+as.型別(X)
+
+//欄結合、列結合
+rbind(x,y)
+cbind(y,z)
+
+//處理na
+	na.fail(x)	//包含na則回傳錯誤訊息
+	na.pass(x)	//保留na值
+	na.omit(x)/na.exclude(x)	//去除na值，或參數中設(na.rm=TRUE)
+
+//取值
+	a[5]
+	a[length(a)]
+	a[2:5]
+	a[c(2,4,6)]	
+	a[a>15]	//取出a中>15的數
+	a>15	//>15的值返回true，反之返回false
+	a[-(2:5)]	//除了2~5以外都要
+	DF[,c("co1","co2")]	//取出欄位為co1、co2的值
+	DF['1960',]	//取出列名稱為1960的值
+	subset(DF,co1>100 & co2<50)	//取出co1>100&co2<50的值
+	attach(data<list||DF>)	//呼叫後可直接以欄位名稱取得欄位(不須$)
+	detach(data<list||DF>)	//移除
+
+//字串處裡
+	nchar(a)	//顯示字串vector中每個字串的長度
+	substring(String,start,end)	//擷取字串
+	paste(Str1,Str2,sep="-")	//str1+str2以'-'區隔
+	gsub(old,new,data)	//替換文字
+
+//資料分類
+	a=(2:5)*100
+	cut(x=data,a)	//以a(200,300,400,500)區隔資料
+	cut(x=data,breaks=3,labels=c("low","median","high"))	//自動區隔成3份後改成低、中、高
+
+//轉置Array
+	aperm(data,perm(2,1,3))		//將原本二維的數量與一維交換
+
+//轉置Matrix
+	t(x)
+	
+//解聯立方程式
+	> a
+	     [,1] [,2]
+	[1,]    1    3
+	[2,]    2    4
+	>solve(a,c(2,2))	//解x+3y=2  、  2x+4y=2  的聯立方程式
+
+//圖形化介面變更data.frame(類似excel)
+	edit(x)
+
+//which(判斷式)
+	取出為true的值	ex. whitch(data%%3==0)	//取出為3的倍數的值
+
+//取出第一個最小值的index
+	> x<-c(95,80,85,44,1,94,69,46,81,55,95)
+	> which.min(x)
+		[1] 5
+
+//取出第一個最大值的index
+	> x<-c(95,80,85,44,1,94,69,46,81,55,95)
+	> which.min(x)
+		[1] 5
+//取出含某字串的index
+	> library(car)
+	> y<-c("a","b","c","d","a","c")	
+	> which.names("a",y)
+
+//去除重複值
+	>a<-c("A","B","C","C","C","A","B")
+	> factor(a)
+	  [1] A B C C C A B
+	  Levels: A B C
+
+//判斷式
+	> ifelse(判斷式,true,false)
+
+//分群cut(data,分割依據,分割後各權轉換成的值)
+	> x
+ 		[1] 25 32 95 80 85 44  1 94 69 46 81 55 95
+   1.
+	//將資料依20~40、40~60...~100分成4群，因為是取之間的值，labels數量會比{分割依據}少1
+	> cut(x,c(20,40,60,80,100),labels=c("a","b","c","d"))
+		 [1] a    a    d    c    d    b    <NA> d    c    b    d    b    d   
+		Levels: a b c d
+   2.
+	//設定區分類別數，分成5類，以數字標示第幾類
+	cut(x,breaks=5,labels=F)
+
+//替換vector中的值
+	library(car)
+	x<-c(1,2,3,1,2,1,3,1,2,3,1)
+	recode(x,"c(1,2)='A';else='B'")	//將1.2換成A，其他換成B
+
+//Merge合併兩data.frame
+	merge(data1,data2,by="id")  ==  select * from A left join B on B.id=A.id
+
+//切割字串(substring) substr(String,start,end)
+	
+//擷取資料 subset(data,條件,select=要選取的欄位)
+	ex.
+		subset(data,column1>10,select=col2:col5)
+		subset(data,column1>10,select=c("col2","col3","col4"))
+		subset(data,column1>10,select=-col5)	//除了col5以外
+
+//判斷是否含某值	bloodType %in% c("A","C")
+

@@ -1,0 +1,9 @@
+//1.設定網頁自動偵測語言
+<%@ Page Culture="auto"  UICulture="auto"%>
+
+//2.建立resx檔(LanguageResource.en-US.resx)
+	檔名=名稱.語言.resx(英文en-US//中文zh-TW或null)
+
+//3.資料繫結
+	Text="<%$ Resources:[resx名稱], [key] %>"
+	<asp:Label ID="Label1" runat="server" Text="<%$ Resources:LanguageResource, IronMan %>"></asp:Label>

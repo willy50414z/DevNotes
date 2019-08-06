@@ -1,0 +1,22 @@
+//設置底圖
+	par(mfcol=c(3,2))	//設置成3*2的底圖，依col排列
+	par(mfrow=c(3,2))	//設置成3*2的底圖，依row排列
+	par(mai=c(0,0,0,0))	//將下左上右的邊界都設為0
+	layout(<matrix>)	//動態劃分底圖
+		EX.  layout(matrix(c(1,1,2,3),2,2,byrow=T))    //將圖形化分為2*2,前兩格分配給圖1，第三格分給2第四格分給3，按row排列
+	par(fig=c(x1,x2,y1,y2))	//該圖的X範圍位於X1~X2之間，Y範圍位於Y1~Y2之間(最左下為(0,0)右上為(1,1))
+		EX.  par(fig=c(0,0.5,0.5,1.0))
+
+
+//plot(散佈圖)
+plot(matrix(50:1,ncol=2),pch="*",cex=2,col=2,xlim=c(5,45),ylim=c(45,99),cex.axis=3,main="Title")
+	//pch:散部的圖案(1圓2三角3+4X)，或指定圖案
+	//cex:圖形大小為原本幾倍
+	//col:顏色  Google-->"R col"
+	//main : 大標題
+
+
+//plot的各種圖形
+	plot(<vector>,<vector>)	、 plot(<matrix>)	//散佈圖
+	plot(<factor>)	//直方圖
+	plot(<factor>,<vector>)	//箱型圖

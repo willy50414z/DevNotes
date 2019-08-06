@@ -1,0 +1,3 @@
+declare @d datetime
+set @d=getdate()
+Print '花費時間(毫秒)'=datediff(ms,@d,getdate())

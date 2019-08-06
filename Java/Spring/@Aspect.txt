@@ -1,0 +1,23 @@
+1.SpringConfig啟用AOP
+	@EnableAspectJAutoProxy
+2.AOP類別加上
+	@Aspect
+	@Component
+3.在AOP類別註冊AOP方法，註冊切入點
+	@Around("execution(* com.willy.db.WDB_JDBC.query(..)) "
+		+ "|| execution(* com.willy.db.WDB_JDBC.queryForArray(..))")
+	public Object execSQLWithMapAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+	}
+4.@Around利用value = proceedingJoinPoint.proceed();呼叫、接收原類別方法、回傳值
+
+
+5.example
+@Around("execution(* com.willy.db.WDB_JDBC.batchUpdate(..)) ")
+	public <T> Object execSQLWithListAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+		// 暫時不須使用回傳值
+		Object value = null;
+		System.out.println("原方法準備執行");
+		value = proceedingJoinPoint.proceed();
+		System.out.println("原方法執行完成");
+		return value;//不回傳值會跳錯誤
+	}

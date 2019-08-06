@@ -1,0 +1,51 @@
+#當前目錄文件 [詳細信息] [顯示隱藏文件]
+	ls [-l] [-a]
+
+#建立目錄[可一次建立多個路徑]
+	mkdir [-p] $dir
+
+#刪除空目錄
+	rmdir
+
+#顯示當前目錄
+	pwd
+
+#變動目錄
+	cd
+
+#建立空文件
+	touch
+
+#複製
+	cp -r dir1 dir2
+#移動[有重複檔案先詢問][連同檔案屬性(right,owner,modifyTime)][遞迴]
+	mv [-i][-p][-r] dir1 dir2
+
+#刪除	[先詢問][遞迴][強制]
+	rm dir1
+	rm [-i][-r][-f]
+
+#讀取檔案
+	more ${fileName}  --分頁顯示(用Shift + PageUp,Dn上下)
+
+
+#管道命令|(將前述內容加入後方function)
+	ls -la | more 或該目錄很多文件，以此瀏覽 
+#尋找文字
+	grep "搜尋字串" 文件
+
+#尋找文件 func 根目錄 以名稱查找 檔名
+	find / -name ${fileName}
+
+#將結果覆蓋至result.txt
+	grep -n "aaa" aa.txt > result.txt
+
+#將結果追加至result.txt尾端
+	grep -n "aaa" aa.txt > result.txt
+
+#讀取檔案[顯示行號]
+	vi $dir
+	cat [-n] $dir
+
+#設定預設建立路徑權限
+	umask 777

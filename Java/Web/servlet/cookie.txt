@@ -1,0 +1,34 @@
+//取cookie
+Cookie[] cookies=request.getCookies();
+	for(Cookie a:cookies){
+	new Print().print(a.getName());
+	new Print().print(a.getValue());
+	}
+	new Print().print(cookies[0].getName());
+
+//設cookie
+	response.addCookie(new Cookie(key,value));
+
+//儲存中文須轉為Unicode
+	//設定(中文字串)
+		Cookie cookie=new Cookie(URLEncoder.encode("key","utf-8"),URLEncoder.encode("value","utf-8"));
+	//設定(二進位資料)
+		Cookie cookie=new Cookie(Base64Encoder.encode("key","utf-8"),Base64Encoder.encode("value","utf-8"));
+
+	//取
+		String cookie=URLDecoder.decode(cookies[0].getname,"utf-8")
+
+//設定cookie使用範圍
+	//該server內頁面(網頁)
+		cookie.setPath();
+	//其他server(跨網域)
+		cookie.setdomain();
+
+//只允許在https使用cookie
+	cookie.setSecure(true);
+
+//cookie儲存時效
+	cookie.setMaxAge(Integer.Max_Value/0)
+
+
+	

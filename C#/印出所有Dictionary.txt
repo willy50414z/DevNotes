@@ -1,0 +1,16 @@
+static void Main()
+        {
+            IDictionary map =new Dictionary<String,String>();
+            map.Add("txt", "notepad.exe");
+            map.Add("bmp", "paint.exe");
+            map.Add("dib", "paint.exe");
+            map.Add("rtf", "wordpad.exe");
+            string[] keys = new string[map.Count];
+//¶}©l¦L»s
+        map.Keys.CopyTo(keys, 0);
+        for (int i=0; i < keys.Length; i++)
+        {
+            Console.WriteLine(map[keys[i]]);
+        }
+        Console.ReadLine();
+        }

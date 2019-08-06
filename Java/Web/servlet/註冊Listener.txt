@@ -1,0 +1,4 @@
+<listener>
+    <description>ServletContextListener</description>
+    <listener-class>com.ctbc.web.OpenCloseListener</listener-class>
+ </listener>

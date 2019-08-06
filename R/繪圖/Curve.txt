@@ -1,0 +1,6 @@
+curve(expression,Xfrom,Xto,add=T/F)
+	//expression : 曲線方程式
+	//XFrom、Xto : 畫出的範圍(X值從XFrom到Xto)
+	//add=T      : 畫在前一張圖片上
+	EX  curve(x^2+x+5,-10,10)
+	    curve(x+5,-10,10,add=TRUE)

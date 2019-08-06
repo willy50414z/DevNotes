@@ -1,0 +1,48 @@
+public class TestClass {
+	 public static void main(String args[]) {
+	        //Object serialization 序列化
+	        try {
+	            MyClass object1 = new MyClass("Hello", 32139604, 2.7e10);
+	            System.out.println("物件1: " + object1);
+	            FileOutputStream fos = new FileOutputStream("D:/Cat.txt");
+	            ObjectOutputStream oos = new ObjectOutputStream(fos);
+	            oos.writeObject(object1);
+	            oos.flush();
+	            oos.close();
+	        } catch (Exception e) {
+	        }
+	        //Object deserialization 反序列化
+	        try {
+	            MyClass object2;
+	            FileInputStream fis = new FileInputStream("D:/Cat.txt");
+	            ObjectInputStream ois = new ObjectInputStream(fis);
+	            object2 = (MyClass) ois.readObject();
+	            ois.close();
+	            System.out.println("物件2: " + object2);
+	        } catch (Exception e) {
+	        }
+	    }
+	}
+
+
+/*
+ * 序列化後類別在寫出時會包含該類別所屬信息
+ * 以便於在讀進時可根據信息回組成類別
+ */
+class MyClass implements Serializable {
+	private static final long serialVersionUID = 1L;//提供一序列化版本號，讓系統採用相同序列化版本
+	String s;
+	int i;
+	double d;
+
+	public MyClass(String s, int i, double d) {
+		this.s = s;
+		this.i = i;
+		this.d = d;
+	}
+
+	@Override
+	public String toString() {
+		return "s=" + s + ";   i=" + i + ";   d=" + d;
+	}
+}

@@ -1,0 +1,7 @@
+if (cookieCultureInfo != null)
+        {
+            string sLangValue = ddlLanguage.SelectedValue;
+            sLangValue = sLangValue.Replace("\r\n", "");
+            cookieCultureInfo.Value = System.Web.HttpUtility.UrlEncode(sLangValue);
+            Response.Cookies.Add(cookieCultureInfo);
+        }

@@ -1,0 +1,8 @@
+--宣告變數
+DECLARE @dateend datetime
+--設定
+SET @dateend=
+
+
+
+	  

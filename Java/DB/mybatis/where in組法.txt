@@ -1,0 +1,4 @@
+where deptno in 
+<foreach item="id" collection='ids' open="(" separator="," close=")">
+#{id}
+</foreach>

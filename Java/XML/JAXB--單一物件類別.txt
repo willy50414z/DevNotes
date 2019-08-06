@@ -1,0 +1,71 @@
+
+// JAVA與XML之間的轉換(需用一個BEAN當作物件轉換媒介)
+public static void main(String[] args) throws Exception {
+			//宣告 建立/讀取 檔案物件
+			File xmlFile = new File("D:\\airticle.xml");
+			//宣告JAXBContext上下文對像
+			JAXBContext context;
+			try {
+				//透過指定映射的類建立上下文
+				context = JAXBContext.newInstance(Article.class);
+				
+				
+				//將 JAVA 轉換為
+//				Marshaller m = context.createMarshaller();
+//				//建立xml中的資料
+//				Article article = new Article();
+//				article.setAuthor("Janet");
+//				article.setDate("20080801");
+//				article.setEmail("janetvsfei@yahoo.com.cn");
+//				article.setTitle("XML");
+//				//將java對像轉化到xml
+//				m.marshal(article, xmlFile);
+				
+				//將XML轉換為JAVA Object
+				Unmarshaller u = context.createUnmarshaller();
+				Article article = (Article)u.unmarshal(xmlFile);
+				System.out.println(article.getAuthor());
+				System.out.println(article.getDate());
+				System.out.println(article.getEmail());
+				System.out.println(article.getTitle());
+				
+				
+			} catch (JAXBException e) {
+				e.printStackTrace();
+			}
+	}
+
+//POJO Bean
+
+//以此標示表示此類明為一根標記
+@XmlRootElement
+class Article{
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	private String title;
+	private String author;
+	private String email;
+	private String date;
+}

@@ -1,0 +1,3 @@
+
+	alter table Employee_Z00040874 drop CONSTRAINT PK__Employee__32149A705354CFD0
+	alter table Employee_Z00040874 add primary key(cn)

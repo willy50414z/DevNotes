@@ -1,0 +1,14 @@
+#控制鍵盤--輸入"艾小克">回車
+element.send_keys('艾小克' + Keys.Enter) 
+
+#鍵盤控制--組合鍵
+element.send_keys(Keys.CONTROL,'a')
+
+#Keys元素
+BACK_SPACE
+SPACE
+TAB
+ESCAPE#esc
+ENTER
+CONTROL
+F1

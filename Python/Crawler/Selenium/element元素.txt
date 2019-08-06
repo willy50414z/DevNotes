@@ -1,0 +1,4 @@
+element.text()
+element.size()
+element.get_attribute()
+element.displayed()

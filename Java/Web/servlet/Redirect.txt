@@ -1,0 +1,1 @@
+response.sendRedirect(目標頁面相對位置);

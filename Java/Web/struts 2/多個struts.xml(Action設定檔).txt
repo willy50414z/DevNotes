@@ -1,0 +1,1 @@
+<include file="struts-part1.xml"></include>

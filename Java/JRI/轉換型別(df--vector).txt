@@ -1,0 +1,4 @@
+REXP x;
+re.eval("data(iris)",false);
+System.out.println(x=re.eval("iris"));
+RVector v = x.asVector();

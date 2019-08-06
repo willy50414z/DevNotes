@@ -1,0 +1,12 @@
+HttpURLConnection conn = (HttpURLConnection) new URL(TargetURL).openConnection();
+conn.connect();
+BufferedInputStream is = new BufferedInputStream(conn.getInputStream());
+FileOutputStream fos = new FileOutputStream(new File(¸ô®|);
+byte[] b = new byte[8192];
+int l = 0;
+while ((l = is.read(b)) != -1) {
+fos.write(b, 0, l);
+}
+fos.close();
+is.close();
+conn.disconnect();

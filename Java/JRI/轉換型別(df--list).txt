@@ -1,0 +1,9 @@
+RList vl = x.asList();
+String[] k = vl.keys();
+if (k!=null) {
+	System.out.println("and once again from the list:");
+	int i=0; 
+	while (i<k.length) {
+		System.out.println(k[i++]);
+	}
+}	

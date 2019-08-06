@@ -1,0 +1,11 @@
+<!--此tag的功能為追蹤應用程式執行的情形。
+trace有分為兩種模式，一種為page模式，一種為application模式
+    ，當tag屬性enable設為true時就啟動application模式，追蹤紀錄會產生於網頁程式的root folder內，名稱為trace.axd
+    ，當屬性pageOutput設為true 的時候，追蹤紀錄就會呈現於每個網頁的下方
+    ，當locaOnly的屬性設為true時，除了server本機可以看到追蹤紀錄其他遠端使用者都無法看見
+    ，至於要用page模式時，就簡單的在aspx網頁上方設定Trace="True"即可，所設定的頁面下方就會產生追蹤紀錄。-->
+    <trace enabled="true" localOnly="true" pageOutput="true" />
+
+
+區域設定開啟trace功能
+ <%@ Trace="true" %?>

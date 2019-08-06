@@ -1,0 +1,13 @@
+#壓縮(會刪除原檔)[原檔不被刪除]
+	xz -v[k] 檔名
+#解壓縮
+	xz -d 檔名
+
+
+#打包(連子目錄)[gz|bz|xz] [壓/解縮] [壓縮後檔名]
+	tar -[z|j|J] [cv] [-f $filename] $dir
+#拆包
+	tar -[z|j|J] [xv] $dir
+
+#解包單一程式
+	tar -jtv -f $zipFilePath | grep '$filename'

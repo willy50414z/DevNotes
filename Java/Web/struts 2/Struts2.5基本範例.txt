@@ -1,0 +1,74 @@
+//引入JAR包
+	commons-fileupload-1.3.3.jar
+	commons-io-2.5.jar
+	commons-lang3-3.6.jar
+	commons-logging-1.1.3.jar
+	freemarker-2.3.26-incubating.jar
+	javassist-3.20.0-GA.jar
+	log4j-api-2.9.1.jar
+	ognl-3.1.15.jar
+	struts2-core-2.5.14.1.jar
+
+//配置struts.xml
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+    
+<struts>
+<!-- <constant name="struts.devMode" value="true" /> -->
+   <package name="helloworld" extends="struts-default">     
+      <action name="hello" class="com.learnWeb.struts2.HelloWorldAction"  method="execute">
+            <result name="success">/HelloWorld.jsp</result>
+      </action>
+   </package>
+</struts>
+
+//配置web.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_9" version="2.4" 
+    xmlns="http://java.sun.com/xml/ns/j2ee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    
+   <display-name>Struts 2</display-name>
+   <welcome-file-list>
+      <welcome-file>index.jsp</welcome-file>
+   </welcome-file-list>
+   <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+   </filter>
+   <filter-mapping>
+      <filter-name>struts2</filter-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>
+</web-app>
+
+//測試用JSP--index.jsp
+<h1>Hello World From Struts2</h1>
+   <form action="hello">
+      <label for="name">Please enter your name</label><br/>
+      <input type="text" name="name"/>
+      <input type="submit" value="Say Hello"/>
+   </form>
+
+//測試用JSP--HelloWorld.jsp
+<%@ taglib prefix="s" uri="/struts-tags"%>
+Hello World, <s:property value="name"/>
+
+//測試用Action--com.learnWeb.struts2.HelloWorldAction.java
+public class HelloWorldAction  extends ActionSupport{
+		public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+		String name;
+		public String execute() throws Exception{
+			return "success";
+		}
+		
+}

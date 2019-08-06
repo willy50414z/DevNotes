@@ -1,0 +1,60 @@
+1.安裝網頁服務器
+	yum install httpd
+2.將網頁服務器設為開機時自動開啟
+	systemctl enable httpd.service
+3.啟動網頁服務器
+	systemctl start httpd.service
+
+安裝tomcat
+1.新增專門開關tomcat的Group
+	sudo groupadd tomcat
+2.新增專門開關tomcat的帳號(tomcat[不能以該帳號登入，純用來起服務])
+	useradd -M -s /bin/nologin -g tomcat -d /opt/tomcat tomcat
+3.解壓tomcat.gz.tar至目標目錄
+4. 設定權限
+	cd /opt/tomcat/apache-tomcat-1.8.5_72
+	chgrp -R tomcat *
+	chmod g+rwx conf
+	chmod -R g+r conf
+	chown -R tomcat logs
+5. 建立服務設定檔[!!各參數請依實際情況確認!!](vi /etc/systemd/system/tomcat.service)
+	[Unit]
+	Description=Apache Tomcat Web Application Container
+	After=syslog.target network.target
+	
+	[Service]
+	Type=forking
+	
+	Environment=JAVA_HOME=/usr/lib/jvm/jre
+	Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
+	Environment=CATALINA_HOME=/opt/tomcat
+	Environment=CATALINA_BASE=/opt/tomcat
+	Environment='CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC'
+	Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
+	
+	ExecStart=/opt/tomcat/bin/startup.sh
+	ExecStop=/bin/kill -15 $MAINPID
+	
+	User=tomcat
+	Group=tomcat
+	
+	[Install]
+	WantedBy=multi-user.target
+
+6. 重載service路徑
+	systemctl daemon-reload
+7. 啟動服務
+	systemctl enable tomcat
+	systemctl [start | stop | restart] tomcat
+8. 開啟防火牆
+	firewall-cmd --permanent --add-port=8080/tcp
+	firewall-cmd --reload
+9.在其他電腦設定tomcat
+	#更改<tomcat>/webapps/manager/META-INF/context.xml
+	#將<Value>註解掉
+	<Context antiResourceLocking="false" privileged="true" >
+	<!--
+	<Valve className="org.apache.catalina.valves.RemoteAddrValve"
+	     allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+	-->
+	</Context>

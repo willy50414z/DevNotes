@@ -1,0 +1,21 @@
+$.get(url,傳遞參數,回乎函式).error(發生錯誤時觸發的function);
+$.post(url,傳遞參數,回乎函式).error(發生錯誤時觸發的function);
+$.getJSON(url,傳遞參數,回乎函式).error(發生錯誤時觸發的function);-->回傳JSON資料
+//
+$.get("process.java","key=value&key1=value1");
+$.post("process.java","key=value&key1=value1");
+
+//傳遞跳脫字元
+querystring = "key="+encodeURIComponent("value1&value2");
+$.post("process.java",querystring);
+
+//傳遞map
+$.post("process.java",{key : value,key2 : value2});
+
+//自動產生queryString格式<key=value&key1=value1....>(key是抓該物件的name)
+var param=$("form").serialize();
+
+//回呼函式(當post回傳後，對回傳的資料作處裡的函式)
+$.post(url,param,function(回傳的資料){
+	data.JSON名.屬性值
+})

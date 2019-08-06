@@ -1,0 +1,54 @@
+//DOM物件下，只可有一個跟節點，且所有節點皆須包在一個跟節點下
+
+//Java
+		//取得XML檔案
+		File xmlFile = new File("D:\\Java\\example\\Servlet+Struts\\src\\chart\\src\\airticle.xml");
+		// 宣告一個 DocumentBuilder對像. 抽像類，不能直接建構，可以透過 DocumentFactory 來建構。
+		DocumentBuilder builder = null;
+		// 宣告一個 DocumentBuilderFactory對像. 透過單例模式建立
+		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+		// 取得預設的 DocumentBuilder.
+		try {
+			builder = builderFactory.newDocumentBuilder();
+			// 解析檔案
+			Document document = builder.parse(xmlFile);
+			// 獲得根元素
+			Element root = document.getDocumentElement();
+			// 獲得根元素下的子節點
+			
+			
+		//節點中內容
+		
+			//取得子節點
+			NodeList childNodes = root.getChildNodes();
+			
+			//取得子節點下第i個元素
+			Node node = childNodes.item(i);
+			
+			//取得節點中category屬性<article category="java">
+			node.getAttributes().getNamedItem("category").getNodeValue()
+			
+			//取得節點key
+			node.getNodeName()
+			
+			//取得節點value
+			node.getTextContent()
+			
+			
+//xml
+<?xml version="1.0" encoding="UTF-8"?>
+<articles>
+<article category="java">
+	<title>Java基礎k</title>
+	<author>janet</author>
+	<email>janet.yahoo.com.tw</email>
+	<date>20080108</date>
+</article>
+
+<article category="java">
+	<title>Java基礎k</title>
+	<author>janet</author>
+	<email>janet.yahoo.com.tw</email>
+	<date>20080108</date>
+</article>
+</articles>

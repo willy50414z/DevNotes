@@ -1,0 +1,16 @@
+1. vi Hello.java
+2. 輸入i  -->進入輸入模式
+3. 寫程式
+	public class Hello.java{
+		public static void main(String[] args){
+			System.out.println("Hello World");
+		}
+	}
+4. esc  -->退出輸入模式
+5. 退出vi編輯器
+	保存退出    :wq
+	退出不保存  :q!
+6. compile
+	javac Hello.java
+7. run
+	java Hello

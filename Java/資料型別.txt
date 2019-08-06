@@ -1,0 +1,13 @@
+強制轉型
+	1.String轉Int
+		Integer.parsInt(<String>)
+	2.轉Double
+		Double.parseDouble
+	3.轉String	
+		String.valueOf();
+	4.取得資料型別
+		String aa.getClass().getSimpleName()--String
+
+	5.Array塞進List
+		ArrayList <list>= new ArrayList();
+        	<list>.addAll(Arrays.asList(<array>));

@@ -1,0 +1,30 @@
+1.安裝selenium
+	%Python_Home%\Scripts\pip.exe install -U selenium
+2.安裝purl
+	c:\Python26\Scripts\pip.exe install purl
+3.安裝web Driver(ex. chromedriver)
+4.把chromDriver放到.py旁
+5.撰寫測試程式
+from selenium import webdriver 
+from selenium.common.exceptions import NoSuchElementException 
+from selenium.webdriver.common.keys import Keys 
+
+import time 
+import os 
+
+#browser = webdriver.Firefox() 
+#browser = webdriver.Ie('IEDriverServer.exe') 
+browser = webdriver.Chrome('chromedriver.exe') 
+
+browser.get('http://www.google.com.tw/') 
+
+elem = browser.find_element_by_xpath("//input[@id='lst-ib']") 
+elem.send_keys(u'艾小克' + Keys.RETURN) 
+
+time.sleep(1) 
+
+#links = browser.find_elements_by_xpath("//h3[@class='r']/a") 
+
+#assert links[0].text == u'瓶水相逢- 艾小克', 'not match' 
+
+browser.close()

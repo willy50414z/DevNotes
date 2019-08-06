@@ -1,0 +1,11 @@
+//方法1
+	System.IO.File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\log.txt", DateTime.Now + "\t" + msg + "\r\n");
+//方法2
+	string path = AppDomain.CurrentDomain.BaseDirectory + @"\log.txt";
+            using (StreamWriter sw = File.AppendText(path))
+            {
+                
+                sw.WriteLine(DateTime.Now.ToString() + "  " + "ABC");
+            }
+
+//兩個方法都可以但是會發生現成碰撞
