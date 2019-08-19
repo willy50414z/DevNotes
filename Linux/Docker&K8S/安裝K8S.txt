@@ -1,0 +1,40 @@
+1. 安裝VitualBox
+cd /etc/yum.repos.d/
+wget http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo 
+yum update
+yum install binutils qt gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms
+yum install VirtualBox-6.0
+yum install "kernel-devel-uname-r == $(uname -r)"
+rcvboxdrv setup
+
+
+
+
+2. 安裝 kubectl 套件(K8S的CMD)
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+
+3. 開放kubectl存取權並移至PATH下
+chmod +x ./kubectl
+mv ./kubectl /usr/local/bin/kubectl
+
+4. 安裝minikube(本機端的K8S節點)並移至PATH路徑下
+wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+install minikube-linux-amd64 /usr/bin/minikube
+
+
+5. 啟用minikube
+minikube start -p ${minikubeName}
+進階配置CPU,Memory
+minikube start --cpus=4 --memory=4096 --kubernetes-version=v1.7.2
+
+
+
+
+
+
+
+錯誤處理
+	發生錯誤: The vboxdrv kernel module is not loaded
+	rcvboxdrv setup
+	發生錯誤: No package kernel-devel
+	yum install "kernel-devel-uname-r == $(uname -r)"

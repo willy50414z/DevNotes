@@ -5,7 +5,7 @@ cd /etc/sysconfig/network-scripts/
 ls
 #(XX視該目錄檔案名稱而定)
 #把ONBOOT=no，改為ONBOOT=yes
-vi /etc/sysconfig/network-scripts/ifcfg-eth${XX}  
+vi /etc/sysconfig/network-scripts/ifcfg-ens${XX}  
 
 #重啟網路
 service network restart

@@ -1,0 +1,67 @@
+1. 刪除舊檔案
+	sudo yum remove docker \
+	  docker-common \
+	  container-selinux \
+	  docker-selinux \
+	  docker-engine \
+	  docker-engine-selinux
+2. 安裝套件
+	sudo yum install -y yum-utils \
+		device-mapper-persistent-data lvm2
+		
+3. 新增 Docker 官方的 stable 套件庫
+	sudo yum-config-manager \
+	  --add-repo \
+	  https://download.docker.com/linux/centos/docker-ce.repo														
+
+4. 開啟docker edge version (Optional)
+	yum-config-manager --enable docker-ce-edge
+	
+5. 更新 yum 的套件索引
+	yum makecache fast
+	
+6. 安裝docker-CE
+	yum install docker-ce
+	
+7. 啟動docker服務
+	systemctl start docker
+	
+--測試docker with tomcat
+
+#建立workdir並放入jdk
+mkdir testtomcat 
+cd testtomcat
+放入jdk-8u221-linux-x64.tar.gz : 因jdk下載要授權，wget下載可能會失敗，導致解壓失敗，故需由FTP放進Linux
+
+#編寫Dockerfile
+vi Dockerfile
+--
+FROM centos:7
+MAINTAINER willy
+
+RUN yum install -y wget
+
+RUN cd /
+
+ADD jdk-8u221-linux-x64.tar.gz /
+
+RUN wget https://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.43/bin/apache-tomcat-8.5.43.tar.gz
+RUN tar zxvf apache-tomcat-8.5.43.tar.gz
+
+EXPOSE 8080
+
+ENV JAVA_HOME=/jdk1.8.0_221
+ENV PATH=$PATH:/jdk1.8.0_221/bin
+CMD ["/apache-tomcat-8.5.43/bin/catalina.sh", "run"]
+--
+
+#建立image
+docker build -t ${imagename} . --no-cache
+
+#將image啟動成container
+docker run ${imagename}
+#將image啟動成container(背景),並將container的8080對應到host的8080
+docker run -d -p 8080:8080 ${imagename}
+#將image啟動成container(背景),並將Dokckerfile有Expose的port對外開放
+docker run -d -P ${imagename}
+

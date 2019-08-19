@@ -1,0 +1,29 @@
+#啟動docker service
+	systemctl start docker
+	
+	
+
+#建立docker映像檔
+	docker build -t ${imagename} . --no-cache
+	/*
+	-t 設定imageName
+	. Dockerfile路徑
+	*/
+
+#將image啟動成container
+	docker run ${imagename}
+
+#將image啟動成container,並將container的8080對應到hostOS的8080
+	docker run -d -p 8080:8080 ${imagename}
+	/*
+	-d 背景執行
+	-p 設定container對外port的開放
+	*/
+
+
+--查詢
+#查看docker內的image
+	docker images
+
+#查看執行中的container
+	docker ps
