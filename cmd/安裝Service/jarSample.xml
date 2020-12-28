@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<service> 
+<id>Sonarqube Scanner</id> 
+<name>Sonarqube Scanner</name>
+ <description>Sonarqube Scanner Service</description> 
+ <executable>StartSonar.bat</executable> 
+ <arguments></arguments> 
+ <logmode>rotate</logmode> 
+</service>

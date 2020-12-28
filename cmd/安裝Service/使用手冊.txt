@@ -1,0 +1,2 @@
+InstallService.exe delete
+sc delete ${ServiceName}

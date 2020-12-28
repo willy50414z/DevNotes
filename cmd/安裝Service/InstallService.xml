@@ -1,0 +1,11 @@
+<service>
+	<id>ServiceId</id>
+	<!-- Display name of the service -->
+	<name>ServiceName</name>
+	<!-- Service description -->
+	<description>ServiceNameDesc</description>
+	<!-- Path to the executable, which should be started -->
+	<executable>run.bat</executable>
+	<!-- log mode -->
+	<logmode>rotate</logmode>
+</service>
