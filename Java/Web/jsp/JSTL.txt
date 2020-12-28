@@ -26,14 +26,14 @@
 <c:out value="${i}"/>
 </c:forEach>
 
-<c:forEach items="list" var="o">
+<c:forEach items="${list}" var="o">
 <c:out value="${o}"/>
-</forEach>
+</c:forEach>
 
-<c:forEach items="list" var="o">
+<c:forEach items="${list}" var="o">
 <c:out value="${o.key}"/>
 <c:out value="${o.value}"/>
-</forEach>
+</c:forEach>
 
 <table border="1" cellpadding="0" cellspacing="0">
 <c:forEach begin="0" end="10" step="1" var="i" varStatus="varStatus" >
