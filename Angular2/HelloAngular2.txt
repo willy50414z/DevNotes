@@ -1,0 +1,9 @@
+1. 安裝nodeJs
+2. nodeJs安裝Angular2
+	npm install -g @angular/cli[@版號]
+	npm install -g @angular/cli@1.5
+3. 建立專案
+	ng new ${projectName} --routing
+4. 建立main.ts
+	cd ${projectName}
+	ng serve

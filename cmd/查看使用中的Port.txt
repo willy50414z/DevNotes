@@ -1,3 +1,1 @@
-netstat -an
-//查看被誰占用的
-netstat -anb
+netstat -aon|findstr "8081"

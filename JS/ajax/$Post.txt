@@ -1,5 +1,5 @@
 //JS
- $.post("action",function(data){ 
+ $.post("action", {key1:value1,key2:value2},function(data){ 
     	       var json = eval("("+data+")"); 
     	       $("#test").val($("#test").val()+"\r\n"+json.msg+" -- "+json.msg1);
     	   }); 

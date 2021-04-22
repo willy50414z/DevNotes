@@ -1,0 +1,21 @@
+// 		$.post("/TestSubmit", {col1:"val1",col2:"val2",col3:"val3"}, function(result){});
+		var temp = document.createElement("form");
+		temp.action = "/TestSubmit";
+		temp.method = "post";
+		temp.style.display = "none";
+
+	        opt = document.createElement("textarea");
+	        opt.name = "col1";
+	        opt.value = "val1";
+	        temp.appendChild(opt);
+	        opt = document.createElement("textarea");
+	        opt.name = "col2";
+	        opt.value = "val2";
+	        temp.appendChild(opt);
+	        opt = document.createElement("textarea");
+	        opt.name = "col3";
+	        opt.value = "val3";
+	        temp.appendChild(opt);
+
+		    document.body.appendChild(temp);
+		    temp.submit();

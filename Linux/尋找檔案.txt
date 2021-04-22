@@ -1,0 +1,4 @@
+find /was/was85 -exec grep -l "SSL_1" {} \;
+find / -name webcontainer-chains.xml
+
+du -s * | sort -nr | head
