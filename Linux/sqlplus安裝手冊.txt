@@ -1,0 +1,71 @@
+===========1. 解壓縮安裝檔===========
+if目錄為/home/apsit/oracle/
+cd /home/apsit/oracle/
+
+===========2. 開啟iocp===========
+root# smitty iocp
+-> Enter (Change/Show Characteristics of I/O Completion Ports)
+-> F7 (Edit)
+-> Tab (Change to avaliable)
+-> Enter (Do)
+-> F10 (Exit)
+root# reboot
+
+===========3. 解壓縮安裝檔===========
+jar xvf instantclient-basic-aix.ppc64-19.8.0.0.0dbru.zip
+jar xvf instantclient-sqlplus-aix.ppc64-19.8.0.0.0dbru.zip
+
+===========4. 建立tnsnames.ora===========
+mkdir /home/apsit/oracle/instantclient_19_8/network/admin
+vi tnsnames.ora
+-----------內容---------
+BCIC_DEV =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 172.24.16.75)(PORT = 1803))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = bcic)
+    )
+  )
+------------------
+
+===========Test Script===========
+vi TEST
+
+---------------------------------------------------
+SET DEFINE OFF;
+SPOOL ./test.log;
+
+SHOW user
+WHENEVER SQLERROR EXIT ROLLBACK
+
+SET head OFF
+SET echo OFF
+
+Select APOUT_EVENT_SEQ.nextval From dual;
+ 
+spool off
+exit
+---------------------------------------------------
+
+
+===========Shell===========
+#set EVN
+LD_LIBRARY_PATH=/home/apsit/oracle/:/home/apsit/oracle/instantclient_19_8
+export LD_LIBRARY_PATH
+
+#assemble cridential
+DB_USR=`perl -e 'print pack "H*","42434943444556555352" '`
+DB_PWD=`perl -e 'print pack "H*","2870617373776f726429" '`
+export DB_USR
+export DB_PWD
+
+#execute script
+sqlplus $DB_USR/$DB_PWD@BCIC_DEV @TEST
+
+===========連線字串加解密方式===========
+#加密"str"
+echo `perl -e 'print unpack "H*","str" '`
+#解密成"str"
+echo `perl -e 'print pack "H*","737472" '`

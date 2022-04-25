@@ -1,0 +1,13 @@
+1. 產生SSL證書
+	keytool -genkey -alias sias -dname "CN=Willy,OU=O1,O=CTBC,L=SungShan,ST=Taipei,C=TW" -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 36500
+1. 透過free for ssl產生證書 (openssl用git的)
+	下載憑證壓縮檔及private key
+	openssl pkcs12 -export -in D:/certificate.crt -inkey D:/private.key -out keystore.p12 -name sias -CAfile D:/ca_bundle.crt
+2. 將SSL證書 (keystore.p12) 放到classpath
+3. 設定springboot
+	server: 
+	  ssl: 
+		key-store: classpath:keystore.p12 #证书的路径.
+		key-store-password: ENC(qA6p0q5pVQhKPTSTMX9xix7GPG7MFdTU) #证书密码，请修改为您自己证书的密码.
+		keyStoreType: PKCS12  #秘钥库类型
+		keyAlias: sias

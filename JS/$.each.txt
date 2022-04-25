@@ -11,10 +11,3 @@ $( ".ii" ).each(function( index ) {
 -----------------------------------------------------------------
 <input class="ii" id="iinput" type="text" value="ee">
 <input class="ii" id="iinput" type="text" value="ff">
-
-
-var fakeMap = {"aa": "1", "bb": "2", "cc": "3"};
-$.each(fakeArray, function(i,o){
-	console.log(i);
-	console.log(o);
-})

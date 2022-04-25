@@ -1,0 +1,1 @@
+jcmd ${PID} VM.system_properties

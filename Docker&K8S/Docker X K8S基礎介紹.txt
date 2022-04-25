@@ -1,0 +1,117 @@
+Docker
+	組成
+		Image: 一個Container的模板，用來重複產生容器實體
+		Container: 用Image建立出來的執行實例
+		Repository: 集中存放Image檔案的場所
+		Docker Compose: 主要是用來描述 Service 之間的相依性和調度方式
+	範例
+		撰寫Dockerfile
+			==========
+			FROM node:10.15.3-alpine  #載入 Node.js 作為執行環境，這是用node:10.15.3-alpine這個版本
+			WORKDIR /app	#在這個 Docker 的環境之中建立一個工作目錄 /app
+			ADD . /app	#把跟 Dockerfile 同個資料夾的程式加到剛建立的工作目錄 /app 中
+			RUN npm install	#運行 npm install，讓 npm 透過讀取 package.json 下載相依的 package
+			EXPOSE 3000	#指定 container 對外開放的 port
+			CMD node index.js	#透過 node index.js 來執行我們的 Server
+			==========
+			
+		透過Dockerfile打包出一個image，tag名稱"docker-demo-app"
+			docker build . -t docker-demo-app
+			
+		列出我們全部的 Docker Image
+			docker images
+			==============
+			REPOSITORY        TAG     IMAGE ID       CREATED           SIZE
+			docker-demo-app   latest  733776b1db0a   8 minutes ago     74MB
+			==============
+			
+			docker image list | select -First 2 #找出前2個image
+		
+		啟動Container
+			docker run -p 3000:3000 -it 733776b1db0a
+			docker run -p 3000:3000 ${REPOSITORY:TAG}
+			#-p 5000:80 => 本機5000 port對應到container中的80port
+			
+		列出執行中的 container
+			docker ps 
+			=================
+			CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS         PORTS                  NAMES
+			3dfeac59e64b   aspnetapp:local   "dotnet aspnetapp.dll"   5 minutes ago   Up 5 minutes   0.0.0.0:5000->80/tcp   zen_poitras
+			=================
+			
+		停止 container
+			docker stop 3dfeac59e64b
+			
+K8S https://ithelp.ithome.com.tw/articles/10202177
+	組成
+		Pod: K8S 運作的最小單位，一個 Pod 對應到一個應用服務
+			每個 Pod 都有一個身分證，也就是屬於這個 Pod 的 yaml 檔
+			一個 Pod 裡面可以有一個或是多個 Container，但一般情況一個 Pod 最好只有一個 Container
+			同一個 Pod 中的 Containers 共享相同資源及網路，彼此透過 local port number 溝通
+		Worker Node: 約為一台VM的角色，個 Node 中都有三個組件：kubelet、kube-proxy、Container Runtime
+			kubelet: Node 的管理員，負責管理該 Node 上的所有 Pods 的狀態並負責與 Master 溝通
+			kube-proxy: 該 Node 的傳訊員，負責更新 Node 的 iptables，讓 K8S 中不在該 Node 的其他物件可以得知該 Node 上所有 Pods 的最新狀態
+			Container Runtime: 該 Node 真正負責容器執行的程式，以 Docker 容器為例其對應的 Container Runtime 就是 Docker Engine
+		Master Node: K8S 運作的指揮中心。Master Node有四個組件：kube-apiserver、etcd、kube-scheduler、kube-controller-manager
+			kube-apiserver
+				管理整個 K8S 所需 API 的接口（Endpoint）
+				 Node 之間的溝通橋樑，每個 Node 彼此不能直接溝通，必須要透過 apiserver 轉介
+				 K8S 中的請求的身份認證與授權
+			etcd
+				存放 K8S Cluster 的資料作為備份， etcd可幫我們還原 K8S 的狀態
+			kube-scheduler
+				
+			kube-controller-manager
+				負責管理並運行 K8S controller(監視 Cluster 狀態的 Process)的組件
+				監視與嘗試更新也都需要透過訪問 kube-apiserver 達成
+				Pods 調度員，根據每個 Node 上面資源規定、硬體限制等條件協調出一個最適合放置的 Node 讓該 Pod 跑
+	範例
+		將image部屬到K8S
+			kubectl run aspnetapp-interactive-deployment --image aspnetapp:local --port=80 
+				#aspnetapp-interactive-delopyment: 部署名稱
+				#aspnetapp:local: Image 名稱
+				#port=80: Pod listen 的 port
+				#replicas=3: 由K8S叢集自動覆寫成3個Pods
+				#kubectl delete pod aspnetapp-interactive-delopyment
+		將image部屬成deployment
+			kubectl create deployment aspnetapp-interactive-deployment --image=aspnetapp:local
+			#kubectl delete deployment aspnetapp-interactive-delopyment
+		設定run deployment的pods數量=3
+			kubectl scale deployment aspnetapp-interactive-deployment --replicas=3
+		取得一些部屬設定
+			kubectl get deployments
+			kubectl get rs
+			=================
+			NAME                               READY   UP-TO-DATE   AVAILABLE   AGE
+			aspnetapp-interactive-delopyment   3/3     3            3           4m28s
+			=================
+		確認 pods狀態
+			kubectl get pods
+			=================
+			NAME                                               READY   STATUS    RESTARTS   AGE
+			aspnetapp-interactive-delopyment                   1/1     Running   0          16m
+			aspnetapp-interactive-delopyment-cdbc99b9d-nsgmm   1/1     Running   0          16m
+			aspnetapp-interactive-delopyment-cdbc99b9d-tj9zj   1/1     Running   0          20m
+			aspnetapp-interactive-delopyment-cdbc99b9d-tst2p   1/1     Running   0          16m
+			=================
+		
+		開放container對外port
+			kubectl expose rs aspnetapp-interactive-deployment-7854694556 --port=80 --type=NodePort
+			=================
+			service/aspnetapp-interactive-deployment-7854694556 exposed
+			=================
+			#aspnetapp-interactive-deployment-7854694556 需視 <kubectl get rs>.<NAME>填入
+			#--port=80 需視container提供service的port而定
+			#--type=NodePort 這個可以開放對外連線
+			#失敗透過kubectl delete service aspnetapp-interactive-deployment-7854694556 刪除重作
+			
+		查看K8S對外開放的服務
+			kubectl get svc
+			=================
+			NAME                                          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+			aspnetapp-interactive-deployment-7854694556   NodePort    10.99.73.161   <none>        80:32292/TCP   3s
+			kubernetes                                    ClusterIP   10.96.0.1      <none>        443/TCP        103m
+			=================
+			
+		訪問
+			http://127.0.0.1:32292/
