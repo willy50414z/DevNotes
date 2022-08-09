@@ -1,0 +1,10 @@
+本地File
+	jdbc:h2:~/test //~表示在該電腦登入者home目錄 ex. C:\Users\z00040868
+	jdbc:h2:file:D:/sample //指定路徑
+	
+記憶體內
+	jdbc:h2:mem:test_mem //記憶體內為test_mem的db，可省
+
+
+設定帳號密碼 // 123文件鎖 456帳號鎖 AES加密
+	jdbc:h2:file:D:/sample;CIPHER=AES;user=sa;password=123 456;
