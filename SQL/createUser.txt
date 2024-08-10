@@ -1,0 +1,5 @@
+CREATE USER 'hktv-iims-readonly'@'%' IDENTIFIED BY 'rjzakd4Sd9av';
+GRANT SELECT ON hktvmall.* TO 'hktv-iims-readonly'@'%';
+CREATE USER 'hktv-iims-write'@'%' IDENTIFIED BY '7nsegknhaDg7';
+GRANT INSERT, UPDATE, DELETE ON hktvmall.* TO 'hktv-iims-write'@'%';
+FLUSH PRIVILEGES;
