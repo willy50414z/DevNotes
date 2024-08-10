@@ -1,0 +1,27 @@
+過去在專案中大多透過 Session 和 Cookie 實作驗證機制，意味著每位用戶經過驗證後，都需要為其建立和存取 Session，當用戶量增加，資料庫的花費成本將不斷提高
+JSON Web Token（JWT）也因此誕生，它更符合設計 RESTful API 時「Stateless 無狀態」原則：意味著每一次從客戶端向伺服器端發出的請求都是獨立的，Token 被回傳後，存取在「客戶端」（大多存在瀏覽器的 Storage 當中）
+
+JWT 是一組字串，透過（.）切分成三個為 Base64 編碼的部分
+base64(Header) + base64(Payload) + base64(Signature)
+
+	Header: Token 種類（type）及雜湊演算法（alg）
+
+	{
+	  "alg": "HS256", 
+	  "typ": "JWT"
+	}
+
+	Payload: 使用者和相關的資訊都可以放置其中，exp 設定 Token 到期的時間、iat 設定 Token 簽發時間
+
+	{
+	  "_id": "<user_id>", 
+	  "name": "Mike",
+	  "exp": 1300819380
+	}
+
+	Signature: 轉換成 Base64 編碼的 Header、Payload 與自己定義的密鑰，透過在 Header 設定的雜湊演算法方式所產生
+	
+驗證方式:
+	1. 是否可用private key decode jwt
+	2. jwt是否到期
+	3. 透過Payload的內容驗證User資訊
